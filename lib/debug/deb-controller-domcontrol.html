@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Debugging Controller and DOMControl</title>
+        <script src="../js/tags.js"></script>
+        <script src="../js/utils.js"></script>
+        <script src="../js/domutils.js"></script>
+        <script src="../js/generic.js"></script>
+        <script src="../js/vertex.js"></script>
+        <script src="../js/fsm.js"></script>
+        <script src="../js/task.js"></script>
+        <script src="../js/tasker.js"></script>
+        <script src="../js/controller.js"></script>
+        <script src="../js/domcontrol.js"></script>
+        <script src="../js/page.js"></script>
+        <script src="deb-controller-domcontrol.js"></script>
+
+        <style>
+
+            #zoo {
+                width: fit-content;
+                padding: 5pt;
+                border: 3pt solid black;
+            }
+
+            #controlPanel {
+                margin-top: 5pt;
+            }
+
+            .enabled {
+                background: #cbe7a1;
+                cursor: pointer;
+            } 
+
+            .disabled {
+                background: #acadaa;
+                cursor: default;
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .button {
+                display: inline-block;
+                width: 50pt;
+                height: 16pt;
+                text-align: center;
+                border-radius: 8pt;
+            }
+
+            .button div {
+                display: flex;
+                width: 50pt;
+                height: 16pt;
+                justify-content: center;
+                align-items: center;
+                font-family: sans-serif;
+                font-size: 10pt;
+                line-height: 10pt;
+            }
+
+            #cages {
+                margin-top: 15pt;
+            }
+
+            #cages > div {
+                display: inline-block;
+                padding: 5pt;
+                border: 1pt dashed #888888;
+            }
+
+            #cages img {
+                height: 50pt;
+            }
+
+        </style>
+
+    </head>
+    <body onload="main()">
+        <h1>Debug Controllers</h1>
+
+        <div 
+            id="zoo" 
+            data-rnav-control="Zoo">
+            <div 
+                id="controlPanel">
+                <div
+                    class="button disabled"
+                    data-rnav-control="OpenButton"><div>Open</div></div>
+                <div
+                    class="button disabled"
+                    data-rnav-control="CloseButton"><div>Close</div></div>
+            </div>
+            <div id="cages">
+                <div>
+                    <div 
+                        data-rnav-control="Animal"
+                        data-rnav-options="species: hippo; name: Hubert; src: hippo.jpg"></div>
+                </div>
+                <div>
+                    <div 
+                        data-rnav-control="Animal"
+                        data-rnav-options="species: gorilla; name: James; src: gorilla.jpg"></div>
+                </div>
+                <div>
+                    <div 
+                        data-rnav-control="Animal"
+                        data-rnav-options="species: hog; name: Lisa; src: hog.jpg"></div>
+                </div>
+                <div>
+                    <div 
+                        data-rnav-control="Animal"
+                        data-rnav-options="species: porcupine; name: Shira; src: porcupine.jpg"></div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
