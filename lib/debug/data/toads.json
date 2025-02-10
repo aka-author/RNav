@@ -1,0 +1,43 @@
+{
+    "toads": [
+        {
+            "species": "Common Toad",
+            "scientific_name": "Bufo bufo",
+            "habitat": "Forests, gardens, wetlands, and grasslands",
+            "diet": ["Insects", "Worms", "Slugs"],
+            "lifespan": "10-12 years",
+            "characteristics": {
+                "color": "Brown or olive",
+                "size_cm": 8,
+                "skin": "Warty",
+                "behavior": "Mostly nocturnal, slow-moving"
+            }
+        },
+        {
+            "species": "American Toad",
+            "scientific_name": "Anaxyrus americanus",
+            "habitat": "Woodlands, gardens, marshes",
+            "diet": ["Beetles", "Ants", "Caterpillars"],
+            "lifespan": "5-10 years",
+            "characteristics": {
+                "color": "Brown, red, or gray",
+                "size_cm": 5,
+                "skin": "Bumpy, dry",
+                "behavior": "Burrows underground, active at dusk"
+            }
+        },
+        {
+            "species": "Cane Toad",
+            "scientific_name": "Rhinella marina",
+            "habitat": "Tropical rainforests, grasslands, urban areas",
+            "diet": ["Rodents", "Small reptiles", "Insects"],
+            "lifespan": "10-15 years",
+            "characteristics": {
+                "color": "Brown or yellowish",
+                "size_cm": 15,
+                "skin": "Rough, toxic glands",
+                "behavior": "Highly invasive, aggressive predator"
+            }
+        }
+    ]
+}
