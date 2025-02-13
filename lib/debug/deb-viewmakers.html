@@ -6,7 +6,7 @@
         <script src="../js/domutils.js"></script>
         <script src="../js/generic.js"></script>
         <script src="../js/cfg.js"></script>
-        <script src="../js/dombuilders.js"></script>
+        <script src="../js/viewmakers.js"></script>
         <script src="../js/equipment.js"></script>
         <script src="../js/stack.js"></script>
         <script src="../js/fsmachine.js"></script>
@@ -17,24 +17,35 @@
         <script src="../js/task.js"></script>
         <script src="../js/tasker.js"></script>
         <script src="../js/app.js"></script>
-        <script src="deb-dombuilders.js"></script>
+        <script src="deb-viewmakers.js"></script>
 
         <style>
-            .zoo-outer {
+            .zoo__outer {
+                width: fit-content;
                 padding: 5pt;
                 border: 3pt solid black;
             }
-            .zoo-inner {
+            .zoo__inner {
                 padding: 5pt;
                 border: 1pt solid rgb(142, 135, 135);
             }
-            .cage-outer {
+            .cage__outer {
+                display: inline-block;
+                margin: 5pt;
                 padding: 5pt;
-                border: 3pt dashed black;
+                border: 1pt dashed black;
             }
-            .cage-outer {
+            .cage__inner--open {
                 padding: 5pt;
                 background: #e1e9dd;
+            }
+            .cage__inner--closed {
+                padding: 5pt;
+                background: #e1e9dd;
+            }
+
+            img.animal {
+                height: 50pt;
             }
         </style>
 
