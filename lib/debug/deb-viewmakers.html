@@ -43,6 +43,7 @@
 
             #logo {
                 display: inline-block;
+                vertical-align: top;
                 width: 100px;
                 height: 100%;
                 margin: 0;
@@ -51,11 +52,18 @@
 
             #banner {
                 display: inline-block;
-                width: calc(100% - 100px);
+                vertical-align: top;
+                width: calc(100vw - 100px);
                 height: 100%;
                 margin: 0;
                 background: #9cb196;
             } 
+
+            #banner p {
+                width: fit-content;
+                margin-inline-start: 20pt;
+                background: #aaffff;
+            }
 
             #console {
                 background: #fedcba;
@@ -113,12 +121,12 @@
         </style>
 
     </head>
-    <body onload="main()">
+    <body onload="main()" lang="he" dir="ltr">
         <div id="screen">
-            <div id="pageHeader"><div id="logo"></div><div id="banner"></div></div>
+            <div id="pageHeader"><div id="logo"></div><div id="banner"><p>ארנב<p></div></div>
             <div id="console">        
                 <div id="toolbar" data-rnav-control="Toolbar"></div>
-                <div id="content" data-rnav-control="Content"></div>
+                <div id="content" data-rnav-control="RNav_DOMControl"></div>
             </div>
         </div>
     </body>
