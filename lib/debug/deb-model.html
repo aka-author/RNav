@@ -20,11 +20,117 @@
         <script src="../js/domcontrol.js"></script>
         <script src="../js/page.js"></script>
         <script src="../js/model.js"></script>
+        <script src="../js/modelmakers.js"></script>
         <script src="../js/app.js"></script>
         <script src="deb-model.js"></script>
 
+        <style>
+
+            body {
+                margin: 0;
+            }
+
+            #screen {
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
+                background: #cccccc;
+            }
+
+            #pageHeader {
+                margin: 0;
+                height: 100px;
+                background: #ff0000;
+            }
+
+            #logo {
+                display: inline-block;
+                vertical-align: top;
+                width: 100px;
+                height: 100%;
+                margin: 0;
+                background: #ffffaa;
+            }
+
+            #banner {
+                display: inline-block;
+                vertical-align: top;
+                width: calc(100vw - 100px);
+                height: 100%;
+                margin: 0;
+                background: #9cb196;
+            } 
+
+            #banner p {
+                width: fit-content;
+                margin-inline-start: 20pt;
+                background: #aaffff;
+            }
+
+            #console {
+                background: #fedcba;
+                height: calc(100vh - 100px);
+                margin: 0;
+            }
+
+            #toolbar {
+                background: #aaffff;
+                height: 50px;
+            }
+
+            #content {
+                display: flex;
+                height: calc(100% - 50px);
+                background: #f5e8d2;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .zoo_ctrl__outer {
+                width: fit-content;
+                padding: 5pt;
+                border: 3pt solid black;
+            }
+
+            .zoo_ctrl__inner {
+                padding: 5pt;
+                border: 1pt solid rgb(142, 135, 135);
+                background: #aaffff;
+            }
+
+            .cage_ctrl__outer {
+                display: inline-block;
+                width: 80pt;
+                height: 60pt;
+                margin: 5pt;
+                padding: 5pt;
+                border: 1pt dashed black;
+            }
+
+            .cage_ctrl__inner--open {
+                padding: 5pt;
+                background: #e1e9dd;
+            }
+
+            .cage_ctrl__inner--closed {
+                padding: 5pt;
+                background: #e1e9dd;
+            }
+
+            img.animal_ctrl {
+                position: absolute;
+                height: 50pt;
+            }
+        </style>
+
     </head>
     <body onload="main()">
-        <h1>Debugging Models</h1>
+        <div id="screen">
+            <div id="pageHeader"><div id="logo"></div><div id="banner"></div></div>
+            <div id="console">        
+                <div id="toolbar" data-rnav-control="Toolbar"></div>
+                <div id="content" data-rnav-control="RNav_DOMControl"></div>
+            </div>
+        </div>
     </body>
 </html>
