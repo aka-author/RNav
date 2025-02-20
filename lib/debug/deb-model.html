@@ -51,7 +51,13 @@
                 width: 100px;
                 height: 100%;
                 margin: 0;
-                background: #ffffaa;
+                background: #ffffff;
+            }
+
+            #logo img {
+                height: 90%;
+                margin-top: 5%;
+                margin-inline-start: 5px;
             }
 
             #banner {
@@ -60,38 +66,51 @@
                 width: calc(100vw - 100px);
                 height: 100%;
                 margin: 0;
-                background: #9cb196;
+                background: #ffffff;
             } 
 
             #banner p {
                 width: fit-content;
                 margin-inline-start: 20pt;
-                background: #aaffff;
+                background: #ffffff;
             }
 
             #console {
-                background: #fedcba;
                 height: calc(100vh - 100px);
                 margin: 0;
             }
 
-            #toolbar {
-                background: #aaffff;
+            #toolbarArea {
                 height: 50px;
+                border: 1px solid #000000;
+                background: #ffffff;
+            }
+
+            #toolbar {
+                display: flex;
+                height: 100%;
+                margin-inline-start: 5px;
+                align-items: center;
+            }
+
+            .toolbar_button__outer {
+                display: inline-block;
+                cursor: pointer;
             }
 
             #content {
                 display: flex;
-                height: calc(100% - 50px);
-                background: #f5e8d2;
+                height: calc(100% - 52px);
                 justify-content: center;
                 align-items: center;
+                background: #ffffff;
             }
 
             .zoo_ctrl__outer {
                 width: fit-content;
                 padding: 5pt;
                 border: 3pt solid black;
+                background: #FAE29C 
             }
 
             .zoo_ctrl__outer td {
@@ -132,9 +151,11 @@
     </head>
     <body onload="main()">
         <div id="screen">
-            <div id="pageHeader"><div id="logo"></div><div id="banner"></div></div>
-            <div id="console">        
-                <div id="toolbar" data-rnav-control="Toolbar"></div>
+            <div id="pageHeader"><div id="logo"><img src="img/logo.jpg"></div><div id="banner"></div></div>
+            <div id="console">
+                <div id="toolbarArea">       
+                    <div id="toolbar" data-rnav-control="Toolbar"></div>
+                </div>
                 <div id="content" data-rnav-control="RNav_DOMControl"></div>
             </div>
         </div>
