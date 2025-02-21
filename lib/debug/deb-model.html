@@ -28,8 +28,25 @@
 
         <style>
 
+            :root {
+                --header-height: 100px;
+                --logo-width: 100px;
+                --toolbar-height: 50px;
+                --framelet-indent: 20pt;
+
+                --content-height: calc(100vh - var(--header-height) 
+                    - var(--toolbar-height) - 4*var(--framelet-indent));
+
+                --desc-title-height: 40pt;
+                --desc-max-width: 30vw;
+                --desc-content-indent: calc(var(--framelet-indent) / 2);
+
+                --border-color: #916d6b;
+            }
+
             body {
                 margin: 0;
+                overflow: hidden;
             }
 
             #screen {
@@ -40,17 +57,14 @@
             }
 
             #pageHeader {
-                margin: 0;
-                height: 100px;
-                background: #ff0000;
+                height: var(--header-height);
             }
 
             #logo {
                 display: inline-block;
                 vertical-align: top;
-                width: 100px;
+                width: var(--logo-width);
                 height: 100%;
-                margin: 0;
                 background: #ffffff;
             }
 
@@ -63,25 +77,17 @@
             #banner {
                 display: inline-block;
                 vertical-align: top;
-                width: calc(100vw - 100px);
+                width: calc(100vw - var(--logo-width));
                 height: 100%;
-                margin: 0;
                 background: #ffffff;
             } 
 
-            #banner p {
-                width: fit-content;
-                margin-inline-start: 20pt;
-                background: #ffffff;
-            }
-
             #console {
-                height: calc(100vh - 100px);
-                margin: 0;
+                height: calc(100vh - var(--header-height) - var(--toolbar-height));
             }
 
             #toolbarArea {
-                height: 50px;
+                height: var(--toolbar-height);
                 border: 1px solid #000000;
                 background: #ffffff;
             }
@@ -98,18 +104,32 @@
                 cursor: pointer;
             }
 
-            #content {
+            #contentOuter {
                 display: flex;
-                height: calc(100% - 52px);
+                width: 100vw;
+                height: calc(100vh - var(--header-height) - var(--toolbar-height));
                 justify-content: center;
                 align-items: center;
+            }
+
+            #content {
+                --display: flex;
+                width: fit-content;
+                height: fit-content;
+                padding: var(--framelet-indent);
+                gap: var(--framelet-indent);
+                overflow: hidden;
+                border: 1px solid var(--border-color);
                 background: #ffffff;
             }
 
             .zoo_ctrl__outer {
-                width: fit-content;
-                padding: 5pt;
-                border: 3pt solid black;
+                display: inline-block;
+                height: fit-content;
+                --max-height: calc(var(--content-height) - 2*var(--framelet-indent));
+                max-height: calc(100% - 2*var(--framelet-indent));
+                border: 3pt solid var(--border-color);
+                overflow-y: scroll;
                 background: #FAE29C 
             }
 
@@ -143,8 +163,53 @@
             }
 
             img.animal_ctrl {
-                position: absolute;
+                --position: absolute;
                 height: 50pt;
+            }
+
+            .animal_desc_ctrl__outer {
+                display: inline-block;
+                max-width: 30vw;
+                --height: fit-content;
+                --max-height: calc(100% - 2*var(--framelet-indent));
+                border: 5px solid var(--border-color);
+            }
+
+            .animal_desc_ctrl__title_outer {
+                display: flex;
+                height: var(--desc-title-height);
+                align-items: center;
+            }
+
+            .animal_desc_ctrl__title_inner {
+                display: inline-block;
+                width: fit-content;
+                --height: fit-content;
+                margin: var(--desc-content-indent);
+                font-family: 'Lucida';
+                font-weight: bold;
+                font-size: 20pt;
+            }
+
+            .animal_desc_ctrl__matter_outer {
+                --height: calc(100% - var(--desc-title-height));
+                border-top: 1px solid #000000;
+                overflow-y: scroll;
+            }
+
+            .animal_desc_ctrl__matter_inner {
+
+                height: calc(100% - var(--desc-title-height));
+                --height: fit-content;
+                
+
+                max-height: calc(var(--content-height) 
+                    - 2*var(--framelet-indent) - var(--desc-title-height));   
+
+                margin-inline-start: var(--desc-content-indent);
+                margin-top: var(--desc-content-indent);
+                font-size: 14pt;
+                line-height: 18pt;
             }
         </style>
 
@@ -156,7 +221,9 @@
                 <div id="toolbarArea">       
                     <div id="toolbar" data-rnav-control="Toolbar"></div>
                 </div>
-                <div id="content" data-rnav-control="RNav_DOMControl"></div>
+                <div id="contentOuter">
+                    <div id="content" data-rnav-control="RNav_DOMControl"></div>
+                </div>
             </div>
         </div>
     </body>
