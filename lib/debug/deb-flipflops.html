@@ -27,19 +27,45 @@
         <script src="deb-flipflops.js"></script>
 
         <style>
+            .paragraph_container {
+                padding-inline-start: 5pt;
+            }
 
+            .header_wrapper {
+                display: flex;
+                align-items: center;
+            }
+
+            .flipper__outer {
+                display: inline-block;
+                width: 20pt;
+            }
+
+            .title {
+                display: inline-block;
+                margin-inline-start: 0pt;
+            }
+
+            .paragraph_body {
+                margin-inline-start: 20pt;
+            }
             
         </style>
 
     </head>
     <body onload="main()" data-rnav-control="RNav_DOMControl">
-       <!-- <div data-rnav-control="RNav_DOMControl">-->
-            <div id="flipper" data-rnav-control="ContentFlipper">
-
-
-        <!--    </div>-->
-
-           
+     
+        <div class="paragraph_container">
+        <div class="header_wrapper">
+        <div 
+            class="flipper__outer"
+            data-rnav-control="RNav_ShowHideButton"
+            data-rnav-options="idref: jacaranda"></div><h2 class="title">Jacaranda</h2>
+        </div>
+        <div id="jacaranda" class="paragraph_body">Jacaranda is a genus of 49 species of 
+        flowering plants in the family Bignoniaceae, native to tropical 
+        and subtropical regions of the Americas[1] while cultivated 
+        around the world. The generic name is also used as the common name.</div>
         </div>
     </body>
 </html>
