@@ -1,72 +1,165 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Debugging Flippers</title>
-        
-        <script src="../js/utils.js"></script>
-        <script src="../js/domutils.js"></script>
-        <script src="../js/gear.js"></script>
-        <script src="../js/cfg.js"></script>
-        <script src="../js/viewmakers.js"></script>
-        <script src="../js/equipment.js"></script>
-        <script src="../js/stack.js"></script>
-        <script src="../js/fsmachine.js"></script>
-        <script src="../js/httpfetcher.js"></script>
-        <script src="../js/htmlfetcher.js"></script>
-        <script src="../js/jsonfetcher.js"></script>
-        <script src="../js/vertex.js"></script>
-        <script src="../js/task.js"></script>
-        <script src="../js/bureaucrat.js"></script>
-        <script src="../js/controller.js"></script>
-        <script src="../js/domcontrol.js"></script>
-        <script src="../js/uicontrols.js"></script>
-        <script src="../js/page.js"></script>
-        <script src="../js/model.js"></script>
-        <script src="../js/modelmakers.js"></script>
-        <script src="../js/app.js"></script>
-        <script src="deb-flipflops.js"></script>
 
-        <style>
-            .paragraph_container {
-                padding-inline-start: 5pt;
-            }
+<head>
+    <title>Debugging Flippers</title>
 
-            .header_wrapper {
-                display: flex;
-                align-items: center;
-            }
+    <script src="../js/utils.js"></script>
+    <script src="../js/domutils.js"></script>
+    <script src="../js/gear.js"></script>
+    <script src="../js/cfg.js"></script>
+    <script src="../js/viewmakers.js"></script>
+    <script src="../js/equipment.js"></script>
+    <script src="../js/stack.js"></script>
+    <script src="../js/fsmachine.js"></script>
+    <script src="../js/httpfetcher.js"></script>
+    <script src="../js/htmlfetcher.js"></script>
+    <script src="../js/jsonfetcher.js"></script>
+    <script src="../js/vertex.js"></script>
+    <script src="../js/task.js"></script>
+    <script src="../js/bureaucrat.js"></script>
+    <script src="../js/controller.js"></script>
+    <script src="../js/domcontrol.js"></script>
+    <script src="../js/uicontrols.js"></script>
+    <script src="../js/uitree.js"></script>
+    <script src="../js/page.js"></script>
+    <script src="../js/model.js"></script>
+    <script src="../js/modelmakers.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="deb-flipflops.js"></script>
 
-            .flipper__outer {
-                display: inline-block;
-                width: 20pt;
-            }
+    <style>
 
-            .title {
-                display: inline-block;
-                margin-inline-start: 0pt;
-            }
+        .level1 {
+            font-size: 18pt;
+        }
 
-            .paragraph_body {
-                margin-inline-start: 20pt;
-            }
+        .level2 {
+            font-size: 14pt;
+        }
+
+        .level3 {
+            font-size: 12pt;
+        }
+
+        .level0 > .tree_hub_control__header {
+            display: none;
+        }
+
+        .tree_hub_control__outer.level1 {
+            margin-inline-start: 0pt;
+        }
+
+        .tree_hub_control__outer {
             
-        </style>
+            margin-inline-start: 12pt;
+        }
 
-    </head>
-    <body onload="main()" data-rnav-control="RNav_DOMControl">
-     
-        <div class="paragraph_container">
+        .tree_hub_control__header {
+            display: flex;
+            height: 20pt;
+            align-items: center;
+        }
+
+        .tree_hub_control__button {
+            display: inline-block;
+        }
+
+        .tree_hub_control__title {
+            display: inline-block;
+        }
+
+        .tree_leaf_control__outer {
+            height: 20pt;
+            margin-inline-start: 18pt;
+        }
+
+        
+        /*
+        .r_nav__show_hide_block__outer {
+            margin-inline-start: 14pt;
+        }
+
+        .r_nav__basic_d_o_m_control__inner {
+            margin-inline-start: 20pt;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .paragraph_container,
+       
+        .show_hide_block__outer {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-inline-start: 20pt;
+        }
+
+        .header_wrapper, 
+        .r_nav__show_hide_block__header, 
+        .show_hide_block__header {
+            display: flex;
+            height: 12pt;
+            margin-top: 0pt;
+            margin-bottom: 0pt;
+            align-items: center;
+        }
+
+        .r_nav__show_hide_block__button {
+            margin-top: 0pt;
+            margin-bottom: 0pt;
+        }
+
+        .title, 
+        .r_nav__show_hide_block__title,
+        .show_hide_block__title {
+            display: inline-block;
+            margin-top: 0pt;
+            margin-bottom: 0pt;
+            margin-inline-start: 0pt;
+        }
+
+        .r_nav__show_hide_block__title p {
+
+            line-height: 30pt;
+
+        }
+
+        .paragraph_body, 
+        .r_nav__show_hide_block__content,
+        .show_hide_block__content {
+            margin-top: 0pt;
+            margin-top: 0pt;
+            margin-inline-start: 20pt;
+        }
+
+        p {
+            margin: 0;
+        }*/
+    </style>
+
+</head>
+
+<body onload="main()" >
+
+    <div data-rnav-control="TreeControl"></div>
+    <!--
+    <div id="showhide" data-rnav-control="ShowHideBlock"></div>
+
+    <div class="paragraph_container">
         <div class="header_wrapper">
-        <div 
-            class="flipper__outer"
-            data-rnav-control="RNav_ShowHideButton"
-            data-rnav-options="idref: jacaranda"
-            data-test="kozol osol"></div><h2 class="title">Jacaranda</h2>
+            <div class="flipper__outer" data-rnav-control="RNav_ShowHideButton" data-rnav-options="idref: jacaranda"
+                data-test="kozol osol"></div>
+            <div class="show_hide_block__title"><h2>Jacaranda</h2></div>
         </div>
-        <div id="jacaranda" class="paragraph_body">Jacaranda is a genus of 49 species of 
-        flowering plants in the family Bignoniaceae, native to tropical 
-        and subtropical regions of the Americas[1] while cultivated 
-        around the world. The generic name is also used as the common name.</div>
-        </div>
-    </body>
+        <div id="jacaranda" class="paragraph_body">Jacaranda is a genus of 49 species of
+            flowering plants in the family Bignoniaceae, native to tropical
+            and subtropical regions of the Americas[1] while cultivated
+            around the world. The generic name is also used as the common name.</div>
+    </div>
+-->
+</body>
+
 </html>
