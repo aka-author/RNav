@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html dir="rtl">
 
 <head>
     <title>Debugging Flippers</title>
@@ -21,7 +21,7 @@
     <script src="../js/controller.js"></script>
     <script src="../js/domcontrol.js"></script>
     <script src="../js/uicontrols.js"></script>
-    <script src="../js/uitree.js"></script>
+    <script src="../js/uitrees.js"></script>
     <script src="../js/page.js"></script>
     <script src="../js/model.js"></script>
     <script src="../js/modelmakers.js"></script>
@@ -29,6 +29,18 @@
     <script src="deb-flipflops.js"></script>
 
     <style>
+
+        :root {
+            --flip-scale: 1;
+        }
+
+        html[dir="rtl"] {
+            --flip-scale: -1;
+        }
+
+        img {
+            transform: scaleX(var(--flip-scale));
+        }
 
         .level1 {
             font-family: sans-serif;
