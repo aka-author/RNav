@@ -100,6 +100,39 @@ img.logo {
     margin-top: calc(var(--tiny_indent));
 }
 
+@media screen and (max-width: 600px) {
+    [data-kwish-control="Logo"] {
+        display: none;
+    }
+}
+
+/* Burger */
+
+#Burger {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        --burger_block_width: calc(2*var(--major_indent) + 25px);
+    }
+
+    #Burger {
+        display: inline-block;
+        width: var(--burger_block_width);
+        height: var(--header_height);
+    }
+
+    #Burger div {
+        display: flex;
+        width: calc(3*var(--major_indent));
+        height: 100%;
+        margin-inline-start: var(--major_indent);
+        text-align: center;
+        align-items: center;
+    }
+}
+
 /* Banner */
 
 [data-kwish-control="Banner"] {
@@ -136,7 +169,6 @@ img.logo {
 /* TOC framelet */
 
 :root {
-    /*--toc_framelet_width: calc(var(--toc_framelet_size_base) - 1.5*var(--major_indent));*/
     --toc_framelet_width: 35vw;
     --toc_framelet_height: calc(100vh - var(--page_header_height) - 2*var(--major_indent));
     --toc_framelet_header_height: calc(3*var(--main_font_size));
@@ -340,5 +372,57 @@ h1 {
     * {
         scrollbar-color: var(--gray600) var(--gray500); /* thumb and track */
         scrollbar-width: thin; /* auto, thin, or none */
+    }
+}
+
+/* Search */
+
+.banner__inner {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.searcher__inner {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.searcher__inner input {
+    display: inline-block;
+    width: calc(100vw - var(--logo_width) - 35pt);
+}
+
+#searchButton_outer, #taxonomyButton_outer, #clearButton_outer {
+    display: inline-block;
+}
+
+#searchButton_outer {
+    margin-inline-start: 0pt;
+}
+
+#taxonomyButton_outer img {
+    height: 12pt;
+    margin-inline-start: -30pt;
+    margin-top: 2pt;
+}
+
+#clearButton_outer img {
+    height: 12pt;
+    margin-inline-start: -15pt;
+    margin-top: 2pt;
+}
+
+@media screen and (max-width: 600px) {
+
+    #Banner {
+        width: calc(100vw - 2*var(--major_indent) - 30px);
+        margin-inline-start: 0pt;
+    }
+    .searcher__inner input {
+        display: inline-block;
+        margin-inline-start: 0pt;
+        width: calc(100vw - 50pt - 35pt);
     }
 }
