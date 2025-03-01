@@ -208,6 +208,12 @@ img.logo {
     overflow: hidden;
 }
 
+[data-maximized='yes'] {
+    border: none;
+    border-radius: none;
+    box-shadow: none;
+}
+
 @media screen and (max-width: 480px) {
     .toc_framelet__outer, .matter_framelet__outer {
         top: 0;
@@ -250,6 +256,12 @@ img.logo {
     height: var(--close_box_size);
     inset-inline-start: calc(var(--toc_framelet_width) - var(--close_box_size) - var(--tiny_indent)/2);
     top: calc(var(--tiny_indent)/2);
+}
+
+@media screen and (max-width: 480px) {
+    .close_box {
+        display: none;
+    }
 }
 
 .toc_framelet__title_inner {
