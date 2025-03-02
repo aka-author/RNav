@@ -74,6 +74,9 @@ body {
 
 #pageHeader {
     border-bottom: 1px solid var(--dark);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    --box-shadow: var(--major_indent) var(--major_indent) var(--gray700);
+    z-index: 1000;
 }
 
 #pageHeaderInner {
@@ -183,12 +186,13 @@ body {
 
 :root {
     --console_width: 100vw;
-    --console_height: calc(100vh - var(--page_header_height));
+    --console_height: calc(100vh - var(--page_header_height) - var(--minimal_indent));
 }
 
 #consoleKeeper {
     width: 100vw;
     height: var(--console_height);
+    margin-top: var(--minimal_indent);
     overflow: hidden;
 }
 
@@ -200,6 +204,7 @@ body {
     height: var(--console_height);
     background: var(--gray100);
     overflow: hidden;
+    cursor: grab;
 }
 
 #readerConsole {
@@ -235,7 +240,8 @@ body {
     height: var(--framelet_height);
     border: 1pt solid var(--control_primary);
     border-radius: var(--major_border_radius);
-    box-shadow: var(--tiny_indent) var(--tiny_indent) var(--gray400);
+    --box-shadow: var(--minimal_indent) var(--minimal_indent) var(--gray400);
+    box-shadow: var(--minimal_indent) var(--minimal_indent) var(--gray700);
     overflow: hidden;
 }
 
@@ -349,7 +355,7 @@ body {
 
 /* TOC tree */
 
-.toc_tree__outer {
+#tocFrameetTocTree {
     margin-inline-start: var(--minor_indent);
     margin-top: var(--minor_indent);
 }
@@ -375,17 +381,17 @@ body {
     cursor: pointer;
 }
 
-.selectable_tree_leaf_control__outer {
+.selectable_tree_leaf_control {
     width: fit-content;
     cursor: pointer;
 }
 
-.selectable_tree_hub_control__outer.level1 {
+.selectable_tree_hub_control.level1 {
     margin-inline-start: 0pt;
     font-size: 12pt;
 }
 
-.selectable_tree_hub_control__outer.level2 {
+.selectable_tree_hub_control.level2 {
     margin-inline-start: 15pt;
     padding: 4pt;
     font-size: 12pt;
@@ -395,7 +401,7 @@ body {
     margin: 0;
 }
 
-.selectable_tree_leaf_control__outer.level2 {
+.selectable_tree_leaf_control.level2 {
     margin-inline-start: 10pt;
     padding: 4pt;
     font-size: 12pt;
@@ -416,6 +422,8 @@ body {
     --toc_shortcut_width: 2em;
     --toc_shortcut_height: 6em;
 }
+
+/* TOC shortcut */
 
 #tocShortcut {
     position: absolute;
