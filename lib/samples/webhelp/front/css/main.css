@@ -285,7 +285,17 @@ body {
     top: var(--toc_framelet_top);
     width: var(--toc_framelet_width); 
     height: var(--toc_framelet_height);
+    background: #ffffff;
+    z-index: 10;
     cursor: default;
+}
+
+@media screen and (max-width: 480px) {
+    #tocFramelet {
+        inset-inline-start: 0;
+        width: 100wh;
+        height: var(--console_height);
+    }
 }
 
 #tocFrameletTitle {
@@ -346,6 +356,7 @@ body {
     top: var(--matter_framelet_top);
     width: var(--matter_framelet_width);
     height: var(--matter_framelet_height);
+    overflow-y: scroll;
     cursor: text;
 }
 
@@ -535,11 +546,13 @@ html[dir="rtl"] {
 	border-bottom-left-radius: var(--major_border_radius);
 	border-bottom-right-radius: var(--major_border_radius);
 	background: var(--gray500);
+    cursor: default;
   }
   
 ::-webkit-scrollbar-thumb {
 	border-radius: var(--major_border_radius);
 	background: var(--gray600);
+    cursor: default;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -552,7 +565,8 @@ html[dir="rtl"] {
 
 @-moz-document url-prefix() {
     * {
-        scrollbar-color: var(--gray600) var(--gray500); /* thumb and track */
-        scrollbar-width: thin; /* auto, thin, or none */
+        scrollbar-color: var(--gray600) var(--gray500); 
+        scrollbar-width: thin; 
+        cursor: default;
     }
 }
