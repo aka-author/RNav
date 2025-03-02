@@ -129,14 +129,13 @@ body {
     --burger_icon_width: var(--usual_icon_size);
     --burger_width: var(--burger_icon_width);
     --burger_height: var(--page_header_height);
-    --burger_area_width: var(--burger_width) + var(--major_margin);
+    --burger_area_width: calc(var(--burger_width) + var(--major_indent));
 }
 
 #burger {
     width: var(--burger_width);
     height: var(--burger_height);
     margin-inline-start: var(--major_indent);
-    margin-inline-end: var(--major_indent);
 }
 
 #burgerInner {
@@ -150,13 +149,13 @@ body {
 /* Banner */
 
 :root {
-    --banner_width: calc(100vw - var(--logo_area_width) - var(--major_margin));
+    --banner_width: calc(100vw - var(--logo_area_width) - var(--major_indent));
     --banner_height: var(--page_header_height);
 }
 
 @media screen and (max-width: 480px) {
     :root {
-        --banner_width: calc(100vw - var(--burger_area_width) - var(--major_margin));
+        --banner_width: calc(100vw - var(--burger_area_width) - var(--major_indent));
     }
 }
 
@@ -165,6 +164,13 @@ body {
     width: var(--banner_width);
     height: var(--banner_height);
     margin-inline-start: var(--major_indent);
+}
+
+@media screen and (max-width: 480px) {
+    #banner {
+        width: var(--banner_width);
+        margin-inline-start: var(--major_indent);
+    }
 }
 
 #bannerInner {
@@ -180,7 +186,7 @@ body {
     --console_height: calc(100vh - var(--page_header_height));
 }
 
-[data-kwish-control="ConsoleKeeper"] {
+#consoleKeeper {
     width: 100vw;
     height: var(--console_height);
     overflow: hidden;
@@ -196,44 +202,45 @@ body {
     overflow: hidden;
 }
 
-[data-kwish-control="ReaderConsole"] {
+#readerConsole {
     cursor: grab;
 }
 
-[data-kwish-control="SearchConsole"] {
+#searchConsole {
     display: none;
 }
 
 /* Framelets */
 
+/* (o o)  Please avoid deleting or renaming the properties */
+/*  |^|   in this section! The JS modules use them.        */
+
 :root {
     --toc_framelet_default_width: calc(30vw - 1.5*var(--major_indent));
+    --framelet_top: var(--major_indent);
     --framelet_height: calc(var(--console_height) - var(--major_margins));
 }
 
 @media screen and (max-width: 480px) {
     :root {
         --toc_framelet_default_width: 100vw;
+        --framelet_top: 0;
         --framelet_height: var(--console_height);
     }
 }
 
-.toc_framelet__outer, .matter_framelet__outer {
+.framelet {
     position: absolute;
+    top: var(--framelet_top);
+    height: var(--framelet_height);
     border: 1pt solid var(--control_primary);
     border-radius: var(--major_border_radius);
     box-shadow: var(--tiny_indent) var(--tiny_indent) var(--gray400);
     overflow: hidden;
 }
 
-[data-maximized='yes'] {
-    border: none;
-    border-radius: none;
-    box-shadow: none;
-}
-
 @media screen and (max-width: 480px) {
-    .toc_framelet__outer, .matter_framelet__outer {
+    .framelet {
         top: 0;
         height: var(--console_height);
         border: none;
@@ -242,18 +249,32 @@ body {
     }
 }
 
+[data-maximized='yes'] {
+    border: none;
+    border-radius: none;
+    box-shadow: none;
+}
+
+[data-maximized='yes'] #topicBody {
+    margin-inline-start: 40pt;
+}
+
 /* TOC framelet */
+
+/* (o o)  Please avoid deleting or renaming the properties */
+/*  |^|   in this section! The JS modules use them.        */
 
 :root {
     --toc_framelet_inline_start: var(--major_indent);
-    --toc_framelet_top: var(--major_indent);
+    --toc_framelet_top: var(--framelet_top);
     --toc_framelet_width: var(--toc_framelet_default_width);
     --toc_framelet_height: var(--framelet_height);
     --toc_framelet_header_height: calc(3*var(--main_font_size));
-    --close_box_size: calc(0.8*var(--major_indent));
+    --close_box_size: var(--small_icon_size);
+    --close_box_start: calc(var(--toc_framelet_width) - var(--close_box_size) - var(--minimal_indent));
 }
 
-[data-kwish-control="TocFramelet"] {
+#tocFramelet {
     inset-inline-start: var(--toc_framelet_inline_start);
     top: var(--toc_framelet_top);
     width: var(--toc_framelet_width); 
@@ -261,53 +282,60 @@ body {
     cursor: default;
 }
 
-.toc_framelet__title_outer {
+#tocFrameletTitle {
     margin: 0;
     height: var(--toc_framelet_header_height);
     border-bottom: 1px solid var(--dark);
     font-weight: bold;
+    overflow: hidden;
 }
 
-.close_box {
+#tocCloseBox {
     position: absolute;
     width: var(--close_box_size);
     height: var(--close_box_size);
-    inset-inline-start: calc(var(--toc_framelet_width) - var(--close_box_size) - var(--tiny_indent)/2);
-    top: calc(var(--tiny_indent)/2);
+    inset-inline-start: var(--close_box_start);
+    top: var(--minimal_indent);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
-    .close_box {
+    #tocCloseBox {
         display: none;
     }
 }
 
-.toc_framelet__title_inner {
+#tocFrameletTitleInner {
     display: flex;
     height: 100%;
-    padding-inline-start: var(--major_indent);
+    padding-inline-start: var(--minor_indent);
     align-items: center;
 }
 
-.toc_framelet__title_inner p {
+#tocFrameletTitleInner p {
+    width: calc(var(--close_box_start) - var(--minor_indent));
     font-weight: bold;
+    
 }
 
-.toc_framelet__toc_tree_inner {
+#tocFrameletTocTreeInner {
     height: calc(var(--toc_framelet_height) - var(--toc_framelet_header_height));
     overflow-y: scroll;
 }
 
 /* Matter framelet */
 
+/* (o o)  Please avoid deleting or renaming the properties */
+/*  |^|   in this section! The JS modules use them.        */
+
 :root {
     --matter_framelet_start: calc(var(--toc_framelet_width) + var(--major_margins));
-    --matter_framelet_top: var(--major_indent);
+    --matter_framelet_top: var(--framelet_top);
     --matter_framelet_width: calc(100vw - var(--toc_framelet_width) - 3*var(--major_indent));
     --matter_framelet_height: var(--framelet_height);
 }
 
-[data-kwish-control="MatterFramelet"] {
+#matterFramelet {
     inset-inline-start: var(--matter_framelet_start);
     top: var(--matter_framelet_top);
     width: var(--matter_framelet_width);
@@ -316,7 +344,7 @@ body {
 }
 
 #topicBody {
-    margin: var(--major_indent);
+    margin: var(--minor_indent);
 }
 
 /* TOC tree */
@@ -383,22 +411,28 @@ body {
     display: none;
 }
 
-.toc_shortcut__outer {
+:root {
+    --toc_shortcut_top: calc((var(--console_height) - var(--toc_shortcut_height))/2);
+    --toc_shortcut_width: 2em;
+    --toc_shortcut_height: 6em;
+}
+
+#tocShortcut {
     position: absolute;
-    width: 2em;
-    height: 6em;
-    inset-inline-start: -5px;
-    top: calc((100vh - var(--page_header_height))/2);    
-    color: white;
+    width: var(--toc_shortcut_width);
+    height: var(--toc_shortcut_height);
+    inset-inline-start: calc(-1*var(--major_border_radius));
+    top: var(--toc_shortcut_top);    
     background-color: var(--control_primary);
     border-radius: var(--major_border_radius);
     box-shadow: 2pt 2pt var(--gray400);
+    cursor: pointer;
 }
 
 img.toc_shortcut {
     position: absolute;
-    inset-inline-start: 4pt;
-    top: 25pt;
+    inset-inline-start: calc((var(--toc_shortcut_width) - var(--usual_icon_size))/2 + var(--minimal_indent)) ;
+    top: calc((var(--toc_shortcut_height) - var(--usual_icon_size))/2);
 }
 
 /* Text matter */
@@ -412,62 +446,64 @@ h1 {
 /* Search controls */
 
 :root {
+    --searcher_width: var(--banner_width);
     --search_button_width: 35pt;
     --tool_button_height: 12pt;
     --query_input_width: calc(var(--banner_width) - var(--search_button_width));
 }
 
-.searcher__inner {
+#searcher {
+    width: var(--banner_width);
+}
+
+#searcherInner {
     display: flex;
     height: 100%;
     align-items: center;
 }
 
-.searcher__inner input {
+#searcherInner input {
     display: inline-block;
     width: var(--query_input_width);
 }
 
 @media screen and (max-width: 480px) {
-    .searcher__inner input {
+    #searcherInner input {
         display: inline-block;
         margin-inline-start: 0pt;
-        width: calc(var(--banner_width) - var(--search_button_width));
+        width: calc(var(--banner_width) - var(--usual_icon_size));
     }
 }
 
-#searchButton_outer, 
-#taxonomyButton_outer, 
-#clearButton_outer {
+#searchButton, 
+#taxonomyButton, 
+#clearButton {
     display: inline-block;
+    cursor: pointer;
 }
 
-#searchButton_outer {
+#searchButton {
     margin-inline-start: 0pt;
 }
 
-#taxonomyButton_outer img {
+#taxonomyButton img {
     height: var(--tool_button_height);
-    margin-inline-start: -30pt;
+    margin-inline-start: calc(-2*var(--small_icon_size));
     margin-top: 2pt;
 }
 
-#clearButton_outer img {
+#clearButton img {
     height: var(--tool_button_height);
-    margin-inline-start: -15pt;
-    margin-top: 2pt;
+    margin-inline-start: calc(-1*var(--small_icon_size));
+    margin-top: calc(2*var(--minimal_indent));
 }
 
 @media screen and (max-width: 480px) {
-    #Banner {
-        width: calc(100vw - var(--major_margins) - 30px);
-        margin-inline-start: 0pt;
-    }
-
-    .searcher__inner input {
+   
+    #searcherInner input {
         display: inline-block;
         margin-inline-start: 0pt;
-        width: calc(100vw - 50pt - 35pt);
+        width: calc(var(--banner_width) - var(--usual_icon_size));
     }
 }
 
