@@ -18,26 +18,53 @@
 
 </head>
 
-<body onload="main()">
-    <div id="shell">
-        <div id="pageHeaderOuter">
-            <div id="pageHeaderInner">
-                <div data-kwish-control="Logo"></div>
-                <div id="Burger" data-kwish--control="Burger">
-                    <div>
-                        <img src="front/img/burger.svg">
+<body 
+    onload="main()">
+    <div 
+        id="shell">
+        <div 
+            id="pageHeader">
+            <div 
+                id="pageHeaderInner">
+                <div 
+                    id="logo" 
+                    data-kwish-control="Logo"></div>
+                <div 
+                    id="burger" 
+                    data-kwish-control="Burger">
+                    <div 
+                        id="burgerInner">
+                        <img 
+                            src="front/img/burger.svg">
                     </div>
                 </div>
-                <div data-kwish-control="Banner"></div>
-            </div>
+                <div 
+                    id="banner" 
+                    data-kwish-control="Banner"></div>
+            </div> <!-- pageHeaderInner -->
         </div>
-        <div data-kwish-control="ConsoleKeeper">
-            <div data-kwish-control="ReaderConsole" class="console">
-                <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
-                <div id="matterFramelet" data-kwish-control="MatterFramelet" class="matter_framelet__outer">
-                    <div class="matter_framelet__inner">
-                        <div id="topicContolPanel"></div>
-                        <div id="topicBody">
+
+        <div 
+            id="consoleKeeper" 
+            -data-kwish-control="ConsoleKeeper">
+        
+            <div 
+                data-kwish-control="ReaderConsole" 
+                class="console">
+                <div 
+                    id="tocFramelet" 
+                    data-kwish-control="TocFramelet"></div>
+                <div 
+                    id="matterFramelet" 
+                    data-kwish-control="MatterFramelet" 
+                    class="matter_framelet__outer">
+                    <div 
+                        class="matter_framelet__inner">
+                        <div 
+                            id="topicContolPanel"></div>
+                            <!-- Topic -->
+                            <div 
+                            id="topicBody">
                             <h1>Loading Paper</h1>
                             <section class="section context">
                                 <p class="p">You load paper to be used for priting into the document feeder
@@ -55,16 +82,21 @@
                                         the paper.</span></li>
                             </ol>
                             <section class="section result">You are now ready to print.</section>
-                        </div>
+                        </div> <!-- /Topic -->
                     </div>
                 </div>
+            </div> <!-- /ReaderConsole -->
+            <div 
+                data-kwish-control="SearchConsole">
+                <div 
+                    data-kwish-control="SearchResultsFramelet"></div>
+                <div></div>
             </div>
-            <div data-kwish-control="SearchConsole">
-                <div data-kwish-control="GoBackFramelet"></div>
-                <div data-kwish-control="SearchResultsFramelet"></div>
-                <div>
-                </div>
-            </div>
+        </div> <!-- /ConsoleKeeper -->
+    
+
+
+    </div> <!-- /Shell -->
 </body>
 
 </html>

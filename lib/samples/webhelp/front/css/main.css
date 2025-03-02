@@ -6,6 +6,14 @@
     --major_indent: 15pt;
     --minor_indent: calc(var(--major_indent)/2);
     --tiny_indent: calc(var(--major_indent)/3);
+    --minimal_indent: 1pt;
+
+    --major_margins: calc(2*var(--major_indent));
+
+    --large_icon_size: 36px;
+    --usual_icon_size: 24px;
+    --small_icon_size: 16px;
+
     --major_border_radius: 5pt;
     --minor_border_radius: 2pt;
 }
@@ -17,6 +25,7 @@
 	--control_hover:	#1da6ff;
 	--control_disabled:	#e8f3fe;
 	--control_active:	#0973dd;
+    --control_stressed: #950606;
 	--dark:		    	#202225;
 	--gray700:	    	#616569;
 	--gray600:	    	#92979d;
@@ -49,7 +58,7 @@ body {
     overflow: hidden;
 }
 
-shell {
+#shell {
     width: 100vw;
     height: 100vh;
     margin: 0;
@@ -63,7 +72,7 @@ shell {
     --page_header_height: 50pt;
 }
 
-#pageHeaderOuter {
+#pageHeader {
     border-bottom: 1px solid var(--dark);
 }
 
@@ -76,80 +85,89 @@ shell {
 /* Logo */
 
 :root {
-    --logo_width: 50pt;
+    /* Measure the actual w/h of your logo! */
+    --logo_image_width_to_height_ratio: 1; 
+    --logo_height: var(--page_header_height);
+    --logo_width: var(--logo_height)*var(--logo_image_width_to_height_ratio);
+    --logo_image_top_margin: var(--minimal_indent);
+    --logo_image_height: calc(var(--logo_height) - 2*var(--logo_image_top_margin));
+    --logo_area_width: calc(var(--logo_width) + var(--major_indent));
 }
 
-[data-kwish-control="Logo"] {
+#logo {
     display: inline-block;
     width: var(--logo_width);
+    height: var(--logo_height);
     margin-inline-start: var(--major_indent);
 }
 
-img.logo {
-    height: calc(var(--page_header_height) - 2*var(--tiny_indent));
-    margin-top: calc(var(--tiny_indent));
+#logo img {
+    width: var(--logo_width);
+    height: var(--logo_image_height);
+    margin-top: var(--logo_image_top_margin);
 }
 
 @media screen and (max-width: 480px) {
-    [data-kwish-control="Logo"] {
+    #logo {
         display: none;
     }
 }
 
 /* Burger */
 
-#Burger {
+#burger {
     display: none;
 }
 
 @media screen and (max-width: 480px) {
-    :root {
-        --burger_img_width: 24px;
-        --burger_block_width: var(--burger_img_width);
-    }
-
-    #Burger {
+    #burger {
         display: inline-block;
-        width: var(--burger_block_width);
-        height: var(--page_header_height);
-        margin-inline-start: var(--major_indent);
-        margin-inline-end: var(--major_indent);
     }
+}
 
-    #Burger div {
-        display: flex;
-        width: var(--burger_block_width);
-        height: var(--page_header_height);
-        text-align: center;
-        align-items: center;
-    }
+:root {
+    --burger_icon_width: var(--usual_icon_size);
+    --burger_width: var(--burger_icon_width);
+    --burger_height: var(--page_header_height);
+    --burger_area_width: var(--burger_width) + var(--major_margin);
+}
+
+#burger {
+    width: var(--burger_width);
+    height: var(--burger_height);
+    margin-inline-start: var(--major_indent);
+    margin-inline-end: var(--major_indent);
+}
+
+#burgerInner {
+    display: flex;
+    width: var(--burger_width);
+    height: var(--page_header_height);
+    text-align: center;
+    align-items: center;
 }
 
 /* Banner */
 
 :root {
-    --banner_width: calc(100vw - var(--logo_width) - 2*var(--major_indent));
+    --banner_width: calc(100vw - var(--logo_area_width) - var(--major_margin));
+    --banner_height: var(--page_header_height);
 }
 
 @media screen and (max-width: 480px) {
     :root {
-        --banner_width: calc(100vw - var(--burger_width) - 2*var(--major_indent));
+        --banner_width: calc(100vw - var(--burger_area_width) - var(--major_margin));
     }
 }
 
-[data-kwish-control="Banner"] {
+#banner {
     display: inline-block;
     width: var(--banner_width);
+    height: var(--banner_height);
+    margin-inline-start: var(--major_indent);
 }
 
-@media screen and (max-width: 480px) {
-    [data-kwish-control="Banner"] {
-        width: calc(100vw - var(--burger_width) - 2*var(--major_indent));
-        margin-inline-start: 0pt;
-    }
-}
-
-.banner__inner {
+#bannerInner {
     display: flex;
     height: var(--page_header_height);
     align-items: center;
@@ -190,7 +208,7 @@ img.logo {
 
 :root {
     --toc_framelet_default_width: calc(30vw - 1.5*var(--major_indent));
-    --framelet_height: calc(var(--console_height) - 2*var(--major_indent));
+    --framelet_height: calc(var(--console_height) - var(--major_margins));
 }
 
 @media screen and (max-width: 480px) {
@@ -283,7 +301,7 @@ img.logo {
 /* Matter framelet */
 
 :root {
-    --matter_framelet_start: calc(var(--toc_framelet_width) + 2*var(--major_indent));
+    --matter_framelet_start: calc(var(--toc_framelet_width) + var(--major_margins));
     --matter_framelet_top: var(--major_indent);
     --matter_framelet_width: calc(100vw - var(--toc_framelet_width) - 3*var(--major_indent));
     --matter_framelet_height: var(--framelet_height);
@@ -442,7 +460,7 @@ h1 {
 
 @media screen and (max-width: 480px) {
     #Banner {
-        width: calc(100vw - 2*var(--major_indent) - 30px);
+        width: calc(100vw - var(--major_margins) - 30px);
         margin-inline-start: 0pt;
     }
 
