@@ -386,8 +386,8 @@ body {
 }
 
 #searchResultsFrameletInner {
-    margin-inline-start: var(--tiny_indent);
-    margin-inline-end: var(--tiny_indent);
+    margin-inline-start: var(--major_indent);
+    margin-inline-end: var(--major_indent);
 }
 
 /* TOC tree */
@@ -514,6 +514,7 @@ img.toc_shortcut {
 #searcherInner input {
     display: inline-block;
     width: var(--query_input_width);
+    text-align: center;
 }
 
 @media screen and (max-width: 480px) {
@@ -585,6 +586,10 @@ img.toc_shortcut {
 
 /* Search results */
 
+.searchResultsEntry {
+    margin-top: var(--minor_indent);
+}
+
 div.relevanceIndicator {
     margin-top: 5pt;
     margin-bottom: 15pt;
@@ -644,22 +649,6 @@ div.relevanceIndicator img {
 
 #divSearchResultsArea {
     height: 100%;
-}
-
-#divSearchResultsFramelet {
-    left:     calc(var(--toc-framelet-default-width) + 2*var(--framelet-horizontal-margin));
-    top:      var(--framelet-vertical-margin);
-    width:    calc(100vw - var(--toc-framelet-default-width) - 3*var(--framelet-horizontal-margin));
-    height:   calc(100vh - var(--page-header-height) - 2*var(--framelet-vertical-margin));
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
-@media screen and (max-width: 480px) {
-    #divSearchResultsFramelet {
-        top: 0pt;
-        height:   calc(100vh - var(--page-header-height));
-    }
 }
 
 .searchResultsTaxons {
