@@ -94,10 +94,10 @@ body {
 :root {
     
     /* Measure the actual w/h of your logo! */
-    --logo_image_width_to_height_ratio: 1; 
+    --logo_image_width_to_height_ratio: 1.4; 
 
     --logo_height: var(--page_header_height);
-    --logo_width: var(--logo_height)*var(--logo_image_width_to_height_ratio);
+    --logo_width: calc(var(--logo_height)*var(--logo_image_width_to_height_ratio));
     --logo_image_top_margin: var(--minimal_indent);
     --logo_image_height: calc(var(--logo_height) - 2*var(--logo_image_top_margin));
     --logo_area_width: calc(var(--logo_width) + var(--major_indent));
@@ -202,6 +202,7 @@ body {
     margin-top: var(--minimal_indent);
     overflow: hidden;
     background: #950606;
+    z-index: 0;
 }
 
 .console {
@@ -218,6 +219,7 @@ body {
 
 #readerConsole {
     cursor: grab;
+    z-index: 1
 }
 
 #searchConsole {
@@ -250,17 +252,18 @@ body {
     height: var(--framelet_height);
     border: 1pt solid var(--control_primary);
     border-radius: var(--major_border_radius);
-    --box-shadow: var(--minimal_indent) var(--minimal_indent) var(--gray400);
     box-shadow: var(--minimal_indent) var(--minimal_indent) var(--gray700);
     overflow: hidden;
 }
 
 @media screen and (max-width: 480px) {
     .framelet {
+        margin-inline-start: 0;
         top: 0;
+        width: var(--console_width);
         height: var(--console_height);
         border: none;
-        border-radius: none;
+        border-radius: 0;
         box-shadow: none;
     }
 }
@@ -296,14 +299,14 @@ body {
     width: var(--toc_framelet_width); 
     height: var(--toc_framelet_height);
     background: #ffffff;
-    z-index: 10;
+    z-index: 3;
     cursor: default;
 }
 
 @media screen and (max-width: 480px) {
     #tocFramelet {
         inset-inline-start: 0;
-        width: 100wh;
+        width: 100vw;
         height: var(--console_height);
     }
 }
@@ -367,6 +370,7 @@ body {
     width: var(--matter_framelet_width);
     height: var(--matter_framelet_height);
     overflow-y: scroll;
+    z-index: 2;
     cursor: text;
 }
 
@@ -483,6 +487,7 @@ body {
     background-color: var(--control_primary);
     border-radius: var(--major_border_radius);
     box-shadow: 2pt 2pt var(--gray400);
+    z-index: 4;
     cursor: pointer;
 }
 
@@ -515,6 +520,7 @@ img.toc_shortcut {
     display: inline-block;
     width: var(--query_input_width);
     text-align: center;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 480px) {
@@ -723,18 +729,4 @@ html[dir="rtl"] {
         scrollbar-width: thin; 
         cursor: default;
     }
-}
-
-/***************/
-/* Text Matter */
-/***************/
-
-h1 {
-    font-family: var(--headings_font_family);
-    font-size: var(--primary_heading_font_size);
-    color: var(--control_active)
-}
-
-#topicBody p {
-    line-height: calc(1.5*var(--main_font_size));
 }
