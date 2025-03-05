@@ -240,7 +240,6 @@ body {
 
 @media screen and (max-width: 480px) {
     :root {
-        --toc_framelet_default_width: 100vw;
         --framelet_top: 0;
         --framelet_height: var(--console_height);
     }
@@ -372,6 +371,13 @@ body {
     overflow-y: scroll;
     z-index: 2;
     cursor: text;
+}
+
+@media screen and (max-width: 480px) {
+    #matterFramelet {
+        inset-inline-start: 0;
+        width: 100vw;
+    }
 }
 
 #topicBody {
