@@ -108,6 +108,8 @@ body {
     width: var(--logo_width);
     height: var(--logo_height);
     margin-inline-start: var(--major_indent);
+    background-image: url('../img/logo.svg');
+    background-size: var(--logo_width) var(--logo_height);	
 }
 
 #logo img {
@@ -300,6 +302,10 @@ body {
     background: #ffffff;
     z-index: 3;
     cursor: default;
+}
+
+#tocFrameletInner p {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
@@ -550,7 +556,7 @@ img.toc_shortcut {
 
 #taxonomyButton img {
     height: var(--tool_button_height);
-    margin-inline-start: calc(-2*var(--small_icon_size));
+    margin-inline-start: calc(-3.5*var(--small_icon_size));
     margin-top: 2pt;
 }
 
