@@ -1,4 +1,4 @@
-/* Responsive Web Output */
+/* ClassStatic Responsive Web Output */
 
 /******************************************/
 /* Arranger, Reader and Navigator (ARNav) */
@@ -269,16 +269,6 @@ body {
     }
 }
 
-[data-maximized='yes'] {
-    border: none;
-    border-radius: none;
-    box-shadow: none;
-}
-
-[data-maximized='yes'] #topicBody {
-    margin-inline-start: 40pt;
-}
-
 /* TOC framelet */
 
 /* (o o)  Please avoid deleting or renaming the properties */
@@ -313,6 +303,7 @@ body {
         inset-inline-start: 0;
         width: 100vw;
         height: var(--console_height);
+        z-index: -1;
     }
 }
 
@@ -374,6 +365,7 @@ body {
     top: var(--matter_framelet_top);
     width: var(--matter_framelet_width);
     height: var(--matter_framelet_height);
+    background: #ffffff;
     overflow-y: scroll;
     z-index: 2;
     cursor: text;
@@ -386,8 +378,18 @@ body {
     }
 }
 
-#topicBody {
+[data-maximized='yes'] {
+    border: none;
+    border-radius: none;
+    box-shadow: none;
+}
+
+#pageMatter {
     margin: var(--minor_indent);
+}
+
+[data-maximized='yes'] #pageMatter {
+    margin-inline-start: var(--toc_shortcut_width);
 }
 
 /* Search results framelet */
@@ -556,7 +558,7 @@ img.toc_shortcut {
 
 #taxonomyButton img {
     height: var(--tool_button_height);
-    margin-inline-start: calc(-3.5*var(--small_icon_size));
+    margin-inline-start: calc(-2*var(--small_icon_size));
     margin-top: 2pt;
 }
 
@@ -599,8 +601,6 @@ img.toc_shortcut {
     top: 0;
     background-color: var(--gray300);
 }
-
-
 
 /* Search results */
 
