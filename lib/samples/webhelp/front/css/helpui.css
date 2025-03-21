@@ -518,6 +518,7 @@ img.toc_shortcut {
     --search_button_width: 35pt;
     --tool_button_height: 12pt;
     --query_input_width: calc(var(--banner_width) - var(--search_button_width));
+    --search_tool_icon_margin_top: calc(2*var(--minimal_indent));
 }
 
 #searcher {
@@ -545,36 +546,27 @@ img.toc_shortcut {
     }
 }
 
-#searchButton, 
 #taxonomyButton, 
-#clearButton {
+#clearButton,
+#searchButton {
     display: inline-block;
     cursor: pointer;
-}
-
-#searchButton {
-    margin-inline-start: 0pt;
 }
 
 #taxonomyButton img {
     height: var(--tool_button_height);
     margin-inline-start: calc(-2*var(--small_icon_size));
-    margin-top: 2pt;
+    margin-top: var(--search_tool_icon_margin_top);
 }
 
 #clearButton img {
     height: var(--tool_button_height);
     margin-inline-start: calc(-1*var(--small_icon_size));
-    margin-top: calc(2*var(--minimal_indent));
+    margin-top: var(--search_tool_icon_margin_top);
 }
 
-@media screen and (max-width: 480px) {
-   
-    #searcherInner input {
-        display: inline-block;
-        margin-inline-start: 0pt;
-        width: calc(var(--banner_width) - var(--usual_icon_size));
-    }
+#searchButton {
+    margin-inline-start: 0pt;
 }
 
 :root {
@@ -585,7 +577,7 @@ img.toc_shortcut {
     position: absolute;
     margin-inline-start: calc(var(--query_input_width) - var(--taxonomy_pane_width) - var(--small_icon_size));
     width: 200pt;
-    height: 250pt;
+    max-height: var(--console_height);
     background: var(--gray300);
     border: 1px solid var(--control_primary);
     border-radius: var(--minor_border_radius);
@@ -596,9 +588,7 @@ img.toc_shortcut {
 }
 
 #taxonomyTree {
-    position: absolute;
     margin-inline-start: 0;
-    top: 0;
     background-color: var(--gray300);
 }
 
