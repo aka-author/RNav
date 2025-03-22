@@ -531,7 +531,7 @@ img.toc_shortcut {
     align-items: center;
 }
 
-#searcherInner input {
+input#query {
     display: inline-block;
     width: var(--query_input_width);
     text-align: center;
@@ -576,7 +576,8 @@ img.toc_shortcut {
 #taxonomyPane  {
     position: absolute;
     margin-inline-start: calc(var(--query_input_width) - var(--taxonomy_pane_width) - var(--small_icon_size));
-    width: 200pt;
+    width: var(--taxonomy_pane_width);
+    top: calc(var(--page_header_height)/2 + var(--small_icon_size)/2);
     max-height: var(--console_height);
     background: var(--gray300);
     border: 1px solid var(--control_primary);
@@ -588,6 +589,7 @@ img.toc_shortcut {
 }
 
 #taxonomyTree {
+    display: block;
     margin-inline-start: 0;
     background-color: var(--gray300);
 }
@@ -624,7 +626,7 @@ div.relevanceIndicator img {
     position: absolute;
     display:  block;	
     width:    100%;
-    height:   calc(100% - var(--page-header-height));
+    height:   calc(100% - var(--page_header_height));
 }
 
 #divSearchReturnAreaInner {
