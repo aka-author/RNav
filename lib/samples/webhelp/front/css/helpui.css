@@ -611,7 +611,7 @@ div.searchResultsPreview {
     font-size: 10pt;
 }
 
-div.searchResultsPreview b, .searchTerm {
+div.searchResultsPreview b, .search_term {
     font-weight: bold;
     color: #88001b;
     background: yellow;
