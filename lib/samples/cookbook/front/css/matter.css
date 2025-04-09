@@ -1,0 +1,50 @@
+/* Responsive Web Output */
+
+/***************/
+/* Text Matter */
+/***************/
+
+h1, h2, h3, h4, h5 {
+    font-family: var(--headings_font_family);
+    font-size: var(--primary_heading_font_size);
+    color: var(--control_active);
+}
+
+p.section__title {
+    font-family: var(--headings_font_family);
+    font-size: var(--secondary_heading_font_size);
+    color: var(--control_active);
+    font-weight: bold;
+}
+
+#pageMatter p {
+    margin-top: var(--major_indent);
+    line-height: calc(1.5*var(--main_font_size));
+}
+
+ol.steps {
+    margin-top: 0;
+}
+
+li.step {
+    margin-top: var(--major_indent);
+}
+
+pre {
+    padding: var(--minor_indent);
+    background: var(--gray300);
+    border-radius: var(--minor_border_radius);
+    font-size: 10pt;
+}
+
+.filepath {
+    font-weight: bold;
+}
+
+
+.codeph, .varname {
+    white-space: nowrap;
+    font-style: normal;
+    font-family: monospace;
+    font-weight: bold;
+}
