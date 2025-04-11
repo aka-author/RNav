@@ -423,6 +423,12 @@ body {
     cursor: pointer;
 }
 
+@media screen and (max-width: 480px) {
+    [data-kwish-control='PrintButton'] {
+        display: none;
+    }
+}
+
 /* Search results framelet */
 
 #searchResultsFramelet {
