@@ -405,7 +405,17 @@ body {
     display: inline-block;  
     margin: var(--minor_indent);
     width: calc(var(--matter_framelet_width) - var(--large_icon_size) - 4*var(--minor_indent));
+    height: 12pt;
+    color: var(--control_active);
     font-size: 10pt; 
+}
+
+[data-kwish-control='Breadcrumbs'] a:link {
+    color: var(--control_active);
+} 
+
+[data-kwish-control='Breadcrumbs'] a:hover {
+    color: var(--control_hover);
 }
 
 [data-kwish-control='PrintButton'] {
