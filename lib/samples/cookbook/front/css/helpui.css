@@ -408,8 +408,9 @@ body {
     font-size: 10pt; 
 }
 
-#printButton {
+[data-kwish-control='PrintButton'] {
     display: inline-block;
+    cursor: pointer;
 }
 
 /* Search results framelet */
