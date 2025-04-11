@@ -628,7 +628,7 @@ img.toc_shortcut {
 #taxonomyPane  {
     position: absolute;
     margin-inline-start: calc(var(--query_input_width) - var(--taxonomy_pane_width) - var(--small_icon_size));
-    top: 40pt;
+    top: calc(var(--page_header_height)/2 + var(--usual_icon_size)/2 + var(--minimal_indent));
     width: 200pt;
     height: 250pt;
     background: var(--gray300);
@@ -681,7 +681,7 @@ div.relevanceIndicator img {
     position: absolute;
     display:  block;	
     width:    100%;
-    height:   calc(100% - var(--page-header-height));
+    height:   calc(100% - var(--page_header_height));
 }
 
 #divSearchReturnAreaInner {
