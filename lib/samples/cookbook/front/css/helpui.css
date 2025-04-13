@@ -410,6 +410,12 @@ body {
     font-size: 10pt; 
 }
 
+@media screen and (max-width: 480px) {
+    [data-kwish-control='Breadcrumbs'] {
+        width: 100vw;
+    }
+}
+
 [data-kwish-control='Breadcrumbs'] a:link {
     color: var(--control_active);
 } 
@@ -468,9 +474,17 @@ body {
     transform: scaleX(var(--flip-scale));
 }
 
+.clickable {
+    cursor: pointer;
+}
+
+.unclickable {
+    cursor: default;
+}
+
 .selectable_tree_hub_control__title {
     display: inline-block;
-    cursor: pointer;
+    --cursor: pointer;
 }
 
 .selectable_tree_leaf_control {
