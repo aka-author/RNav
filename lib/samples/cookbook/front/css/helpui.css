@@ -420,6 +420,11 @@ body {
     color: var(--control_active);
 } 
 
+[data-kwish-control='Breadcrumbs'] a:visited {
+    color: var(--control_active);
+} 
+
+
 [data-kwish-control='Breadcrumbs'] a:hover {
     color: var(--control_hover);
 }
@@ -602,7 +607,7 @@ img.toc_shortcut {
 }
 
 @media screen and (max-width: 480px) {
-    #searcherInner input {
+    #query {
         display: inline-block;
         margin-inline-start: 0pt;
         width: calc(var(--banner_width) - var(--usual_icon_size));
@@ -632,15 +637,6 @@ img.toc_shortcut {
     margin-top: calc(2*var(--minimal_indent));
 }
 
-@media screen and (max-width: 480px) {
-   
-    #searcherInner input {
-        display: inline-block;
-        margin-inline-start: 0pt;
-        width: calc(var(--banner_width) - var(--usual_icon_size));
-    }
-}
-
 :root {
     --taxonomy_pane_width: 200pt;
 }
@@ -659,6 +655,14 @@ img.toc_shortcut {
     resize: vertical;
     z-index: 100;
 }
+
+@media screen and (max-width: 480px) {
+    #taxonomyPane {
+        display: inline-block;
+        margin-inline-start: calc(100vw - 250pt - var(--usual_icon_size));
+    }
+}
+
 
 #taxonomyTree {
     position: absolute;
