@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Changing Page Geometry</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e8368" class="topic__component topic__title">Changing Page Geometry</h1>
+                        <div class="body taskbody" id="unique_29__d2302e8370">
+                           <div id="d2302e8371" class="block topic__section task__context">
+                              
+                              <p id="d2302e8373" class="block topic__p">The geometry of a web help page is based on a system of interconnected sizes. In many
+                                 cases, a change to one size requires a corresponding change to another. A dependent
+                                 size can be equal to, a multiple of, or a fraction of the size being modified.
+                              </p>
+                              
+                              <p id="d2302e8376" class="block topic__p">Sizes must not be arbitrary. Otherwise, pages will look messy and unbalanced. There
+                                 must be a limited set of distinct sizes that repeat across the page layout, creating
+                                 a visual rhythm. These sizes should be proportionally related to one another.
+                                 Without such consistency, the result will be visually chaotic and structurally
+                                 weak.
+                              </p>
+                              
+                              <p id="d2302e8379" class="block topic__p">To support consistent and maintainable changes, the Classtatic base layout defines a
+                                 compact system of core size variables. You can control the page geometry by
+                                 adjusting these core sizes. It is technically possible to assign each individual
+                                 size directly. In some cases, doing so is justified. However, in general, this
+                                 approach is discouraged, as it often breaks the internal consistency of the layout.
+                                 
+                              </p>
+                              
+                              <p id="d2302e8382" class="block topic__p">The sizes which are essential the Classtatic layout are listed below. </p>
+                              
+                              <div id="unique_29_Connect_42_table_str_rc3_w2c" class="block topic__table">
+                                 <table class="table frame-all" id="unique_29__unique_29_Connect_42_table_str_rc3_w2c">
+                                    <caption></caption>
+                                    <colgroup><span id="d2302e8387" class="inline topic__colspec"></span><span id="d2302e8388" class="inline topic__colspec"></span></colgroup>
+                                    <thead class="thead" id="unique_29__d2302e8389">
+                                       <tr class="row" id="unique_29__d2302e8390">
+                                          <th class="entry colsep-1 rowsep-1" id="unique_29__d2302e8391">Variable</th>
+                                          <th class="entry colsep-1 rowsep-1" id="unique_29__d2302e8393">Size</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody class="tbody" id="unique_29__d2302e8395">
+                                       <tr class="row" id="unique_29__d2302e8396">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8397" headers="unique_29__d2302e8391 "><var id="d2302e8398" class="inline topic__keyword sw-d__varname">--major_indent</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8400" headers="unique_29__d2302e8393 ">The distance between the window border and the borders of a
+                                             framelet. The width of the gap between framelets
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8402">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8403" headers="unique_29__d2302e8391 "><var id="d2302e8404" class="inline topic__keyword sw-d__varname">--minor_indent</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8406" headers="unique_29__d2302e8393 ">
+                                             
+                                             <p id="d2302e8408" class="block topic__p">The distance between a framelet border and its content.</p>
+                                             
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8411">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8412" headers="unique_29__d2302e8391 "><var id="d2302e8413" class="inline topic__keyword sw-d__varname">--tiny_indent</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8415" headers="unique_29__d2302e8393 ">The distance between the border of a group and the icons that
+                                             belong to it. The distance between icons within the same
+                                             group
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8417">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8418" headers="unique_29__d2302e8391 "><var id="d2302e8419" class="inline topic__keyword sw-d__varname">--minimal_indent</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8421" headers="unique_29__d2302e8393 ">
+                                             
+                                             <p id="d2302e8423" class="block topic__p">The distance needed to prevent adjacent elements from sticking
+                                                together
+                                             </p>
+                                             
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8426">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8427" headers="unique_29__d2302e8391 "><var id="d2302e8428" class="inline topic__keyword sw-d__varname">--large_icon_size</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8430" headers="unique_29__d2302e8393 ">The size of icons such as the burger icon and the print
+                                             icon
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8432">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8433" headers="unique_29__d2302e8391 "><var id="d2302e8434" class="inline topic__keyword sw-d__varname">--usual_icon_size</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8436" headers="unique_29__d2302e8393 ">The size of icons such as the search icon</td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8438">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8439" headers="unique_29__d2302e8391 "><var id="d2302e8440" class="inline topic__keyword sw-d__varname">--small_icon_size</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8442" headers="unique_29__d2302e8393 ">
+                                             
+                                             <p id="d2302e8444" class="block topic__p">The size of icons such as the clear search icon and the taxonomy
+                                                icon
+                                             </p>
+                                             
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8447">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8448" headers="unique_29__d2302e8391 "><var id="d2302e8449" class="inline topic__keyword sw-d__varname">--major_border_radius</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8451" headers="unique_29__d2302e8393 ">
+                                             
+                                             <p id="d2302e8453" class="block topic__p">The border radius of framelets</p>
+                                             
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8456">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8457" headers="unique_29__d2302e8391 "><var id="d2302e8458" class="inline topic__keyword sw-d__varname">--minor_border_radius</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8460" headers="unique_29__d2302e8393 ">
+                                             
+                                             <p id="d2302e8462" class="block topic__p">The border radius of the block that appears around a selected TOC
+                                                entry.
+                                             </p>
+                                             
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8465">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8466" headers="unique_29__d2302e8391 "><var id="d2302e8467" class="inline topic__keyword sw-d__varname">--page_header_height</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8469" headers="unique_29__d2302e8393 ">The height of the page header</td>
+                                       </tr>
+                                       <tr class="row" id="unique_29__d2302e8471">
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8472" headers="unique_29__d2302e8391 "><var id="d2302e8473" class="inline topic__keyword sw-d__varname">--console_height</var></td>
+                                          <td class="entry colsep-1 rowsep-1" id="unique_29__d2302e8475" headers="unique_29__d2302e8393 ">The height of the area where framelets appear</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e8478" class="block task__steps">
+                              <div id="d2302e8479" class="block task__step">
+                                 <div>
+                                    <div>1.</div>
+                                    <div><span id="d2302e8480" class="inline topic__ph task__cmd">Open the file <code id="d2302e8482" class="inline topic__ph sw-d__filepath">yourLayout/front/css/helpui.css</code> in your code editor.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8485" class="block task__step">
+                                 <div>
+                                    <div>2.</div>
+                                    <div><span id="d2302e8486" class="inline topic__ph task__cmd">Modify the values of the variables listed in the table above.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8488" class="block task__step">
+                                 <div>
+                                    <div>3.</div>
+                                    <div><span id="d2302e8489" class="inline topic__ph task__cmd">Save the file <code id="d2302e8491" class="inline topic__ph sw-d__filepath">helpui.css</code>.</span></div>
+                                 </div>
+                              </div>
+                           </div><span id="unique_29_Connect_42_example_x1h_gg3_w2c" class="inline topic__example">
+                              <pre id="unique_29_Connect_42_codeblock_irk_gg3_w2c" class="block topic__pre pr-d__codeblock">/* Basic metric parameters */
+
+:root {
+    --major_indent: 15pt;
+    --minor_indent: calc(var(--major_indent)/2);
+    --tiny_indent: calc(var(--major_indent)/3);
+    --minimal_indent: 1pt;
+
+    --major_margins: calc(2*var(--major_indent));
+
+    --large_icon_size: 36px;
+    --usual_icon_size: 24px;
+    --small_icon_size: 16px;
+
+    --major_border_radius: 5pt;
+    --minor_border_radius: 2pt;
+}</pre>
+                              </span></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Assigning IDs to Output Elements</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e8726" class="topic__component topic__title">Assigning IDs to Output Elements</h1>
+                        <div class="body conbody" id="unique_34__d2302e8728">
+                           <div id="d2302e8729" class="block topic__section">
+                              
+                              <p id="d2302e8731" class="inline topic__title">Purpose</p>
+                              
+                              <p id="d2302e8734" class="block topic__p">The <code id="d2302e8736" class="inline topic__ph pr-d__codeph">htmlIdAttr</code> mode assigns an <span id="d2302e8739" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">id</span> attribute to the resulting HTML element. This mode is typically invoked as part of <code id="d2302e8742" class="inline topic__ph pr-d__codeph">htmlAttrs</code> processing and ensures each output element receives a meaningful and stable identifier, when applicable.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e8746" class="block topic__section">
+                              
+                              <p id="d2302e8748" class="inline topic__title">Placement</p>
+                              
+                              <p id="d2302e8751" class="block topic__p">This functionality is implemented in the following stylesheet:</p>
+                              
+                              <p id="d2302e8754" class="block topic__p"><code id="d2302e8755" class="inline topic__ph sw-d__filepath">common/publish/matter/htmlattrs.xsl</code></p>
+                              
+                           </div>
+                           <div id="d2302e8758" class="block topic__section">
+                              
+                              <p id="d2302e8760" class="inline topic__title">Features</p>
+                              
+                              <p id="d2302e8763" class="block topic__p">The <code id="d2302e8765" class="inline topic__ph pr-d__codeph">htmlIdAttr</code> mode supports the following strategies for assigning the ID:
+                              </p>
+                              
+                              <ul id="d2302e8769" class="block list topic__ul">
+                                 <li id="d2302e8770" class="generic topic__li">Passing a direct value using the <code id="d2302e8772" class="inline topic__ph pr-d__codeph">directId</code> parameter
+                                 </li>
+                                 <li id="d2302e8775" class="generic topic__li">Extracting a value from a parsable <span id="d2302e8777" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">outputclass</span> string
+                                 </li>
+                                 <li id="d2302e8780" class="generic topic__li">Copying the original <span id="d2302e8782" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">id</span> attribute from the source DITA element
+                                 </li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e8786" class="block topic__section">
+                              
+                              <p id="d2302e8788" class="inline topic__title">Synopsis</p>
+                              
+                              <p id="d2302e8791" class="block topic__p"><b id="d2302e8792" class="inline topic__ph hi-d__b">Mode:</b>
+                                 <code id="d2302e8795" class="inline topic__ph pr-d__codeph">htmlIdAttr</code>.
+                              </p>
+                              
+                              <div id="d2302e8799" class="block topic__table">
+                                 <table class="table" id="unique_34__d2302e8799">
+                                    <caption></caption>
+                                    <colgroup><span id="d2302e8801" class="inline topic__colspec"></span><span id="d2302e8802" class="inline topic__colspec"></span><span id="d2302e8803" class="inline topic__colspec"></span></colgroup>
+                                    <thead class="thead" id="unique_34__d2302e8804">
+                                       <tr class="row" id="unique_34__d2302e8805">
+                                          <th class="entry" id="unique_34__d2302e8806">Parameter</th>
+                                          <th class="entry" id="unique_34__d2302e8808">Type</th>
+                                          <th class="entry" id="unique_34__d2302e8810">Meaning</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody class="tbody" id="unique_34__d2302e8812">
+                                       <tr class="row" id="unique_34__d2302e8813">
+                                          <td class="entry" id="unique_34__d2302e8814" headers="unique_34__d2302e8806 "><code id="d2302e8815" class="inline topic__ph pr-d__codeph">directId</code></td>
+                                          <td class="entry" id="unique_34__d2302e8817" headers="unique_34__d2302e8808 "><code id="d2302e8818" class="inline topic__ph pr-d__codeph">xs:string</code></td>
+                                          <td class="entry" id="unique_34__d2302e8820" headers="unique_34__d2302e8810 ">Overrides all other sources and assigns this value as the output ID</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e8823" class="block topic__section">
+                              
+                              <p id="d2302e8825" class="inline topic__title">Usage</p>
+                              
+                              
+                              <p id="d2302e8828" class="block topic__p">In most cases, this mode is applied automatically within the <code id="d2302e8830" class="inline topic__ph pr-d__codeph">htmlAttrs</code> template. However, you can also invoke it explicitly in custom templates.
+                              </p>
+                              
+                              
+                              <p id="d2302e8834" class="block topic__p"><b id="d2302e8835" class="inline topic__ph hi-d__b">Example: Passing a direct ID</b></p>
+                              <pre id="d2302e8838" class="block topic__pre pr-d__codeblock">&lt;xsl:apply-templates select="." mode="htmlIdAttr"&gt;
+    &lt;xsl:with-param name="directId" select="loc:assembleMyCustomId(.)"/&gt;
+&lt;/xsl:apply-templates&gt;    </pre>
+                              
+                              <p id="d2302e8841" class="block topic__p"><b id="d2302e8842" class="inline topic__ph hi-d__b">Example: Parsing from <span id="d2302e8844" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">outputclass</span></b></p>
+                              <pre id="d2302e8848" class="block topic__pre pr-d__codeblock">&lt;note outputclass="<b id="d2302e8850" class="inline topic__ph hi-d__b">id='deadlyDanger'</b> class='critical_signal'"&gt;...&lt;/note&gt;</pre>
+                              
+                              <p id="d2302e8854" class="block topic__p"><b id="d2302e8855" class="inline topic__ph hi-d__b">Example: Copying from preprocessed source</b></p>
+                              <pre id="d2302e8858" class="block topic__pre pr-d__codeblock">&lt;note id="d2486e220"&gt;...&lt;/note&gt;</pre>
+                              <div class="block topic__note" id="unique_34_Connect_42_note_s1x_pny_hfc">
+                                 <div class="note__caption">Important</div>
+                                 <div class="note__body">DITA Open Toolkit preprocessor replaces
+                                    original <span id="d2302e8863" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">id </span>values with generated. For example, an element receives
+                                    a string like <code id="d2302e8866" class="inline topic__ph pr-d__codeph">d2486e220</code> as a value of the <span id="d2302e8869" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">id</span>
+                                    attribute, while you assigned another value, for example
+                                    <code id="d2302e8872" class="inline topic__ph pr-d__codeph">myBestMiteId</code>, in the source. 
+                                 </div>
+                              </div>
+                              
+                              
+                              <p id="d2302e8876" class="block topic__p"><b id="d2302e8877" class="inline topic__ph hi-d__b">Assignment Priority</b></p>
+                              
+                              <p id="d2302e8880" class="block topic__p">The <code id="d2302e8882" class="inline topic__ph pr-d__codeph">htmlIdAttr</code> mode applies the following priority when choosing which <span id="d2302e8885" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">id</span> to assign:
+                              </p>
+                              
+                              <ol id="d2302e8890" class="block list topic__ol">
+                                 <li id="d2302e8891" class="generic topic__li">If a <code id="d2302e8893" class="inline topic__ph pr-d__codeph">directId</code> parameter is passed, it is always used.
+                                 </li>
+                                 <li id="d2302e8896" class="generic topic__li">Else, if <span id="d2302e8898" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">outputclass</span> contains a parsable <span id="d2302e8901" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">id</span> value, that value is used.
+                                 </li>
+                                 <li id="d2302e8904" class="generic topic__li">Else, if the source element has an <span id="d2302e8906" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">id</span> attribute, it is copied.
+                                 </li>
+                                 <li id="d2302e8909" class="generic topic__li">Else, no <span id="d2302e8911" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">id</span> is added to the output element.
+                                 </li>
+                              </ol>
+                              
+                              
+                              <div class="block topic__note" id="d2302e8915">
+                                 <div class="note__caption">Note</div>
+                                 <div class="note__body">There is usually no need to call this template directly, since <code id="d2302e8917" class="inline topic__ph pr-d__codeph">htmlAttrs</code> applies it by default.
+                                 </div>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e8921" class="block topic__section">
+                              
+                              <p id="d2302e8923" class="inline topic__title">Modifying Default Behavior</p>
+                              
+                              <p id="d2302e8926" class="block topic__p">To override the default behavior, define a new template with the <code id="d2302e8928" class="inline topic__ph pr-d__codeph">htmlIdAttr</code> mode in your customization, targeting specific element types as needed.
+                              </p>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

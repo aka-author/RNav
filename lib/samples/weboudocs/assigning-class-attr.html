@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Assigning CSS Classes to Output Elements</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e8975" class="topic__component topic__title">Assigning CSS Classes to Output Elements</h1>
+                        <div class="body refbody" id="unique_36__d2302e8977">
+                           <div id="d2302e8978" class="block topic__section">
+                              
+                              <p id="d2302e8980" class="inline topic__title">Purpose</p>
+                              
+                              <p id="d2302e8983" class="block topic__p">The <code id="d2302e8985" class="inline topic__ph pr-d__codeph">htmlClassAttr</code> mode assigns a <span id="d2302e8988" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">class</span> attribute to the resulting HTML element. It combines various class sources to ensure consistent styling. This mode is typically
+                                 used as part of the <code id="d2302e8991" class="inline topic__ph pr-d__codeph">htmlAttrs</code> processing.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e8995" class="block topic__section">
+                              
+                              <p id="d2302e8997" class="inline topic__title">Placement</p>
+                              
+                              <p id="d2302e9000" class="block topic__p">This functionality is implemented in the following stylesheet:</p>
+                              
+                              <p id="d2302e9003" class="block topic__p"><code id="d2302e9004" class="inline topic__ph sw-d__filepath">common/publish/matter/htmlattrs.xsl</code></p>
+                              
+                           </div>
+                           <div id="d2302e9007" class="block topic__section">
+                              
+                              <p id="d2302e9009" class="inline topic__title">Features</p>
+                              
+                              <p id="d2302e9012" class="block topic__p">The <code id="d2302e9014" class="inline topic__ph pr-d__codeph">htmlClassAttr</code> mode composes the <span id="d2302e9017" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">class</span> attribute value based on the following sources:
+                              </p>
+                              
+                              <ul id="d2302e9021" class="block list topic__ul">
+                                 <li id="d2302e9022" class="generic topic__li"><a id="d2302e9023" class="inline topic__xref" href="dita-element-superclasses.html">Superclasses</a>—assigned by the DITAToo Web Output Plug-in
+                                 </li>
+                                 <li id="d2302e9027" class="generic topic__li"><a id="d2302e9028" class="inline topic__xref" href="classes-of-dita-elements.html">DITA specification-based classes</a>—transformed by replacing <code id="d2302e9032" class="inline topic__ph pr-d__codeph">/</code> with <code id="d2302e9035" class="inline topic__ph pr-d__codeph">__</code></li>
+                                 <li id="d2302e9037" class="generic topic__li">Parsable <span id="d2302e9039" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">outputclass</span>—if it includes <code id="d2302e9042" class="inline topic__ph pr-d__codeph">class='...'</code>, the value is appended to the default CSS classes
+                                 </li>
+                                 <li id="d2302e9045" class="generic topic__li">Unparsable <span id="d2302e9047" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">outputclass</span>—the entire attribute value is treated as a CSS class name and appended
+                                 </li>
+                                 <li id="d2302e9050" class="generic topic__li">Directly provided CSS class names </li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e9053" class="block topic__section">
+                              
+                              <p id="d2302e9055" class="inline topic__title">Synopsis</p>
+                              
+                              <p id="d2302e9058" class="block topic__p"><b id="d2302e9059" class="inline topic__ph hi-d__b">Mode: </b><code id="d2302e9061" class="inline topic__ph pr-d__codeph">htmlClassAttr</code>.
+                              </p>
+                              
+                              <div id="unique_36_Connect_42_table_gy5_jny_hfc" class="block topic__table">
+                                 <table class="table" id="unique_36__unique_36_Connect_42_table_gy5_jny_hfc">
+                                    <caption></caption>
+                                    <colgroup><span id="d2302e9067" class="inline topic__colspec"></span><span id="d2302e9068" class="inline topic__colspec"></span><span id="d2302e9069" class="inline topic__colspec"></span></colgroup>
+                                    <thead class="thead" id="unique_36__d2302e9070">
+                                       <tr class="row" id="unique_36__d2302e9071">
+                                          <th class="entry" id="unique_36__d2302e9072">Parameter</th>
+                                          <th class="entry" id="unique_36__d2302e9074">Type</th>
+                                          <th class="entry" id="unique_36__d2302e9076">Meaning</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody class="tbody" id="unique_36__d2302e9078">
+                                       <tr class="row" id="unique_36__d2302e9079">
+                                          <td class="entry" id="unique_36__d2302e9080" headers="unique_36__d2302e9072 "><code id="d2302e9081" class="inline topic__ph pr-d__codeph">directCSSClassNames</code></td>
+                                          <td class="entry" id="unique_36__d2302e9083" headers="unique_36__d2302e9074 "><code id="d2302e9084" class="inline topic__ph pr-d__codeph">xs:string</code></td>
+                                          <td class="entry" id="unique_36__d2302e9086" headers="unique_36__d2302e9076 ">Provides a complete override for the CSS class assignment. When
+                                             this parameter is used, no other class sources are included in the
+                                             output—superclasses, DITA classes, and <span id="d2302e9088" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">outputclass</span>
+                                             values are ignored.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_36__d2302e9091">
+                                          <td class="entry" id="unique_36__d2302e9092" headers="unique_36__d2302e9072 "><code id="d2302e9093" class="inline topic__ph pr-d__codeph">insertCSSClassNames</code></td>
+                                          <td class="entry" id="unique_36__d2302e9095" headers="unique_36__d2302e9074 "><code id="d2302e9096" class="inline topic__ph pr-d__codeph">xs:string</code></td>
+                                          <td class="entry" id="unique_36__d2302e9098" headers="unique_36__d2302e9076 ">Appended to class names derived from superclasses, DITA classes,
+                                             and the <span id="d2302e9100" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">outputclass</span> attribute.
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                              <p id="d2302e9104" class="block topic__p">Using both parameters together does not make sense.</p>
+                              
+                           </div>
+                           <div id="d2302e9107" class="block topic__section">
+                              
+                              <p id="d2302e9109" class="inline topic__title">Usage</p>
+                              
+                              
+                              <p id="d2302e9112" class="block topic__p">This mode is automatically invoked within <code id="d2302e9114" class="inline topic__ph pr-d__codeph">htmlAttrs</code>. However, it can also be applied explicitly in a custom template.
+                              </p>
+                              
+                              
+                              <p id="d2302e9118" class="block topic__p"><b id="d2302e9119" class="inline topic__ph hi-d__b">Example: Direct CSS Class Assignment</b></p>
+                              <pre id="d2302e9122" class="block topic__pre pr-d__codeblock">&lt;xsl:apply-templates select="." mode="htmlClassAttr"&gt;
+   &lt;xsl:with-param name="directCSSClassNames" select="loc:computeMyCustomCSSClasses(.)"/&gt;
+&lt;/xsl:apply-templates&gt;            </pre>
+                              
+                              <p id="d2302e9125" class="block topic__p"><b id="d2302e9126" class="inline topic__ph hi-d__b">Example: Inserting Additional Class Names</b></p>
+                              <pre id="d2302e9130" class="block topic__pre pr-d__codeblock">&lt;xsl:apply-templates select="." mode="htmlClassAttr"&gt;
+    &lt;xsl:with-param name="insertCSSClassNames" select="'funny'"/&gt;
+&lt;/xsl:apply-templates&gt;            </pre>
+                              
+                              <p id="d2302e9133" class="block topic__p"><b id="d2302e9134" class="inline topic__ph hi-d__b">Example: Using outputclass with class attribute</b></p>
+                              <pre id="d2302e9137" class="block topic__pre pr-d__codeblock">&lt;note outputclass="id='licensing_issues' class='legal_notice'"&gt;...&lt;/note&gt;
+            </pre>
+                              
+                              <p id="d2302e9140" class="block topic__p"><b id="d2302e9141" class="inline topic__ph hi-d__b">Example: Using outputclass as simple class value</b></p>
+                              <pre id="d2302e9144" class="block topic__pre pr-d__codeblock">&lt;note outputclass="flagged important"&gt;...&lt;/note&gt;</pre>
+                              
+                              </div>
+                           <div id="d2302e9147" class="block topic__section">
+                              
+                              <p id="d2302e9149" class="inline topic__title">Modifying Default Behavior</p>
+                              
+                              <p id="d2302e9152" class="block topic__p">To override the default class behavior, define a new template with the <code id="d2302e9154" class="inline topic__ph pr-d__codeph">htmlClassAttr</code> mode in your customization for specific DITA elements.
+                              </p>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

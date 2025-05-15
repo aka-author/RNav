@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Understanding Build Properties</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e1456" class="topic__component topic__title">Understanding Build Properties</h1>
+                        <div class="body conbody" id="unique_18__d2302e1458">
+                           <div id="d2302e1459" class="block topic__section">
+                              
+                              <p id="d2302e1461" class="inline topic__title">Why Use Properties with DITA OT</p>
+                              
+                              <p id="d2302e1464" class="block topic__p">Property files allow you to configure and customize the behavior of the DITA Open Toolkit (DITA OT) without modifying the
+                                 build scripts directly. This approach is widely used in the Java stack, particularly with tools like Apache Ant, which underlies
+                                 DITA OT. Properties enable the reuse of common settings across projects and help maintain cleaner and more manageable configurations.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e1467" class="block topic__section">
+                              
+                              <p id="d2302e1469" class="inline topic__title">What Is a Property</p>
+                              
+                              <p id="d2302e1472" class="block topic__p">A build property is a pair consisting of a property name and a property value. DITA OT collects all defined properties and
+                                 passes them to plug-ins during output generation. Plug-ins use these properties to adjust the formatting, location of output
+                                 files, paths to resources, and other runtime behaviors.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e1475" class="block topic__section">
+                              
+                              <p id="d2302e1477" class="inline topic__title">Properties File Format</p>
+                              
+                              <p id="d2302e1480" class="block topic__p">Build properties are defined in plain text files. Each property must appear on a separate line. Line breaks within values
+                                 are not allowed. The standard file type is <code id="d2302e1482" class="inline topic__ph pr-d__codeph">.properties</code>.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e1486" class="block topic__section">
+                              
+                              <p id="d2302e1488" class="inline topic__title">Rules for a Property Definition</p>
+                              
+                              <p id="d2302e1491" class="block topic__p">The basic syntax for defining a property is:</p>
+                              <pre id="d2302e1494" class="block topic__pre pr-d__codeblock">property_name=property value</pre>
+                              </div>
+                           <div id="d2302e1497" class="block topic__section">
+                              
+                              <p id="d2302e1499" class="inline topic__title">Rules for Property Names</p>
+                              
+                              <ul id="d2302e1502" class="block list topic__ul">
+                                 <li id="d2302e1503" class="generic topic__li">Must not contain whitespace or the equals sign</li>
+                                 <li id="d2302e1505" class="generic topic__li">May include letters, digits, periods, and underscores</li>
+                                 <li id="d2302e1507" class="generic topic__li">Must be unique within the same file</li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e1510" class="block topic__section">
+                              
+                              <p id="d2302e1512" class="inline topic__title">Rules for Property Values</p>
+                              
+                              <ul id="d2302e1515" class="block list topic__ul">
+                                 <li id="d2302e1516" class="generic topic__li">Any printable characters are allowed</li>
+                                 <li id="d2302e1518" class="generic topic__li">Leading and trailing spaces are preserved</li>
+                                 <li id="d2302e1520" class="generic topic__li">Backslashes are used for escaping and must be doubled when used as characters, for example in Windows file paths</li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e1523" class="block topic__section">
+                              
+                              <p id="d2302e1525" class="inline topic__title">Example</p>
+                              <pre id="d2302e1528" class="block topic__pre pr-d__codeblock">customization.dir=C:\\writing\\tools\\customizations\\corporate-layout
+dita.temp.dir=c:\\tmp\\!ditatoo_weboutput_tmp
+clean.temp=no            </pre>
+                              </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

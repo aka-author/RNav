@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>DITA Element Superclasses</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e1905" class="topic__component topic__title">DITA Element Superclasses</h1>
+                        <div class="body conbody" id="unique_22__d2302e1907">
+                           <p id="d2302e1908" class="block topic__p">While the DITA specification defines a set of class tokens for each element, we further group elements into broader categories
+                              called <span id="d2302e1910" class="inline topic__term">superclasses</span>. These superclasses are assigned based on the typical behavior and rendering expectations of elements in publication output.
+                           </p>
+                           <p id="d2302e1913" class="block topic__p">The distinction between <b id="d2302e1915" class="inline topic__ph hi-d__b">block</b> and <b id="d2302e1918" class="inline topic__ph hi-d__b">inline</b> elements is especially important. These two categories affect how content flows and is displayed on the page.
+                           </p>
+                           <p id="d2302e1921" class="block topic__p"><span id="d2302e1922" class="inline topic__term">Inline elements</span> represent short text fragments that follow the natural flow of text—left-to-right or right-to-left—and wrap over line breaks
+                              as needed. Examples include <span id="d2302e1925" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">ph</span> and <span id="d2302e1928" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">codeph</span>.
+                           </p>
+                           <p id="d2302e1931" class="block topic__p"><span id="d2302e1932" class="inline topic__term">Block elements</span> are typically displayed from top to bottom and span the full width of a page or column. Each block element begins on a new
+                              line and may contain other block or inline elements. Examples include <span id="d2302e1935" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">p</span> and <span id="d2302e1938" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">section</span>.
+                           </p>
+                           <p id="d2302e1941" class="block topic__p">In the DITAToo Web Output Plug-In, we introduce superclasses to provide extended semantic information for formatting purposes.
+                              The <code id="d2302e1943" class="inline topic__ph pr-d__codeph">XATOOL</code> library is responsible for detecting and assigning superclasses to DITA elements during the HTML generation phase.
+                           </p>
+                           <p id="d2302e1946" class="block topic__p">Some elements are assigned more than one superclass. In these cases, the first superclass describes how the element behaves
+                              in relation to its siblings—whether it occupies block space or flows inline. The second superclass, if present, describes
+                              how the element structures its children. For example, the <span id="d2302e1948" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">ul</span> element has the superclasses <code id="d2302e1951" class="inline topic__ph pr-d__codeph">block list</code>, meaning it behaves as a block among its siblings and as a list container for its children.
+                           </p>
+                           <div id="d2302e1954" class="block topic__table">
+                              <table class="table" id="unique_22__d2302e1954">
+                                 <caption><span class="table--title-label">Table 2. </span><p id="d2302e1955" class="inline topic__title">DITA Element Superclasses</p>
+                                 </caption>
+                                 <colgroup><span id="d2302e1958" class="inline topic__colspec"></span><span id="d2302e1959" class="inline topic__colspec"></span></colgroup>
+                                 <thead class="thead" id="unique_22__d2302e1960">
+                                    <tr class="row" id="unique_22__d2302e1961">
+                                       <th class="entry" id="unique_22__d2302e1962">Superclass</th>
+                                       <th class="entry" id="unique_22__d2302e1964">Description</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody class="tbody" id="unique_22__d2302e1966">
+                                    <tr class="row" id="unique_22__d2302e1967">
+                                       <td class="entry" id="unique_22__d2302e1968" headers="unique_22__d2302e1962 "><code id="d2302e1969" class="inline topic__ph pr-d__codeph">inline</code></td>
+                                       <td class="entry" id="unique_22__d2302e1971" headers="unique_22__d2302e1964 ">Elements that participate in the inline text flow, wrapping naturally within paragraphs or other block elements.</td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e1973">
+                                       <td class="entry" id="unique_22__d2302e1974" headers="unique_22__d2302e1962 "><code id="d2302e1975" class="inline topic__ph pr-d__codeph">block</code></td>
+                                       <td class="entry" id="unique_22__d2302e1977" headers="unique_22__d2302e1964 ">Standalone elements that begin on a new line and extend across the page or container width.</td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e1979">
+                                       <td class="entry" id="unique_22__d2302e1980" headers="unique_22__d2302e1962 "><code id="d2302e1981" class="inline topic__ph pr-d__codeph">block list</code></td>
+                                       <td class="entry" id="unique_22__d2302e1983" headers="unique_22__d2302e1964 ">Block-level elements that contain list structures, such as unordered or ordered lists.</td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e1985">
+                                       <td class="entry" id="unique_22__d2302e1986" headers="unique_22__d2302e1962 "><code id="d2302e1987" class="inline topic__ph pr-d__codeph">block table</code></td>
+                                       <td class="entry" id="unique_22__d2302e1989" headers="unique_22__d2302e1964 ">Block-level elements that represent tables, such as <span id="d2302e1991" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">table</span> or <span id="d2302e1994" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">simpletable</span>.
+                                       </td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e1997">
+                                       <td class="entry" id="unique_22__d2302e1998" headers="unique_22__d2302e1962 "><code id="d2302e1999" class="inline topic__ph pr-d__codeph">listitem</code></td>
+                                       <td class="entry" id="unique_22__d2302e2001" headers="unique_22__d2302e1964 ">Elements that represent individual items within a list structure.</td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e2003">
+                                       <td class="entry" id="unique_22__d2302e2004" headers="unique_22__d2302e1962 "><code id="d2302e2005" class="inline topic__ph pr-d__codeph">table</code></td>
+                                       <td class="entry" id="unique_22__d2302e2007" headers="unique_22__d2302e1964 ">Elements that function as containers for tabular content.</td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e2009">
+                                       <td class="entry" id="unique_22__d2302e2010" headers="unique_22__d2302e1962 "><code id="d2302e2011" class="inline topic__ph pr-d__codeph">table__component</code></td>
+                                       <td class="entry" id="unique_22__d2302e2013" headers="unique_22__d2302e1964 ">Structural components inside tables, such as headers, footers, rows, and cells.</td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e2015">
+                                       <td class="entry" id="unique_22__d2302e2016" headers="unique_22__d2302e1962 "><code id="d2302e2017" class="inline topic__ph pr-d__codeph">table_entry</code></td>
+                                       <td class="entry" id="unique_22__d2302e2019" headers="unique_22__d2302e1964 ">Table cells (entries) that contain the actual data within a row.</td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e2021">
+                                       <td class="entry" id="unique_22__d2302e2022" headers="unique_22__d2302e1962 "><code id="d2302e2023" class="inline topic__ph pr-d__codeph">table_row</code></td>
+                                       <td class="entry" id="unique_22__d2302e2025" headers="unique_22__d2302e1964 ">Table rows that contain a set of entry elements.</td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e2027">
+                                       <td class="entry" id="unique_22__d2302e2028" headers="unique_22__d2302e1962 "><code id="d2302e2029" class="inline topic__ph pr-d__codeph">topic__component</code></td>
+                                       <td class="entry" id="unique_22__d2302e2031" headers="unique_22__d2302e1964 ">Major sections of a topic structure, such as <span id="d2302e2033" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">title</span>, <span id="d2302e2036" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">body</span>, or <span id="d2302e2039" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">shortdesc</span>.
+                                       </td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e2042">
+                                       <td class="entry" id="unique_22__d2302e2043" headers="unique_22__d2302e1962 "><code id="d2302e2044" class="inline topic__ph pr-d__codeph">struct_node</code></td>
+                                       <td class="entry" id="unique_22__d2302e2046" headers="unique_22__d2302e1964 ">Root-level DITA structures such as <span id="d2302e2048" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">topic</span> and <span id="d2302e2051" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">map</span>.
+                                       </td>
+                                    </tr>
+                                    <tr class="row" id="unique_22__d2302e2055">
+                                       <td class="entry" id="unique_22__d2302e2056" headers="unique_22__d2302e1962 "><code id="d2302e2057" class="inline topic__ph pr-d__codeph">generic</code></td>
+                                       <td class="entry" id="unique_22__d2302e2059" headers="unique_22__d2302e1964 ">Fallback category used when an element does not clearly belong to a more specific superclass.</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

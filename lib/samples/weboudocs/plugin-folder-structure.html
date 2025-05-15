@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Plug-in Folder Structure</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e1299" class="topic__component topic__title">Plug-in Folder Structure</h1>
+                        <div class="body conbody" id="unique_17__d2302e1301">
+                           <div id="d2302e1302" class="block topic__section">
+                              
+                              <p id="d2302e1304" class="inline topic__title">Root Level</p>
+                              
+                              <div id="d2302e1307" class="block table topic__simpletable">
+                                 <table class="simpletable" id="unique_17__d2302e1307">
+                                    <colgroup>
+                                       <col style="width:50%">
+                                       <col style="width:50%">
+                                    </colgroup>
+                                    <thead>
+                                       <tr class="sthead" id="unique_17__d2302e1308">
+                                          <th class="stentry" id="unique_17__d2302e1309">Path</th>
+                                          <th class="stentry" id="unique_17__d2302e1311">Description</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr class="strow" id="unique_17__d2302e1313">
+                                          <td class="stentry" id="unique_17__d2302e1314" headers="unique_17__d2302e1309"><code id="d2302e1315" class="inline topic__ph sw-d__filepath">build.xml</code></td>
+                                          <td class="stentry" id="unique_17__d2302e1317" headers="unique_17__d2302e1311">The main build file</td>
+                                       </tr>
+                                       <tr class="strow" id="unique_17__d2302e1319">
+                                          <td class="stentry" id="unique_17__d2302e1320" headers="unique_17__d2302e1309"><code id="d2302e1321" class="inline topic__ph sw-d__filepath">build_template.xml</code></td>
+                                          <td class="stentry" id="unique_17__d2302e1323" headers="unique_17__d2302e1311">The template of the main build file</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e1326" class="block topic__section">
+                              
+                              <p id="d2302e1328" class="inline topic__title">cfg/</p>
+                              
+                              <p id="d2302e1331" class="block topic__p">Plug-in configuration files.</p>
+                              
+                              <div id="d2302e1334" class="block table topic__simpletable">
+                                 <table class="simpletable" id="unique_17__d2302e1334">
+                                    <colgroup>
+                                       <col style="width:50%">
+                                       <col style="width:50%">
+                                    </colgroup>
+                                    <thead>
+                                       <tr class="sthead" id="unique_17__d2302e1335">
+                                          <th class="stentry" id="unique_17__d2302e1336">Path</th>
+                                          <th class="stentry" id="unique_17__d2302e1338">Description</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr class="strow" id="unique_17__d2302e1340">
+                                          <td class="stentry" id="unique_17__d2302e1341" headers="unique_17__d2302e1336"><code id="d2302e1342" class="inline topic__ph sw-d__filepath">cfg/build.properties</code></td>
+                                          <td class="stentry" id="unique_17__d2302e1344" headers="unique_17__d2302e1338">General build properties, including the default base layout</td>
+                                       </tr>
+                                       <tr class="strow" id="unique_17__d2302e1346">
+                                          <td class="stentry" id="unique_17__d2302e1347" headers="unique_17__d2302e1336"><code id="d2302e1348" class="inline topic__ph sw-d__filepath">cfg/catalog.xml</code></td>
+                                          <td class="stentry" id="unique_17__d2302e1350" headers="unique_17__d2302e1338">The main XML catalog</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e1353" class="block topic__section">
+                              
+                              <p id="d2302e1355" class="inline topic__title">doc/</p>
+                              
+                              <p id="d2302e1358" class="block topic__p">The plug-in's user documentation.</p>
+                              
+                           </div>
+                           <div id="d2302e1361" class="block topic__section">
+                              
+                              <p id="d2302e1363" class="inline topic__title">i18n/</p>
+                              
+                              <p id="d2302e1366" class="block topic__p">Default localization files, including captions for figures, tables, etc.</p>
+                              
+                              <div id="d2302e1369" class="block table topic__simpletable">
+                                 <table class="simpletable" id="unique_17__d2302e1369">
+                                    <colgroup>
+                                       <col style="width:50%">
+                                       <col style="width:50%">
+                                    </colgroup>
+                                    <thead>
+                                       <tr class="sthead" id="unique_17__d2302e1370">
+                                          <th class="stentry" id="unique_17__d2302e1371">Path</th>
+                                          <th class="stentry" id="unique_17__d2302e1373">Description</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr class="strow" id="unique_17__d2302e1375">
+                                          <td class="stentry" id="unique_17__d2302e1376" headers="unique_17__d2302e1371"><code id="d2302e1377" class="inline topic__ph sw-d__filepath">i18n/search/</code></td>
+                                          <td class="stentry" id="unique_17__d2302e1379" headers="unique_17__d2302e1373">Resources for search features in web helps, including stopword lists</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e1382" class="block topic__section">
+                              
+                              <p id="d2302e1384" class="inline topic__title">layouts/</p>
+                              
+                              <p id="d2302e1387" class="block topic__p">Base layouts included in the plug-in.</p>
+                              
+                              <div id="d2302e1390" class="block table topic__simpletable">
+                                 <table class="simpletable" id="unique_17__d2302e1390">
+                                    <colgroup>
+                                       <col style="width:50%">
+                                       <col style="width:50%">
+                                    </colgroup>
+                                    <thead>
+                                       <tr class="sthead" id="unique_17__d2302e1391">
+                                          <th class="stentry" id="unique_17__d2302e1392">Path</th>
+                                          <th class="stentry" id="unique_17__d2302e1394">Description</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr class="strow" id="unique_17__d2302e1396">
+                                          <td class="stentry" id="unique_17__d2302e1397" headers="unique_17__d2302e1392"><code id="d2302e1398" class="inline topic__ph sw-d__filepath">layouts/classtatic/</code></td>
+                                          <td class="stentry" id="unique_17__d2302e1400" headers="unique_17__d2302e1394">A base layout for classical static web helps</td>
+                                       </tr>
+                                       <tr class="strow" id="unique_17__d2302e1402">
+                                          <td class="stentry" id="unique_17__d2302e1403" headers="unique_17__d2302e1392"><code id="d2302e1404" class="inline topic__ph sw-d__filepath">layouts/rawdump/</code></td>
+                                          <td class="stentry" id="unique_17__d2302e1406" headers="unique_17__d2302e1394">A base layout for draft one-pagers</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e1409" class="block topic__section">
+                              
+                              <p id="d2302e1411" class="inline topic__title">lib/</p>
+                              
+                              <p id="d2302e1414" class="block topic__p">Libraries used by the plug-in, layouts, customizations, and output documents.</p>
+                              
+                              <div id="d2302e1417" class="block table topic__simpletable">
+                                 <table class="simpletable" id="unique_17__d2302e1417">
+                                    <colgroup>
+                                       <col style="width:50%">
+                                       <col style="width:50%">
+                                    </colgroup>
+                                    <thead>
+                                       <tr class="sthead" id="unique_17__d2302e1418">
+                                          <th class="stentry" id="unique_17__d2302e1419">Path</th>
+                                          <th class="stentry" id="unique_17__d2302e1421">Description</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr class="strow" id="unique_17__d2302e1423">
+                                          <td class="stentry" id="unique_17__d2302e1424" headers="unique_17__d2302e1419"><code id="d2302e1425" class="inline topic__ph sw-d__filepath">lib/kwish/</code></td>
+                                          <td class="stentry" id="unique_17__d2302e1427" headers="unique_17__d2302e1421">JavaScript library enabling web help responsiveness, user interface, and search</td>
+                                       </tr>
+                                       <tr class="strow" id="unique_17__d2302e1429">
+                                          <td class="stentry" id="unique_17__d2302e1430" headers="unique_17__d2302e1419"><code id="d2302e1431" class="inline topic__ph sw-d__filepath">lib/xatool/</code></td>
+                                          <td class="stentry" id="unique_17__d2302e1433" headers="unique_17__d2302e1421">XSLT library for assembling blocks of output documents</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e1436" class="block topic__section">
+                              
+                              <p id="d2302e1438" class="inline topic__title">publish/</p>
+                              
+                              <p id="d2302e1441" class="block topic__p">The main set of XSLT stylesheets of the plug-in.</p>
+                              
+                           </div>
+                           <div id="d2302e1444" class="block topic__section">
+                              
+                              <p id="d2302e1446" class="inline topic__title">samples/</p>
+                              
+                              <p id="d2302e1449" class="block topic__p">Sample DITA projects and output documents.</p>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

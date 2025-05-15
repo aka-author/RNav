@@ -1,0 +1,162 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Plug-in Structure and Layer Responsibilities</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e1165" class="topic__component topic__title">Plug-in Structure and Layer Responsibilities</h1>
+                        <div class="body conbody" id="unique_16__d2302e1167">
+                           <div id="d2302e1168" class="block topic__section">
+                              
+                              <p id="d2302e1170" class="inline topic__title">Architectural Layers</p>
+                              
+                              <p id="d2302e1173" class="block topic__p">The architecture of the plug-in consists of two primary layers:</p>
+                              
+                              <ul id="d2302e1176" class="block list topic__ul">
+                                 <li id="d2302e1177" class="generic topic__li">The plug-in itself</li>
+                                 <li id="d2302e1179" class="generic topic__li">Layouts embedded within the plug-in</li>
+                                 <li id="d2302e1181" class="generic topic__li">Customizations</li>
+                              </ul>
+                              
+                              <p id="d2302e1184" class="block topic__p">Each layer is responsible for specific stages in the transformation process and for producing distinct parts of the output
+                                 document.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e1187" class="block topic__section">
+                              
+                              <p id="d2302e1189" class="inline topic__title">Responsibilities of the Plug-in</p>
+                              
+                              <p id="d2302e1192" class="block topic__p">The plug-in acts as the main control layer. It performs preprocessing and postprocessing operations required to prepare and
+                                 finalize output documents. Its responsibilities include:
+                              </p>
+                              
+                              <ul id="d2302e1195" class="block list topic__ul">
+                                 <li id="d2302e1196" class="generic topic__li">Linking the top-level <span id="d2302e1198" class="inline topic__ph">ditamap</span>, submaps, and topic files into a single internal structure
+                                 </li>
+                                 <li id="d2302e1201" class="generic topic__li">Filtering the content according to applicable conditions</li>
+                                 <li id="d2302e1203" class="generic topic__li">Arranging image files referenced from the source topics</li>
+                                 <li id="d2302e1205" class="generic topic__li">Copying CSS files, JavaScript libraries, and other predefined technical assets to the output folder</li>
+                                 <li id="d2302e1207" class="generic topic__li">Providing localization files that define UI strings and labels used in the output</li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e1210" class="block topic__section">
+                              
+                              <p id="d2302e1212" class="inline topic__title">Responsibilities of Layouts</p>
+                              
+                              <p id="d2302e1215" class="block topic__p">Layouts are modular components embedded in the plug-in. Each layout is responsible for generating the actual output documents
+                                 and defining their structure, visual layout, and behavior. A layout handles the following tasks:
+                              </p>
+                              
+                              <ul id="d2302e1218" class="block list topic__ul">
+                                 <li id="d2302e1219" class="generic topic__li">Generating output HTML files from the internal structure</li>
+                                 <li id="d2302e1221" class="generic topic__li">Generating additional files, such as: 
+                                    <ul id="d2302e1223" class="block list topic__ul">
+                                       <li id="d2302e1224" class="generic topic__li">Table of contents in JavaScript format</li>
+                                       <li id="d2302e1226" class="generic topic__li">Search index files in JavaScript format</li>
+                                    </ul>
+                                 </li>
+                                 <li id="d2302e1228" class="generic topic__li">Providing its own: 
+                                    <ul id="d2302e1230" class="block list topic__ul">
+                                       <li id="d2302e1231" class="generic topic__li">CSS files</li>
+                                       <li id="d2302e1233" class="generic topic__li">JavaScript libraries</li>
+                                       <li id="d2302e1235" class="generic topic__li">Icon files</li>
+                                    </ul>
+                                 </li>
+                                 <li id="d2302e1237" class="generic topic__li">Optionally replacing or extending the localization files provided by the plug-in</li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e1240" class="block topic__section">
+                              
+                              <p id="d2302e1242" class="inline topic__title">Base Layouts</p>
+                              
+                              <p id="d2302e1245" class="block topic__p">The plug-in includes a set of predefined base layouts. Each base layout defines the structure, layout, and behavior for a
+                                 specific category of output documents. Examples of base layouts include:
+                              </p>
+                              
+                              <ul id="d2302e1248" class="block list topic__ul">
+                                 <li id="d2302e1249" class="generic topic__li">The <span id="d2302e1251" class="inline topic__ph">classtatic</span> layout, used for classical static web help systems
+                                 </li>
+                                 <li id="d2302e1254" class="generic topic__li">The <span id="d2302e1256" class="inline topic__ph">rawdump</span> layout, used for generating one-pager draft documents
+                                 </li>
+                              </ul>
+                              
+                              <p id="d2302e1260" class="block topic__p">Each base layout defines:</p>
+                              
+                              <ul id="d2302e1263" class="block list topic__ul">
+                                 <li id="d2302e1264" class="generic topic__li">The general structure of the output files</li>
+                                 <li id="d2302e1266" class="generic topic__li">The default visual representation</li>
+                                 <li id="d2302e1268" class="generic topic__li">The default behavior of the documents</li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e1271" class="block topic__section">
+                              
+                              <p id="d2302e1273" class="inline topic__title">Layout Versions</p>
+                              
+                              <p id="d2302e1276" class="block topic__p">Each layout can evolve through a sequence of versions. New versions of layouts are added as the plug-in is updated, while
+                                 existing versions remain available. This versioning model ensures compatibility and supports long-term maintenance. Layout
+                                 versions are cumulative and non-destructive.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e1279" class="block topic__section">
+                              
+                              <p id="d2302e1281" class="inline topic__title">Customizations</p>
+                              
+                              <p id="d2302e1284" class="block topic__p">Users can tailor output documents by creating customizations. A customization is a lightweight extension of a base layout.
+                                 It allows users to redefine specific aspects of:
+                              </p>
+                              
+                              <ul id="d2302e1287" class="block list topic__ul">
+                                 <li id="d2302e1288" class="generic topic__li">Document structure</li>
+                                 <li id="d2302e1290" class="generic topic__li">Visual layout</li>
+                                 <li id="d2302e1292" class="generic topic__li">Interactive behavior</li>
+                              </ul>
+                              
+                              <p id="d2302e1295" class="block topic__p">Multiple customizations can be created for each base layout, enabling targeted adaptation for different publishing needs without
+                                 altering the original layout.
+                              </p>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

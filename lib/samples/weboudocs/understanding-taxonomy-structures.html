@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Understanding Taxonomy Structures</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e771" class="topic__component topic__title">Understanding Taxonomy Structures</h1>
+                        <div class="body conbody" id="unique_11__d2302e773">
+                           <div id="d2302e774" class="block topic__section">
+                              
+                              <p id="d2302e776" class="inline topic__title">Category Types in a Taxonomy</p>
+                              
+                              <p id="d2302e779" class="block topic__p">A <span id="d2302e781" class="inline topic__term">taxonomy</span> is a hierarchy of categories used to classify and organize
+                                 content. Categories can be of two types:
+                              </p>
+                              
+                              <ul id="d2302e785" class="block list topic__ul">
+                                 <li id="d2302e786" class="generic topic__li"><b id="d2302e787" class="inline topic__ph hi-d__b">Group categories</b>—Categories that contain subcategories. For example, the
+                                    category <i id="d2302e790" class="inline topic__ph hi-d__i">Soups</i> may include <i id="d2302e793" class="inline topic__ph hi-d__i">borscht</i>, <i id="d2302e796" class="inline topic__ph hi-d__i">gazpacho</i>,
+                                    <i id="d2302e799" class="inline topic__ph hi-d__i">bouillabaisse</i>, etc.
+                                 </li>
+                                 <li id="d2302e802" class="generic topic__li"><b id="d2302e803" class="inline topic__ph hi-d__b">Terminal categories</b>—Categories that do not include any
+                                    subcategories.
+                                 </li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e807" class="block topic__section">
+                              
+                              <p id="d2302e809" class="inline topic__title">Taxonomies for Topic Classification</p>
+                              
+                              <p id="d2302e812" class="block topic__p">Taxonomies are often used for classifying objects within a subject domain. In the
+                                 DITAToo Web Output Plug-in, taxonomies are primarily used to classify topics. For
+                                 example, a taxonomy based on product lines can be used to associate topics with
+                                 specific products. If your content is published with the
+                                 <span id="d2302e814" class="inline topic__keyword pr-d__apiname">Classtatic</span> layout (native or customized), users will be able
+                                 to search for topics by product line.
+                              </p>
+                              
+                              
+                              <p id="d2302e818" class="block topic__p">Taxonomies can be structured in one of the following ways:</p>
+                              
+                              <ul id="d2302e821" class="block list topic__ul">
+                                 <li id="d2302e822" class="generic topic__li"><span id="d2302e823" class="inline topic__term">Simple taxonomy</span>—A strict single-root hierarchy. For example, the
+                                    <i id="d2302e826" class="inline topic__ph hi-d__i">Soups</i> taxonomy may be split into <i id="d2302e829" class="inline topic__ph hi-d__i">vegetarian</i>, <i id="d2302e832" class="inline topic__ph hi-d__i">fish</i>, and
+                                    <i id="d2302e835" class="inline topic__ph hi-d__i">meat</i> soups. Then, <i id="d2302e838" class="inline topic__ph hi-d__i">vegetarian</i> soups may be further classified
+                                    as <i id="d2302e842" class="inline topic__ph hi-d__i">vegetable</i>, <i id="d2302e845" class="inline topic__ph hi-d__i">fruit</i>, and <i id="d2302e848" class="inline topic__ph hi-d__i">mushroom</i> soups. Each specific
+                                    soup, such as <i id="d2302e851" class="inline topic__ph hi-d__i">maeuntang</i>, will typically belong to one terminal
+                                    category.
+                                 </li>
+                                 <li id="d2302e854" class="generic topic__li"><span id="d2302e855" class="inline topic__term">Facet taxonomy</span>—A taxonomy composed of several independent
+                                    hierarchies. For instance, in addition to a classification by ingredients, we
+                                    can add another hierarchy that includes <i id="d2302e858" class="inline topic__ph hi-d__i">dietic</i>, <i id="d2302e861" class="inline topic__ph hi-d__i">elegant</i>, and
+                                    <i id="d2302e864" class="inline topic__ph hi-d__i">spicy</i> categories. As a result, <i id="d2302e867" class="inline topic__ph hi-d__i">maeuntang</i> could be categorized
+                                    as both a <i id="d2302e870" class="inline topic__ph hi-d__i">fish</i> soup and a <i id="d2302e874" class="inline topic__ph hi-d__i">spicy</i> soup. Users can then combine these
+                                    criteria in search queries.
+                                 </li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e878" class="block topic__section">
+                              
+                              <p id="d2302e880" class="inline topic__title">Inheritance of Categories</p>
+                              
+                              <p id="d2302e883" class="block topic__p">An entity within a subject domain, such as a topic, is associated not only with the category it directly belongs to but also
+                                 with its parent categories. For example, assume the <i id="d2302e885" class="inline topic__ph hi-d__i">dietic</i> category includes <i id="d2302e888" class="inline topic__ph hi-d__i">children’s soups</i> and <i id="d2302e891" class="inline topic__ph hi-d__i">soups for persons with weak stomachs</i>. If <i id="d2302e894" class="inline topic__ph hi-d__i">alphabet soup</i> is placed into the <i id="d2302e897" class="inline topic__ph hi-d__i">children’s soups</i> category, it will also be classified under the broader <i id="d2302e901" class="inline topic__ph hi-d__i">dietic</i> category. This allows users to find topics or items across all relevant levels of classification.
+                              </p>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

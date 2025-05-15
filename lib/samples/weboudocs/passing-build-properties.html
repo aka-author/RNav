@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Passing Build Properties in the Plug-In</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e1532" class="topic__component topic__title">Passing Build Properties in the Plug-In</h1>
+                        <div class="body conbody" id="unique_19__d2302e1534">
+                           <div id="d2302e1535" class="block topic__section">
+                              
+                              <p id="d2302e1537" class="inline topic__title">Purpose</p>
+                              
+                              <p id="d2302e1540" class="block topic__p">Build properties control various aspects of the output generation process. In the DITAToo Web Output Plug-In, property values
+                                 can be defined at several levels to support flexible configuration and override behavior.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e1543" class="block topic__section">
+                              
+                              <p id="d2302e1545" class="inline topic__title">Configuration Levels</p>
+                              
+                              <p id="d2302e1548" class="block topic__p">The following table lists the supported configuration levels and the corresponding
+                                 file locations where build properties can be defined.
+                              </p>
+                              
+                              
+                              <div id="d2302e1551" class="block topic__table">
+                                 <table class="table" id="unique_19__d2302e1551">
+                                    <caption></caption>
+                                    <colgroup><span id="d2302e1553" class="inline topic__colspec"></span><span id="d2302e1554" class="inline topic__colspec"></span></colgroup>
+                                    <thead class="thead" id="unique_19__d2302e1555">
+                                       <tr class="row" id="unique_19__d2302e1556">
+                                          <th class="entry" id="unique_19__d2302e1557">Level</th>
+                                          <th class="entry" id="unique_19__d2302e1559">Property File Location</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody class="tbody" id="unique_19__d2302e1561">
+                                       <tr class="row" id="unique_19__d2302e1562">
+                                          <td class="entry" id="unique_19__d2302e1563" headers="unique_19__d2302e1557 ">Plug-in configuration</td>
+                                          <td class="entry" id="unique_19__d2302e1565" headers="unique_19__d2302e1559 "><code id="d2302e1566" class="inline topic__ph sw-d__filepath">cfg/build.properties</code></td>
+                                       </tr>
+                                       <tr class="row" id="unique_19__d2302e1568">
+                                          <td class="entry" id="unique_19__d2302e1569" headers="unique_19__d2302e1557 ">Base layout configuration</td>
+                                          <td class="entry" id="unique_19__d2302e1571" headers="unique_19__d2302e1559 "><code id="d2302e1572" class="inline topic__ph sw-d__filepath">layouts/&lt;base-layout&gt;/&lt;version&gt;/cfg/build.properties</code></td>
+                                       </tr>
+                                       <tr class="row" id="unique_19__d2302e1574">
+                                          <td class="entry" id="unique_19__d2302e1575" headers="unique_19__d2302e1557 ">Customization</td>
+                                          <td class="entry" id="unique_19__d2302e1577" headers="unique_19__d2302e1559 "><code id="d2302e1578" class="inline topic__ph sw-d__filepath">&lt;your-customization&gt;/cfg/build.properties</code></td>
+                                       </tr>
+                                       <tr class="row" id="unique_19__d2302e1580">
+                                          <td class="entry" id="unique_19__d2302e1581" headers="unique_19__d2302e1557 ">Certain build</td>
+                                          <td class="entry" id="unique_19__d2302e1583" headers="unique_19__d2302e1559 ">Property file path passed to DITA OT using the <code id="d2302e1585" class="inline topic__ph pr-d__codeph">--propertyfile</code> key
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                              
+                              <p id="d2302e1589" class="block topic__p">Refer to the DITA Open Toolkit documentation for details on the <code id="d2302e1591" class="inline topic__ph pr-d__codeph">--propertyfile</code> command-line option.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e1595" class="block topic__section">
+                              
+                              <p id="d2302e1597" class="inline topic__title">Property Precedence</p>
+                              
+                              <p id="d2302e1600" class="block topic__p">In general, properties defined at a higher level override those defined at a lower level. However, this behavior may depend
+                                 on the specific property and how it is consumed in the transformation process.
+                              </p>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

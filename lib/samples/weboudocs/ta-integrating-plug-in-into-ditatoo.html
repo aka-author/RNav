@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Integrating the Plug-In into a DITAToo Instance</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e576" class="topic__component topic__title">Integrating the Plug-In into a DITAToo Instance</h1>
+                        <div class="body taskbody" id="unique_9__d2302e578">
+                           <div id="unique_9_Connect_42_prereq_wk5_m5x_txb" class="block topic__section task__prereq">
+                              
+                              <p id="d2302e581" class="block topic__p">The following prerequisite is mandatory for deploying the plug-in on your computer.</p>
+                              
+                              <ul id="unique_9_Connect_42_ul_mmf_n5x_txb" class="block list topic__ul">
+                                 <li id="d2302e585" class="generic topic__li">The plug-in is <a id="d2302e587" class="inline topic__xref" href="ta-integrating-plug-in-into-ditaot.html">integrated into your instance of DITA OT</a>.
+                                 </li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e592" class="block task__steps">
+                              <div id="d2302e593" class="block task__step">
+                                 <div>
+                                    <div>1.</div>
+                                    <div><span id="d2302e594" class="inline topic__ph task__cmd">Launch DITAToo Author.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e596" class="block task__step">
+                                 <div>
+                                    <div>2.</div>
+                                    <div><span id="d2302e597" class="inline topic__ph task__cmd">Select the command <span id="d2302e599" class="inline topic__ph ui-d__menucascade"><span id="d2302e600" class="inline topic__ph ui-d__uicontrol">Publish</span><span id="d2302e602" class="inline topic__ph ui-d__uicontrol">Manage Publishing Targets...</span></span></span><div id="d2302e604" class="block topic__itemgroup task__stepresult">
+                                          
+                                          <p id="d2302e606" class="block topic__p">The <span id="d2302e608" class="inline topic__keyword ui-d__wintitle">Manage Publishing Targets</span> form appears.
+                                          </p>
+                                          
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="d2302e612" class="block task__step">
+                                 <div>
+                                    <div>3.</div>
+                                    <div><span id="d2302e613" class="inline topic__ph task__cmd">Click the <span id="d2302e615" class="inline topic__ph ui-d__uicontrol">Add</span> button under the list of targets.</span><div id="d2302e618" class="block topic__itemgroup task__stepresult">
+                                          
+                                          <p id="d2302e620" class="block topic__p">A small form appears.</p>
+                                          
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="d2302e623" class="block task__step">
+                                 <div>
+                                    <div>4.</div>
+                                    <div><span id="d2302e624" class="inline topic__ph task__cmd">Fill in the form as shown below.</span><div id="d2302e626" class="block topic__itemgroup task__info">
+                                          
+                                          <div id="unique_9_Connect_42_table_r4k_lyx_txb" class="block topic__table">
+                                             <table class="table frame-all" id="unique_9__unique_9_Connect_42_table_r4k_lyx_txb">
+                                                <caption></caption>
+                                                <colgroup><span id="d2302e630" class="inline topic__colspec"></span><span id="d2302e631" class="inline topic__colspec"></span></colgroup>
+                                                <thead class="thead" id="unique_9__d2302e632">
+                                                   <tr class="row" id="unique_9__d2302e633">
+                                                      <th class="entry colsep-1 rowsep-1" id="unique_9__d2302e634">Form field</th>
+                                                      <th class="entry colsep-1 rowsep-1" id="unique_9__d2302e636">Value</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody class="tbody" id="unique_9__d2302e638">
+                                                   <tr class="row" id="unique_9__d2302e639">
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e640" headers="unique_9__d2302e634 "><span id="d2302e641" class="inline topic__ph ui-d__uicontrol">Name</span></td>
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e643" headers="unique_9__d2302e636 "><kbd id="d2302e644" class="inline topic__ph sw-d__userinput">DITATooWeboutput</kbd></td>
+                                                   </tr>
+                                                   <tr class="row" id="unique_9__d2302e646">
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e647" headers="unique_9__d2302e634 "><span id="d2302e648" class="inline topic__ph ui-d__uicontrol">Transform</span></td>
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e650" headers="unique_9__d2302e636 "><kbd id="d2302e651" class="inline topic__ph sw-d__userinput">ditatoo.weboutput</kbd></td>
+                                                   </tr>
+                                                   <tr class="row" id="unique_9__d2302e653">
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e654" headers="unique_9__d2302e634 "><span id="d2302e655" class="inline topic__ph ui-d__uicontrol">Target</span></td>
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e657" headers="unique_9__d2302e636 "><kbd id="d2302e658" class="inline topic__ph sw-d__userinput">dita2ditatoo.weboutput</kbd></td>
+                                                   </tr>
+                                                   <tr class="row" id="unique_9__d2302e660">
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e661" headers="unique_9__d2302e634 "><span id="d2302e662" class="inline topic__ph ui-d__uicontrol">Extension</span></td>
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e664" headers="unique_9__d2302e636 "><kbd id="d2302e665" class="inline topic__ph sw-d__userinput">.html</kbd></td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                          
+                                          <figure id="d2302e668" class="block topic__fig"><img id="unique_9_Connect_42_image_kqf_cyx_txb_254" class="inline topic__image" src="img/ditatoo-edit-target-props-254.png" alt=""><p id="d2302e669" class="inline topic__title">Defining properties of the target</p>
+                                          </figure>
+                                          
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="d2302e673" class="block task__step">
+                                 <div>
+                                    <div>5.</div>
+                                    <div><span id="d2302e674" class="inline topic__ph task__cmd">Click the <span id="d2302e676" class="inline topic__ph ui-d__uicontrol">OK</span> button.</span><div id="d2302e679" class="block topic__itemgroup task__stepresult">The <span id="d2302e681" class="inline topic__keyword ui-d__wintitle">Manage Publishing Targets</span> form appears
+                                          again.
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="d2302e684" class="block task__step">
+                                 <div>
+                                    <div>6.</div>
+                                    <div><span id="d2302e685" class="inline topic__ph task__cmd">Select <span id="d2302e687" class="inline topic__ph ui-d__uicontrol">DITAToo Weboutput</span> in the <span id="d2302e690" class="inline topic__ph ui-d__uicontrol">Publishing Targets list</span>.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e693" class="block task__step">
+                                 <div>
+                                    <div>7.</div>
+                                    <div><span id="d2302e694" class="inline topic__ph task__cmd">Enter the target properties in the <span id="d2302e696" class="inline topic__ph ui-d__uicontrol">Target properties</span> area as shown below.</span><div id="d2302e699" class="block topic__itemgroup task__info">
+                                          
+                                          <div id="unique_9_Connect_42_table_twj_vd5_bfc" class="block topic__table">
+                                             <table class="table frame-all" id="unique_9__unique_9_Connect_42_table_twj_vd5_bfc">
+                                                <caption><span class="table--title-label">Table 1. </span><p id="d2302e702" class="inline topic__title">Target properties</p>
+                                                </caption>
+                                                <colgroup><span id="d2302e705" class="inline topic__colspec"></span><span id="d2302e706" class="inline topic__colspec"></span></colgroup>
+                                                <thead class="thead" id="unique_9__d2302e707">
+                                                   <tr class="row" id="unique_9__d2302e708">
+                                                      <th class="entry colsep-1 rowsep-1" id="unique_9__d2302e709">Target Property</th>
+                                                      <th class="entry colsep-1 rowsep-1" id="unique_9__d2302e711">Value</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody class="tbody" id="unique_9__d2302e713">
+                                                   <tr class="row" id="unique_9__d2302e714">
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e715" headers="unique_9__d2302e709 "><var id="d2302e716" class="inline topic__keyword sw-d__varname">args.input</var></td>
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e718" headers="unique_9__d2302e711 "><code id="d2302e719" class="inline topic__ph pr-d__codeph">${projdir}/${MAP_file}</code></td>
+                                                   </tr>
+                                                   <tr class="row" id="unique_9__d2302e721">
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e722" headers="unique_9__d2302e709 "><var id="d2302e723" class="inline topic__keyword sw-d__varname">dita.extname</var></td>
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e725" headers="unique_9__d2302e711 "><code id="d2302e726" class="inline topic__ph pr-d__codeph">${EXTNAME}</code></td>
+                                                   </tr>
+                                                   <tr class="row" id="unique_9__d2302e728">
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e729" headers="unique_9__d2302e709 "><var id="d2302e730" class="inline topic__keyword sw-d__varname">outer.control</var></td>
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e732" headers="unique_9__d2302e711 "><code id="d2302e733" class="inline topic__ph pr-d__codeph">quiet</code></td>
+                                                   </tr>
+                                                   <tr class="row" id="unique_9__d2302e735">
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e736" headers="unique_9__d2302e709 "><var id="d2302e737" class="inline topic__keyword sw-d__varname">output.dir</var></td>
+                                                      <td class="entry colsep-1 rowsep-1" id="unique_9__d2302e739" headers="unique_9__d2302e711 "><code id="d2302e740" class="inline topic__ph pr-d__codeph">${outdir}</code></td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                          
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="d2302e743" class="block task__step">
+                                 <div>
+                                    <div>8.</div>
+                                    <div><span id="d2302e744" class="inline topic__ph task__cmd">Click the <span id="d2302e746" class="inline topic__ph ui-d__uicontrol">OK</span> button.</span></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="unique_9_Connect_42_result_tg3_p3g_5xb" class="block topic__section task__result">
+                              
+                              <p id="d2302e751" class="block topic__p">The plug-in installation is now complete. You can start using the plug-in with DITAToo.</p>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

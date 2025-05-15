@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Describing a Taxonomy</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e906" class="topic__component topic__title">Describing a Taxonomy</h1>
+                        <div class="body conbody" id="unique_12__d2302e908">
+                           <p id="d2302e909" class="block topic__p"> In the DITAToo Web Output Plug-in, taxonomies are described using subject scheme maps in
+                              accordance with the DITA specification. A taxonomy defines a hierarchy of categories
+                              that can be used to classify topics and support taxonomy-based search in output
+                              documents. 
+                           </p>
+                           <p id="d2302e911" class="block topic__p"> The root element representing a taxonomy is <span id="d2302e913" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">subjectScheme</span>. Each
+                              category in the taxonomy is defined using a <span id="d2302e916" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">subjectdef</span> element
+                              nested within it or within another category. 
+                           </p>
+                           <p id="d2302e919" class="block topic__p"> Each <span id="d2302e921" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">subjectdef</span> must have a <span id="d2302e924" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">navtitle</span>
+                              attribute, which provides the human-readable name of the category. 
+                           </p>
+                           <p id="d2302e927" class="block topic__p"> If the category is intended to be assigned to a topic or appear as a search criterion,
+                              the <span id="d2302e929" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">subjectdef</span> must also include a <span id="d2302e932" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">keys</span>
+                              attribute. The value of the <span id="d2302e935" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">keys</span> attribute serves as the category's
+                              internal code. 
+                           </p>
+                           <p id="d2302e938" class="block topic__p">
+                              Both terminal categories and grouping categories (those that contain subcategories) can be 
+                              assigned to topics and used for search filtering.
+                              
+                           </p>
+                           <p id="d2302e940" class="block topic__p"> A <span id="d2302e942" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">subjectdef</span> element that has a <span id="d2302e945" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">navtitle</span> but
+                              does not include a <span id="d2302e948" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">keys</span> attribute is treated as a facet. Facets serve
+                              as grouping containers and cannot be directly assigned to topics. 
+                           </p>
+                           <p id="d2302e951" class="block topic__p">The following example shows how to define a taxonomy using a subject scheme map.</p><pre id="unique_12_Connect_42_codeblock_jgf_4xq_z2c" class="block topic__pre pr-d__codeblock">&lt;subjectScheme&gt;
+   &lt;subjectdef keys="taxonomy"&gt;
+      &lt;!-- Type of Meal (a facet) --&gt;
+      &lt;subjectdef navtitle="Type of Meal"&gt;
+            &lt;subjectdef keys="breakfast" navtitle="Breakfast"/&gt;
+            &lt;subjectdef keys="lunch" navtitle="Lunch"/&gt;
+            &lt;subjectdef keys="dinner" navtitle="Dinner"/&gt;
+            &lt;subjectdef keys="supper" navtitle="Supper"/&gt;
+      &lt;/subjectdef&gt;
+      &lt;!-- Situation (a facet) --&gt;
+      &lt;subjectdef navtitle="Situation"&gt;
+         &lt;subjectdef keys="ceremonial" navtitle="Ceremonial"&gt;
+            &lt;subjectdef keys="festive" navtitle="Festive"/&gt;
+            &lt;subjectdef keys="somber" navtitle="Somber"/&gt;
+         &lt;/subjectdef&gt;
+         &lt;subjectdef keys="everyday" navtitle="Everyday"&gt;
+            &lt;subjectdef keys="family" navtitle="Family"/&gt;
+            &lt;subjectdef keys="guests" navtitle="Guests"/&gt;
+         &lt;/subjectdef&gt;
+         &lt;subjectdef keys="fast" navtitle="Fast"&gt;
+            &lt;subjectdef keys="eat_in" navtitle="Eat in"/&gt;
+            &lt;subjectdef keys="take_away" navtitle="Take away"/&gt;
+         &lt;/subjectdef&gt;
+      &lt;/subjectdef&gt;
+      &lt;!-- Complexity (a facet) --&gt;
+      &lt;subjectdef navtitle="Complexity"&gt;
+         &lt;subjectdef keys="complex" navtitle="Complex"/&gt;
+         &lt;subjectdef keys="medium" navtitle="Medium"/&gt;
+         &lt;subjectdef keys="simple" navtitle="Simple"/&gt;
+      &lt;/subjectdef&gt;
+   &lt;/subjectdef&gt;
+&lt;/subjectScheme&gt;</pre></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

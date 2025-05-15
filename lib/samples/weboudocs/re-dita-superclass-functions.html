@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Superclass Detection in DITA Web Output</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e9502" class="topic__component topic__title">Superclass Detection in DITA Web Output</h1>
+                        <div class="body refbody" id="unique_40__d2302e9504">
+                           <div id="d2302e9505" class="block topic__section">
+                              
+                              <p id="d2302e9507" class="inline topic__title">Purpose</p>
+                              
+                              <p id="d2302e9510" class="block topic__p">The superclass detection system groups DITA elements into behavioral categories such as block, inline, list, or table component.
+                                 These categories inform formatting logic in the DITAToo Web Output Plug-In by providing layout hints for CSS-based HTML output.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e9513" class="block topic__section">
+                              
+                              <p id="d2302e9515" class="inline topic__title">Placement</p>
+                              
+                              <p id="d2302e9518" class="block topic__p">This functionality is implemented in the following stylesheet:</p>
+                              
+                              <p id="d2302e9521" class="block topic__p"><code id="d2302e9522" class="inline topic__ph sw-d__filepath">lib/xatool/dita/xsl-2.0/guts/classify.xsl</code></p>
+                              
+                           </div>
+                           <div id="d2302e9525" class="block topic__section">
+                              
+                              <p id="d2302e9527" class="inline topic__title">Functions</p>
+                              
+                              <div id="d2302e9530" class="block topic__table">
+                                 <table class="table" id="unique_40__d2302e9530">
+                                    <caption><span class="table--title-label">Table 3. </span><p id="d2302e9531" class="inline topic__title">Superclass Detection Functions</p>
+                                    </caption>
+                                    <colgroup><span id="d2302e9534" class="inline topic__colspec"></span><span id="d2302e9535" class="inline topic__colspec"></span></colgroup>
+                                    <thead class="thead" id="unique_40__d2302e9536">
+                                       <tr class="row" id="unique_40__d2302e9537">
+                                          <th class="entry" id="unique_40__d2302e9538">Function</th>
+                                          <th class="entry" id="unique_40__d2302e9540">Purpose</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody class="tbody" id="unique_40__d2302e9542">
+                                       <tr class="row" id="unique_40__d2302e9543">
+                                          <td class="entry" id="unique_40__d2302e9544" headers="unique_40__d2302e9538 "><code id="d2302e9545" class="inline topic__ph pr-d__codeph">xat:dita.isInline</code></td>
+                                          <td class="entry" id="unique_40__d2302e9547" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9549" class="inline topic__ph pr-d__codeph">true()</code> if the element behaves as an inline element.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9552">
+                                          <td class="entry" id="unique_40__d2302e9553" headers="unique_40__d2302e9538 "><code id="d2302e9554" class="inline topic__ph pr-d__codeph">xat:dita.isBlock</code></td>
+                                          <td class="entry" id="unique_40__d2302e9556" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9558" class="inline topic__ph pr-d__codeph">true()</code> if the element behaves as a block element.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9561">
+                                          <td class="entry" id="unique_40__d2302e9562" headers="unique_40__d2302e9538 "><code id="d2302e9563" class="inline topic__ph pr-d__codeph">xat:dita.isList</code></td>
+                                          <td class="entry" id="unique_40__d2302e9565" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9567" class="inline topic__ph pr-d__codeph">true()</code> if the element is a list container (e.g., <span id="d2302e9570" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">ul</span>, <span id="d2302e9573" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">ol</span>).
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9576">
+                                          <td class="entry" id="unique_40__d2302e9577" headers="unique_40__d2302e9538 "><code id="d2302e9578" class="inline topic__ph pr-d__codeph">xat:dita.isListItem</code></td>
+                                          <td class="entry" id="unique_40__d2302e9580" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9582" class="inline topic__ph pr-d__codeph">true()</code> if the element is a list item (e.g., <span id="d2302e9585" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">li</span>).
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9588">
+                                          <td class="entry" id="unique_40__d2302e9589" headers="unique_40__d2302e9538 "><code id="d2302e9590" class="inline topic__ph pr-d__codeph">xat:dita.isTable</code></td>
+                                          <td class="entry" id="unique_40__d2302e9592" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9594" class="inline topic__ph pr-d__codeph">true()</code> if the element is a table container.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9597">
+                                          <td class="entry" id="unique_40__d2302e9598" headers="unique_40__d2302e9538 "><code id="d2302e9599" class="inline topic__ph pr-d__codeph">xat:dita.isTableComponent</code></td>
+                                          <td class="entry" id="unique_40__d2302e9601" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9603" class="inline topic__ph pr-d__codeph">true()</code> for rows, headers, footers, and similar table parts.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9606">
+                                          <td class="entry" id="unique_40__d2302e9607" headers="unique_40__d2302e9538 "><code id="d2302e9608" class="inline topic__ph pr-d__codeph">xat:dita.isTableRow</code></td>
+                                          <td class="entry" id="unique_40__d2302e9610" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9612" class="inline topic__ph pr-d__codeph">true()</code> if the element is a table row.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9615">
+                                          <td class="entry" id="unique_40__d2302e9616" headers="unique_40__d2302e9538 "><code id="d2302e9617" class="inline topic__ph pr-d__codeph">xat:dita.isTableEntry</code></td>
+                                          <td class="entry" id="unique_40__d2302e9619" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9621" class="inline topic__ph pr-d__codeph">true()</code> if the element is a table entry (cell).
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9624">
+                                          <td class="entry" id="unique_40__d2302e9625" headers="unique_40__d2302e9538 "><code id="d2302e9626" class="inline topic__ph pr-d__codeph">xat:dita.isTopic</code></td>
+                                          <td class="entry" id="unique_40__d2302e9628" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9630" class="inline topic__ph pr-d__codeph">true()</code> if the element is a topic.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9633">
+                                          <td class="entry" id="unique_40__d2302e9634" headers="unique_40__d2302e9538 "><code id="d2302e9635" class="inline topic__ph pr-d__codeph">xat:dita.isMap</code></td>
+                                          <td class="entry" id="unique_40__d2302e9637" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9639" class="inline topic__ph pr-d__codeph">true()</code> if the element is a map.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9642">
+                                          <td class="entry" id="unique_40__d2302e9643" headers="unique_40__d2302e9538 "><code id="d2302e9644" class="inline topic__ph pr-d__codeph">xat:dita.isTopicComponent</code></td>
+                                          <td class="entry" id="unique_40__d2302e9646" headers="unique_40__d2302e9540 ">Returns <code id="d2302e9648" class="inline topic__ph pr-d__codeph">true()</code> if the element is part of a topic structure (e.g., <span id="d2302e9651" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">body</span>, <span id="d2302e9654" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">title</span>).
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_40__d2302e9658">
+                                          <td class="entry" id="unique_40__d2302e9659" headers="unique_40__d2302e9538 "><code id="d2302e9660" class="inline topic__ph pr-d__codeph">xat:dita.superclass</code></td>
+                                          <td class="entry" id="unique_40__d2302e9662" headers="unique_40__d2302e9540 ">Returns the space-separated string of superclasses assigned to a given element.</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e9665" class="block topic__section">
+                              
+                              <p id="d2302e9667" class="inline topic__title">Modifying Default Behavior</p>
+                              
+                              <p id="d2302e9670" class="block topic__p">Each detection function delegates to an internal template using a corresponding mode. For example, the <code id="d2302e9672" class="inline topic__ph pr-d__codeph">xat:dita.isBlock</code> function applies a template in mode <code id="d2302e9675" class="inline topic__ph pr-d__codeph">xat.dita.isBlock</code> to the element it receives as an argument.
+                              </p>
+                              
+                              <p id="d2302e9679" class="block topic__p">To change the superclass behavior for a specific element, you can override the default template with a higher-priority template
+                                 using the same mode. This technique allows you to customize formatting classification without altering the base detection
+                                 logic.
+                              </p>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

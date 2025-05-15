@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Assigning Taxonomy to Topics</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e956" class="topic__component topic__title">Assigning Taxonomy to Topics</h1>
+                        <div class="body conbody" id="unique_13__d2302e958">
+                           <p id="d2302e959" class="block topic__p">To associate a DITA topic with taxonomy categories, specify the category codes in one or
+                              more <span id="d2302e961" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">othermeta</span> elements with the attribute <span id="d2302e964" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">name</span> set to
+                              <code id="d2302e967" class="inline topic__ph pr-d__codeph">taxonomy</code>.
+                           </p>
+                           <p id="d2302e970" class="block topic__p">The <span id="d2302e972" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">content</span> attribute of the <span id="d2302e975" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">othermeta</span> element contains one or more category codes separated by spaces. The distribution of codes across multiple elements does
+                              not affect the outcome—only the resulting set of codes matters.
+                           </p>
+                           <p id="d2302e978" class="block topic__p">The example below shows three category codes assigned to a topic. All of them are treated as taxonomy filters during search
+                              and classification, regardless of how they are grouped.
+                           </p><pre id="d2302e980" class="block topic__pre pr-d__codeblock">&lt;othermeta name="taxonomy" content="simple dinner"/&gt;
+&lt;othermeta name="taxonomy" content="guests"/&gt;</pre><p id="d2302e982" class="block topic__p">The topic above is associated with the following categories:</p>
+                           <ul id="d2302e984" class="block list topic__ul">
+                              <li id="d2302e985" class="generic topic__li"><code id="d2302e986" class="inline topic__ph pr-d__codeph">simple</code>—complexity level
+                              </li>
+                              <li id="d2302e989" class="generic topic__li"><code id="d2302e990" class="inline topic__ph pr-d__codeph">dinner</code>—type of meal
+                              </li>
+                              <li id="d2302e993" class="generic topic__li"><code id="d2302e994" class="inline topic__ph pr-d__codeph">guests</code>—usage situation
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

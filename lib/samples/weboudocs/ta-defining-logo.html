@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Defining a Logo Image</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e8117" class="topic__component topic__title">Defining a Logo Image</h1>
+                        <div class="body taskbody" id="unique_26__d2302e8119">
+                           <div id="d2302e8120" class="block task__steps">
+                              <div id="d2302e8121" class="block task__step">
+                                 <div>
+                                    <div>1.</div>
+                                    <div><span id="d2302e8122" class="inline topic__ph task__cmd">Copy your logo image file to <code id="d2302e8124" class="inline topic__ph sw-d__filepath">yourLayout/front/img</code>.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8127" class="block task__step">
+                                 <div>
+                                    <div>2.</div>
+                                    <div><span id="d2302e8128" class="inline topic__ph task__cmd">Open the file <code id="d2302e8130" class="inline topic__ph sw-d__filepath">yourLayout/front/css/helpui.css</code> in your code editor.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8133" class="block task__step">
+                                 <div>
+                                    <div>3.</div>
+                                    <div><span id="d2302e8134" class="inline topic__ph task__cmd">Assign your logo filename as a value to the property
+                                          <var id="d2302e8136" class="inline topic__keyword sw-d__varname">--background-image</var> of the <var id="d2302e8139" class="inline topic__keyword sw-d__varname">#logo</var>
+                                          element.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8142" class="block task__step">
+                                 <div>
+                                    <div>4.</div>
+                                    <div><span id="d2302e8143" class="inline topic__ph task__cmd">Measure the ratio: logo width divided by logo height.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8145" class="block task__step">
+                                 <div>
+                                    <div>5.</div>
+                                    <div><span id="d2302e8146" class="inline topic__ph task__cmd">Assign the ratio as a value to the variable
+                                          <var id="d2302e8148" class="inline topic__keyword sw-d__varname">--logo_image_width_to_height_ratio</var>.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8151" class="block task__step">
+                                 <div>
+                                    <div>6.</div>
+                                    <div><span id="d2302e8152" class="inline topic__ph task__cmd">Save the file <code id="d2302e8154" class="inline topic__ph sw-d__filepath">helpui.css</code>.</span></div>
+                                 </div>
+                              </div>
+                           </div><span id="unique_26_Connect_42_example_yx4_t4g_w2c" class="inline topic__example">
+                              <pre id="unique_26_Connect_42_codeblock_pbv_t4g_w2c" class="block topic__pre pr-d__codeblock">:root {
+    
+    /* Measure the actual w/h of your logo! */
+    <b id="d2302e8161" class="inline topic__ph hi-d__b">--logo_image_width_to_height_ratio: 2.54;</b> 
+
+    --logo_height: var(--page_header_height);
+    --logo_width: calc(var(--logo_height)*var(--logo_image_width_to_height_ratio));
+    --logo_image_top_margin: var(--minimal_indent);
+    --logo_image_height: calc(var(--logo_height) - 2*var(--logo_image_top_margin));
+    --logo_area_width: calc(var(--logo_width) + var(--major_indent));
+}
+
+#logo {
+    display: inline-block;
+    width: var(--logo_width);
+    height: var(--logo_height);
+    margin-inline-start: var(--major_indent);
+    <b id="d2302e8164" class="inline topic__ph hi-d__b">background-image: url('../img/your-logo.svg');</b>
+    background-size: var(--logo_width) var(--logo_height);	
+}</pre>
+                              </span></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

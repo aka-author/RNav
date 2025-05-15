@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Build Property Reference</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e1604" class="topic__component topic__title">Build Property Reference</h1>
+                        <div class="body refbody" id="unique_20__d2302e1606">
+                           <div id="unique_20_Connect_42_section_nrj_bhm_3fc" class="block topic__section">
+                              
+                              <p id="d2302e1609" class="inline topic__title">Plug-In</p>
+                              
+                              
+                              <div id="d2302e1612" class="block topic__div">
+                                 
+                                 <p id="d2302e1614" class="block topic__p"><b id="d2302e1615" class="inline topic__ph hi-d__b">Placement</b></p>
+                                 
+                                 <p id="d2302e1618" class="block topic__p"><code id="d2302e1619" class="inline topic__ph sw-d__filepath">cfg/build.properties</code></p>
+                                 
+                              </div>
+                              
+                              
+                              <div id="d2302e1623" class="block topic__div">
+                                 <b id="d2302e1625" class="inline topic__ph hi-d__b">Properties</b>
+                                 
+                                 <div id="unique_20_Connect_42_table_prj_bhm_3fc" class="block topic__table">
+                                    <table class="table" id="unique_20__unique_20_Connect_42_table_prj_bhm_3fc">
+                                       <caption></caption>
+                                       <colgroup><span id="d2302e1630" class="inline topic__colspec"></span><span id="d2302e1631" class="inline topic__colspec"></span><span id="d2302e1632" class="inline topic__colspec"></span><span id="d2302e1633" class="inline topic__colspec"></span></colgroup>
+                                       <thead class="thead" id="unique_20__d2302e1634">
+                                          <tr class="row" id="unique_20__d2302e1635">
+                                             <th class="entry" id="unique_20__d2302e1636">Property</th>
+                                             <th class="entry" id="unique_20__d2302e1638">Value</th>
+                                             <th class="entry" id="unique_20__d2302e1640">Mode</th>
+                                             <th class="entry" id="unique_20__d2302e1642">Meaning</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody class="tbody" id="unique_20__d2302e1644">
+                                          <tr class="row" id="unique_20__d2302e1645">
+                                             <td class="entry" id="unique_20__d2302e1646" headers="unique_20__d2302e1636 "><code id="d2302e1647" class="inline topic__ph pr-d__codeph">defaultLayout</code></td>
+                                             <td class="entry" id="unique_20__d2302e1649" headers="unique_20__d2302e1638 ">A pair of base layout name and version</td>
+                                             <td class="entry" id="unique_20__d2302e1651" headers="unique_20__d2302e1640 ">Mandatory</td>
+                                             <td class="entry" id="unique_20__d2302e1653" headers="unique_20__d2302e1642 ">A base layout to be applied if <code id="d2302e1655" class="inline topic__ph pr-d__codeph">customization.dir
+                                                   </code>is not defined
+                                             </td>
+                                          </tr>
+                                          <tr class="row" id="unique_20__d2302e1658">
+                                             <td class="entry" id="unique_20__d2302e1659" headers="unique_20__d2302e1636 "><code id="d2302e1660" class="inline topic__ph pr-d__codeph">defaultImageFileTypes</code></td>
+                                             <td class="entry" id="unique_20__d2302e1662" headers="unique_20__d2302e1638 ">A whitespace-separated list</td>
+                                             <td class="entry" id="unique_20__d2302e1664" headers="unique_20__d2302e1640 ">Can be overridden in a customization</td>
+                                             <td class="entry" id="unique_20__d2302e1666" headers="unique_20__d2302e1642 ">File types that will be treated as images during
+                                                processing
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                              
+                              
+                              <div id="d2302e1669" class="block topic__div">
+                                 
+                                 <p id="d2302e1671" class="block topic__p"><b id="d2302e1672" class="inline topic__ph hi-d__b">Example</b></p>
+                                 <pre id="d2302e1675" class="block topic__pre pr-d__codeblock">defaultLayout=classtatic 1.01a
+defaultImageFileTypes=apng avif bmp gif ico jpg jpeg png svg webp</pre>
+                                 </div>
+                              
+                           </div>
+                           <div id="unique_20_Connect_42_section_isj_shm_3fc" class="block topic__section">
+                              
+                              <p id="d2302e1681" class="inline topic__title">Base Layout</p>
+                              
+                              
+                              <div id="d2302e1684" class="block topic__div">
+                                 
+                                 <p id="d2302e1686" class="block topic__p"><b id="d2302e1687" class="inline topic__ph hi-d__b">Placement</b></p>
+                                 
+                                 <p id="d2302e1690" class="block topic__p"><code id="d2302e1691" class="inline topic__ph sw-d__filepath">layouts/&lt;base-layout&gt;/&lt;version&gt;/cfg/build.properties</code></p>
+                                 
+                              </div>
+                              
+                              
+                              <div id="d2302e1695" class="block topic__div">
+                                 <b id="d2302e1697" class="inline topic__ph hi-d__b">Properties</b>
+                                 
+                                 <div id="d2302e1700" class="block topic__table">
+                                    <table class="table" id="unique_20__d2302e1700">
+                                       <caption></caption>
+                                       <colgroup><span id="d2302e1702" class="inline topic__colspec"></span><span id="d2302e1703" class="inline topic__colspec"></span><span id="d2302e1704" class="inline topic__colspec"></span><span id="d2302e1705" class="inline topic__colspec"></span></colgroup>
+                                       <thead class="thead" id="unique_20__d2302e1706">
+                                          <tr class="row" id="unique_20__d2302e1707">
+                                             <th class="entry" id="unique_20__d2302e1708">Property</th>
+                                             <th class="entry" id="unique_20__d2302e1710">Value</th>
+                                             <th class="entry" id="unique_20__d2302e1712">Mode</th>
+                                             <th class="entry" id="unique_20__d2302e1714">Meaning</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody class="tbody" id="unique_20__d2302e1716">
+                                          <tr class="row" id="unique_20__d2302e1717">
+                                             <td class="entry" id="unique_20__d2302e1718" headers="unique_20__d2302e1708 "><code id="d2302e1719" class="inline topic__ph pr-d__codeph">isBaseLayout</code></td>
+                                             <td class="entry" id="unique_20__d2302e1721" headers="unique_20__d2302e1710 ">Any non-empty value</td>
+                                             <td class="entry" id="unique_20__d2302e1723" headers="unique_20__d2302e1712 ">Mandatory for a base layout</td>
+                                             <td class="entry" id="unique_20__d2302e1725" headers="unique_20__d2302e1714 ">Marks the layout as a base layout</td>
+                                          </tr>
+                                          <tr class="row" id="unique_20__d2302e1727">
+                                             <td class="entry" id="unique_20__d2302e1728" headers="unique_20__d2302e1708 "><code id="d2302e1729" class="inline topic__ph pr-d__codeph">baseLayout</code></td>
+                                             <td class="entry" id="unique_20__d2302e1731" headers="unique_20__d2302e1710 ">A pair of name and version</td>
+                                             <td class="entry" id="unique_20__d2302e1733" headers="unique_20__d2302e1712 ">Mandatory</td>
+                                             <td class="entry" id="unique_20__d2302e1735" headers="unique_20__d2302e1714 ">Base layout this layout is based on (can point to
+                                                itself)
+                                             </td>
+                                          </tr>
+                                          <tr class="row" id="unique_20__d2302e1737">
+                                             <td class="entry" id="unique_20__d2302e1738" headers="unique_20__d2302e1708 "><code id="d2302e1739" class="inline topic__ph pr-d__codeph">requires_js_libs</code></td>
+                                             <td class="entry" id="unique_20__d2302e1741" headers="unique_20__d2302e1710 ">Any non-empty value</td>
+                                             <td class="entry" id="unique_20__d2302e1743" headers="unique_20__d2302e1712 ">Optional</td>
+                                             <td class="entry" id="unique_20__d2302e1745" headers="unique_20__d2302e1714 ">Indicates that the layout requires copying JavaScript files
+                                                to the output folder 
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                              
+                              
+                              <div id="d2302e1748" class="block topic__div">
+                                 
+                                 <p id="d2302e1750" class="block topic__p"><b id="d2302e1751" class="inline topic__ph hi-d__b">Example</b></p>
+                                 <pre id="d2302e1754" class="block topic__pre pr-d__codeblock">isBaseLayout=yes
+baseLayout=classtatic 1.01a
+requires_js_libs=set</pre>
+                                 </div>
+                              
+                           </div>
+                           <div id="unique_20_Connect_42_section_aqc_thm_3fc" class="block topic__section">
+                              
+                              <p id="d2302e1760" class="inline topic__title">Customization</p>
+                              
+                              
+                              <div id="d2302e1763" class="block topic__div">
+                                 
+                                 <p id="d2302e1765" class="block topic__p"><b id="d2302e1766" class="inline topic__ph hi-d__b">Placement</b></p>
+                                 
+                                 <p id="d2302e1769" class="block topic__p"><code id="d2302e1770" class="inline topic__ph sw-d__filepath">&lt;your-customization&gt;/cfg/build.properties</code></p>
+                                 
+                              </div>
+                              
+                              
+                              <div id="d2302e1774" class="block topic__div">
+                                 <b id="d2302e1776" class="inline topic__ph hi-d__b">Properties</b>
+                                 
+                                 <div id="d2302e1779" class="block topic__table">
+                                    <table class="table" id="unique_20__d2302e1779">
+                                       <caption></caption>
+                                       <colgroup><span id="d2302e1781" class="inline topic__colspec"></span><span id="d2302e1782" class="inline topic__colspec"></span><span id="d2302e1783" class="inline topic__colspec"></span><span id="d2302e1784" class="inline topic__colspec"></span></colgroup>
+                                       <thead class="thead" id="unique_20__d2302e1785">
+                                          <tr class="row" id="unique_20__d2302e1786">
+                                             <th class="entry" id="unique_20__d2302e1787">Property</th>
+                                             <th class="entry" id="unique_20__d2302e1789">Value</th>
+                                             <th class="entry" id="unique_20__d2302e1791">Mode</th>
+                                             <th class="entry" id="unique_20__d2302e1793">Meaning</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody class="tbody" id="unique_20__d2302e1795">
+                                          <tr class="row" id="unique_20__d2302e1796">
+                                             <td class="entry" id="unique_20__d2302e1797" headers="unique_20__d2302e1787 "><code id="d2302e1798" class="inline topic__ph pr-d__codeph">baseLayout</code></td>
+                                             <td class="entry" id="unique_20__d2302e1800" headers="unique_20__d2302e1789 ">A pair of base layout name and version</td>
+                                             <td class="entry" id="unique_20__d2302e1802" headers="unique_20__d2302e1791 ">Mandatory</td>
+                                             <td class="entry" id="unique_20__d2302e1804" headers="unique_20__d2302e1793 ">Defines the base layout for the customization</td>
+                                          </tr>
+                                          <tr class="row" id="unique_20__d2302e1806">
+                                             <td class="entry" id="unique_20__d2302e1807" headers="unique_20__d2302e1787 "><code id="d2302e1808" class="inline topic__ph pr-d__codeph">requires_js_libs</code></td>
+                                             <td class="entry" id="unique_20__d2302e1810" headers="unique_20__d2302e1789 ">Any non-empty value</td>
+                                             <td class="entry" id="unique_20__d2302e1812" headers="unique_20__d2302e1791 ">Optional</td>
+                                             <td class="entry" id="unique_20__d2302e1814" headers="unique_20__d2302e1793 ">Indicates that JavaScript files must be copied to the output
+                                                folder
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                              
+                              
+                              <div id="d2302e1817" class="block topic__div">
+                                 
+                                 <p id="d2302e1819" class="block topic__p"><b id="d2302e1820" class="inline topic__ph hi-d__b">Example</b></p>
+                                 <pre id="d2302e1823" class="block topic__pre pr-d__codeblock">baseLayout=rawdump 1.01a
+requires_js_libs=set</pre>
+                                 </div>
+                              
+                           </div>
+                           <div id="unique_20_Connect_42_section_whc_5hm_3fc" class="block topic__section">
+                              
+                              <p id="d2302e1829" class="inline topic__title">Build</p>
+                              
+                              <p id="d2302e1832" class="block topic__p">You can specify build-specific properties when invoking the DITA Open Toolkit using the <code id="d2302e1834" class="inline topic__ph pr-d__codeph">--propertyfile</code> parameter. This lets you define properties in a standalone file for a particular publishing run. Build-level properties may
+                                 include settings such as the path to the customization directory, a temporary folder location, or specific output configuration
+                                 switches.
+                              </p>
+                              
+                              <p id="d2302e1838" class="block topic__p">These properties are applied on top of those defined in the plug-in, base layout, and customization levels. In general, properties
+                                 defined at the build level take precedence, but this is not guaranteed for all properties and depends on how the plug-in implements
+                                 them.
+                              </p>
+                              
+                              <p id="d2302e1841" class="block topic__p"><b id="d2302e1842" class="inline topic__ph hi-d__b">Example</b></p>
+                              <pre id="d2302e1845" class="block topic__pre pr-d__codeblock">customization.dir=c:\\techwriting\\tools\\corporate-layout
+dita.temp.dir=c:\\tmp\\!ditatoo_weboutput_tmp
+clean.temp=no
+taxonomy.file=C:\\techwriting\\cookbook\\taxonomy.ditamap</pre>
+                              </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Integrating the Plug-In into a DITA OT Instance</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e517" class="topic__component topic__title">Integrating the Plug-In into a DITA OT Instance</h1>
+                        <div class="body taskbody" id="unique_8__d2302e519">
+                           <div id="unique_8_Connect_42_prereq_w5s_wtx_txb" class="block topic__section task__prereq">
+                              
+                              <p id="d2302e522" class="block topic__p">The following prerequisites are mandatory for deploying the plug-in on your
+                                 computer.
+                              </p>
+                              
+                              <ul id="unique_8_Connect_42_ul_hl3_xtx_txb" class="block list topic__ul">
+                                 <li id="d2302e526" class="generic topic__li">The plug-in is <a id="d2302e528" class="inline topic__xref" href="ta-deploying-plug-in-on-your-computer.html">installed
+                                       into your DITA OT folder</a>.
+                                 </li>
+                              </ul>
+                              
+                           </div>
+                           <div id="d2302e533" class="block topic__section task__context">
+                              
+                              <p id="d2302e535" class="block topic__p">Integrate the plug-in into your DITA OT instance after you have deployed it.
+                                 Otherwise the DITA OT will be unable to apply the plug-in to your DITA projects.
+                                 
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e538" class="block task__steps">
+                              <div id="d2302e539" class="block task__step">
+                                 <div>
+                                    <div>1.</div>
+                                    <div><span id="d2302e540" class="inline topic__ph task__cmd">Turn-on a command-line mode.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e542" class="block task__step">
+                                 <div>
+                                    <div>2.</div>
+                                    <div><span id="d2302e543" class="inline topic__ph task__cmd">Make the folder <code id="d2302e545" class="inline topic__ph sw-d__filepath">C:\DITAOT</code> current.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e548" class="block task__step">
+                                 <div>
+                                    <div>3.</div>
+                                    <div><span id="d2302e549" class="inline topic__ph task__cmd">Run an integration command.</span><div id="d2302e551" class="block topic__itemgroup task__info">
+                                          
+                                          <pre id="unique_8_Connect_42_codeblock_j1z_5kx_txb" class="block topic__pre pr-d__codeblock">bin\ant -f integrator.xml</pre>
+                                          </div>
+                                       <div id="d2302e556" class="block topic__itemgroup task__stepresult">
+                                          
+                                          <p id="d2302e558" class="block topic__p">An expected system output is listed below. </p>
+                                          
+                                          <pre id="unique_8_Connect_42_codeblock_uwq_pmx_txb" class="block topic__pre ui-d__screen">Unable to locate tools.jar. Expected to find it in C:\Program Files (x86)\Java\jre-1.8\lib\tools.jar
+Buildfile: C:\DITAOT\integrator.xml
+                    
+strict:
+                    
+integrate:
+      [jar] Building jar: C:\DITAOT\lib\dost-configuration.jar
+                    
+BUILD SUCCESSFUL
+Total time: 1 second</pre>
+                                          </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="unique_8_Connect_42_result_a5g_xlx_txb" class="block topic__section task__result">
+                              
+                              <p id="d2302e566" class="block topic__p">The plug-in is integrated into your instance of the DITA OT now.</p>
+                              
+                           </div>
+                           <div id="unique_8_Connect_42_postreq_hm2_dmx_txb" class="block topic__section task__postreq">
+                              <p id="d2302e570" class="block topic__p"><a id="d2302e571" class="inline topic__xref" href="ta-integrating-plug-in-into-ditatoo.html">Integrate the plug-in into your instance of DITAToo</a></p>.
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

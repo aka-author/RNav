@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Passing a Taxonomy to the Publishing Process</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e998" class="topic__component topic__title">Passing a Taxonomy to the Publishing Process</h1>
+                        <div class="body conbody" id="unique_14__d2302e1000">
+                           <p id="d2302e1001" class="block topic__p"> To enable taxonomy-based features in the DITAToo Web Output Plug-in, you should pass
+                              your taxonomy to the publishing process. This is done by defining a publishing property
+                              named <var id="d2302e1003" class="inline topic__keyword sw-d__varname">taxonomy.file</var>. 
+                           </p>
+                           <p id="d2302e1006" class="block topic__p"> The value of the <var id="d2302e1008" class="inline topic__keyword sw-d__varname">taxonomy.file</var> property is the path to your <a id="d2302e1011" class="inline topic__xref" href="describing-taxonomy.html">subject scheme map file</a>. The path format must
+                              match the syntax required by your operating system. 
+                           </p>
+                           <div class="block topic__note" id="d2302e1015">
+                              <div class="note__caption">Note</div>
+                              <div class="note__body">
+                                 On Windows, use double backslashes (<code id="d2302e1017" class="inline topic__ph pr-d__codeph">\\</code>) instead of single backslashes (<code id="d2302e1020" class="inline topic__ph pr-d__codeph">\</code>) in file paths. This is required because the backslash is an escape character in Java property files.
+                                 
+                              </div>
+                           </div>
+                           <p id="d2302e1023" class="block topic__p"> Where and how you define the <var id="d2302e1025" class="inline topic__keyword sw-d__varname">taxonomy.file</var> property depends on the
+                              tool you use to run DITA OT: 
+                           </p>
+                           <ul id="d2302e1028" class="block list topic__ul">
+                              <li id="d2302e1029" class="generic topic__li">
+                                 
+                                 <p id="d2302e1031" class="block topic__p">
+                                    <b id="d2302e1033" class="inline topic__ph hi-d__b">Command line</b>: Create or edit a <code id="d2302e1036" class="inline topic__ph sw-d__filepath">.properties</code> file and
+                                    define the property in that file. Then run DITA OT with the
+                                    <code id="d2302e1039" class="inline topic__ph pr-d__codeph">--propertyfile=yourfile.properties</code> argument. 
+                                 </p>
+                                 
+                              </li>
+                              <li id="d2302e1043" class="generic topic__li">
+                                 
+                                 <p id="d2302e1045" class="block topic__p">
+                                    <b id="d2302e1047" class="inline topic__ph hi-d__b">CMS or authoring tool</b>: If your content management system, editor, or publishing environment allows custom properties to be passed to DITA OT, define
+                                    <code id="d2302e1050" class="inline topic__ph pr-d__codeph">taxonomy.file</code> using its configuration interface or publishing settings.
+                                    
+                                 </p>
+                                 
+                              </li>
+                           </ul>
+                           <p id="d2302e1054" class="block topic__p">The sample below shows a typical <code id="d2302e1056" class="inline topic__ph pr-d__codeph">.properties</code> file used when publishing
+                              from the command line on Windows.
+                           </p><pre id="d2302e1059" class="block topic__pre pr-d__codeblock">dita.temp.dir=C:\\tmp\\ditaot
+dita.extname=.html
+<b id="d2302e1061" class="inline topic__ph hi-d__b">taxonomy.file=C:\\techwriting\\cookbook\\taxonomy.ditamap</b></pre><p id="d2302e1063" class="block topic__p">This configuration ensures that the taxonomy map located at the specified path is
+                              processed during output generation. The plug-in uses the taxonomy to enable features
+                              such as faceted search or category filtering in supported layouts. 
+                           </p>
+                           <p id="d2302e1065" class="block topic__p">For additional configuration guidance, refer to the documentation for your version of
+                              DITA OT or your CMS’s publishing documentation. 
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

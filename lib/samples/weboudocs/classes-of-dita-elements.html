@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Classes of DITA Elements</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e1852" class="topic__component topic__title">Classes of DITA Elements</h1>
+                        <div class="body conbody" id="unique_21__d2302e1854">
+                           <p id="d2302e1855" class="block topic__p">According to the DITA specification, each element must have at least one class. A class
+                              identifies the semantic category of the element and indicates its position in the
+                              specialization hierarchy.
+                           </p>
+                           <p id="d2302e1857" class="block topic__p">For example, the <span id="d2302e1859" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">li</span> element, which represents a list item, has
+                              the class <code id="d2302e1862" class="inline topic__ph pr-d__codeph">topic/li</code>. An element that is specialized from another element
+                              inherits its class and adds its own. For example, the <span id="d2302e1865" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">step</span>
+                              element, which is specialized from <span id="d2302e1868" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">li</span>, has two classes:
+                              <code id="d2302e1871" class="inline topic__ph pr-d__codeph">topic/li</code> and <code id="d2302e1875" class="inline topic__ph pr-d__codeph">task/step</code>.
+                           </p>
+                           <p id="d2302e1878" class="block topic__p">Formatting in publication is based on these classes. The processing logic in the DITA
+                              Open Toolkit applies output rules by matching class values, not element names.
+                           </p>
+                           <p id="d2302e1880" class="block topic__p">The DITA Open Toolkit preprocessor assigns the list of classes to the
+                              <span id="d2302e1882" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">class</span> attribute during preprocessing. A class name consists of
+                              the name of the DITA domain or module followed by the element name, separated by a
+                              slash. For example, in preprocessed output, the <span id="d2302e1885" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">step</span> element
+                              appears as follows:
+                           </p><pre id="d2302e1888" class="block topic__pre">&lt;step class="- topic/li task/step "&gt;</pre><p id="d2302e1890" class="block topic__p">Here, the <span id="d2302e1892" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">class</span> attribute includes both the base class
+                              <code id="d2302e1895" class="inline topic__ph pr-d__codeph">topic/li</code> and the specialized class <code id="d2302e1898" class="inline topic__ph pr-d__codeph">task/step</code>. The
+                              value begins with a dash (<code id="d2302e1901" class="inline topic__ph pr-d__codeph">-</code>) and ends with a space to enable reliable
+                              string matching during processing.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

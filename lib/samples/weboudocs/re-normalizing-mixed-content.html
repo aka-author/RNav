@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Normalizing Mixed Content</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e9683" class="topic__component topic__title">Normalizing Mixed Content</h1>
+                        <div class="body refbody" id="unique_41__d2302e9685">
+                           <div id="d2302e9686" class="block topic__section">
+                              
+                              <p id="d2302e9688" class="inline topic__title">Purpose</p>
+                              
+                              <p id="d2302e9691" class="block topic__p">Mixed content refers to an element that contains both block elements and inline nodes. Text nodes that are not wrapped in
+                                 elements are considered inline nodes as well. In this context, we refer to the element as a <span id="d2302e9693" class="inline topic__term">container</span> of mixed content.
+                              </p>
+                              
+                              <p id="d2302e9697" class="block topic__p">For example, the following snippet illustrates a <span id="d2302e9699" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">p</span> element that contains both a text node and a list:
+                              </p>
+                              <pre id="d2302e9703" class="block topic__pre">&lt;p&gt;
+  This is a text introduction.
+  &lt;ul&gt;
+    &lt;li&gt;An item in the list&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/p&gt;      </pre>
+                              <p id="d2302e9706" class="block topic__p">Mixed content complicates formatting because it interferes with the regular vertical spacing of block elements. For instance,
+                                 a list that follows inline text may visually "stick" to the preceding text, even if a top margin is applied to the list. To
+                                 ensure predictable and clean layout, we normalize mixed content in a preprocessing stage before output generation.
+                              </p>
+                              
+                              <p id="d2302e9710" class="block topic__p">The normalization process wraps isolated inline text nodes in appropriate containers such as <span id="d2302e9712" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">div</span>. This practice is applied consistently throughout the document by the <code id="d2302e9715" class="inline topic__ph pr-d__codeph">demix</code> module.
+                              </p>
+                              
+                              <p id="d2302e9719" class="block topic__p">While block elements often serve as containers, other structures such as list items and table cells may also act as containers
+                                 for mixed content.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e9722" class="block topic__section">
+                              
+                              <p id="d2302e9724" class="inline topic__title">Redundant Wrapping</p>
+                              
+                              <p id="d2302e9727" class="block topic__p">Another frequent issue in authoring is <span id="d2302e9729" class="inline topic__term">overly wrapping</span>—placing lists, tables, or other block elements inside a container that also holds inline content. For example:
+                              </p>
+                              <pre id="d2302e9733" class="block topic__pre">&lt;p&gt;
+  This is a paragraph.
+  &lt;ul&gt;
+    &lt;li&gt;List item&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/p&gt;      </pre>
+                              <p id="d2302e9736" class="block topic__p">If we merely demix this structure, we get:</p>
+                              <pre id="d2302e9739" class="block topic__pre">&lt;p&gt;
+  &lt;div&gt;This is a paragraph.&lt;/div&gt;
+  &lt;ul&gt;
+    &lt;li&gt;List item&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/p&gt;      </pre>
+                              <p id="d2302e9743" class="block topic__p">This is formally correct but still redundant. It is better to rewrite the structure as:</p>
+                              <pre id="d2302e9746" class="block topic__pre">&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;List item&lt;/li&gt;
+&lt;/ul&gt;      </pre>
+                              <p id="d2302e9749" class="block topic__p">Authors often place lists, notes, or tables inside paragraphs instead of making them adjacent siblings. The demix process
+                                 detects and eliminates such redundant containers.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e9752" class="block topic__section">
+                              
+                              <p id="d2302e9754" class="inline topic__title">Placement</p>
+                              
+                              <p id="d2302e9757" class="block topic__p">This functionality is implemented in the following stylesheet:</p>
+                              
+                              <p id="d2302e9760" class="block topic__p"><code id="d2302e9761" class="inline topic__ph sw-d__filepath">lib/xatool/dita/xsl-2.0/guts/classify.xsl</code></p>
+                              
+                           </div>
+                           <div id="d2302e9764" class="block topic__section">
+                              
+                              <p id="d2302e9766" class="inline topic__title">Usage</p>
+                              
+                              <p id="d2302e9769" class="block topic__p">Assume that the variable <var id="d2302e9771" class="inline topic__keyword sw-d__varname">rebuilt</var> contains a document resulting from a previous processing step. You can normalize mixed content using the following expression:
+                              </p>
+                              <pre id="d2302e9775" class="block topic__pre">&lt;xsl:variable name="demixed"&gt;
+  &lt;xsl:apply-templates select="$rebuilt/*[xat:dita.isMap(.)]" mode="xat.dita.demix"/&gt;
+&lt;/xsl:variable&gt;      </pre>
+                              <p id="d2302e9778" class="block topic__p">This creates a normalized version of the input document, which is then available in the <var id="d2302e9780" class="inline topic__keyword sw-d__varname">demixed</var> variable for further processing.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e9784" class="block topic__section">
+                              
+                              <p id="d2302e9786" class="inline topic__title">Functions</p>
+                              
+                              <p id="d2302e9789" class="block topic__p">Each function accepts a DITA element as its argument and returns a boolean value or string based on its demixing role. These
+                                 functions are invoked internally by the <code id="d2302e9791" class="inline topic__ph pr-d__codeph">xat.dita.demix</code> template and its related modes.
+                              </p>
+                              
+                              
+                              <div id="d2302e9795" class="block topic__table">
+                                 <table class="table" id="unique_41__d2302e9795">
+                                    <caption><span class="table--title-label">Table 4. </span><p id="d2302e9796" class="inline topic__title">Demixing Functions</p>
+                                    </caption>
+                                    <colgroup><span id="d2302e9799" class="inline topic__colspec"></span><span id="d2302e9800" class="inline topic__colspec"></span></colgroup>
+                                    <thead class="thead" id="unique_41__d2302e9801">
+                                       <tr class="row" id="unique_41__d2302e9802">
+                                          <th class="entry" id="unique_41__d2302e9803">Function</th>
+                                          <th class="entry" id="unique_41__d2302e9805">Description</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody class="tbody" id="unique_41__d2302e9807">
+                                       <tr class="row" id="unique_41__d2302e9808">
+                                          <td class="entry" id="unique_41__d2302e9809" headers="unique_41__d2302e9803 "><code id="d2302e9810" class="inline topic__ph pr-d__codeph">xat:dita.demix.isBlock</code></td>
+                                          <td class="entry" id="unique_41__d2302e9812" headers="unique_41__d2302e9805 ">Returns <code id="d2302e9814" class="inline topic__ph pr-d__codeph">true()</code> if the element is treated as a block node during demixing.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_41__d2302e9817">
+                                          <td class="entry" id="unique_41__d2302e9818" headers="unique_41__d2302e9803 "><code id="d2302e9819" class="inline topic__ph pr-d__codeph">xat:dita.demix.isInline</code></td>
+                                          <td class="entry" id="unique_41__d2302e9821" headers="unique_41__d2302e9805 ">Returns <code id="d2302e9823" class="inline topic__ph pr-d__codeph">true()</code> if the node is considered inline (including text nodes).
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_41__d2302e9826">
+                                          <td class="entry" id="unique_41__d2302e9827" headers="unique_41__d2302e9803 "><code id="d2302e9828" class="inline topic__ph pr-d__codeph">xat:dita.demix.isContainer</code></td>
+                                          <td class="entry" id="unique_41__d2302e9830" headers="unique_41__d2302e9805 ">Returns <code id="d2302e9832" class="inline topic__ph pr-d__codeph">true()</code> for elements allowed to contain mixed content (e.g., <span id="d2302e9835" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">p</span>, <span id="d2302e9838" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">li</span>).
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_41__d2302e9841">
+                                          <td class="entry" id="unique_41__d2302e9842" headers="unique_41__d2302e9803 "><code id="d2302e9843" class="inline topic__ph pr-d__codeph">xat:dita.demix.isMixed</code></td>
+                                          <td class="entry" id="unique_41__d2302e9845" headers="unique_41__d2302e9805 ">Returns <code id="d2302e9847" class="inline topic__ph pr-d__codeph">true()</code> if the container includes both block and inline content.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_41__d2302e9850">
+                                          <td class="entry" id="unique_41__d2302e9851" headers="unique_41__d2302e9803 "><code id="d2302e9852" class="inline topic__ph pr-d__codeph">xat:dita.demix.isRedundantContainer</code></td>
+                                          <td class="entry" id="unique_41__d2302e9854" headers="unique_41__d2302e9805 ">Returns <code id="d2302e9856" class="inline topic__ph pr-d__codeph">true()</code> if a container becomes unnecessary after demixing (e.g., a <span id="d2302e9859" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">p</span> wrapping only block content).
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                           <div id="d2302e9863" class="block topic__section">
+                              
+                              <p id="d2302e9865" class="inline topic__title">Modifying Default Behavior</p>
+                              
+                              <p id="d2302e9868" class="block topic__p">Each function is implemented as an <span id="d2302e9870" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">xsl:function</span> that delegates to a template in a mode with the corresponding name. For example, the function <code id="d2302e9873" class="inline topic__ph pr-d__codeph">xat:dita.demix.isBlock</code> uses templates in mode <code id="d2302e9876" class="inline topic__ph pr-d__codeph">xat.dita.demix.isBlock</code>.
+                              </p>
+                              
+                              <p id="d2302e9880" class="block topic__p">To change the classification of a specific element, define a higher-priority template in the corresponding mode. For example,
+                                 to treat an element as a block for demixing purposes, add a custom template in mode <code id="d2302e9882" class="inline topic__ph pr-d__codeph">xat.dita.demix.isBlock</code> that matches the element and returns <code id="d2302e9885" class="inline topic__ph pr-d__codeph">true()</code>.
+                              </p>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

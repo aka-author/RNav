@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Sample: Appending a Footer to a Page</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e8580" class="topic__component topic__title">Sample: Appending a Footer to a Page</h1>
+                        <div class="body taskbody" id="unique_32__d2302e8582">
+                           <div id="d2302e8583" class="block topic__section task__context">
+                              
+                              <p id="d2302e8585" class="block topic__p">This example demonstrates how to append a footer to a page. Page footers will contain a copyright message.</p>
+                              
+                           </div>
+                           <div id="unique_32_Connect_42_steps_r5m_hj3_w2c" class="block task__steps">
+                              <div id="d2302e8589" class="block task__step">
+                                 <div>
+                                    <div>1.</div>
+                                    <div><span id="d2302e8590" class="inline topic__ph task__cmd"><a id="d2302e8591" class="inline topic__xref" href="co-creating-new-customization.html">Create a new customization based on the Classtatic base layout</a>.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8595" class="block task__step">
+                                 <div>
+                                    <div>2.</div>
+                                    <div><span id="d2302e8596" class="inline topic__ph task__cmd"><a id="d2302e8597" class="inline topic__xref" href="ta-changing-page-structure.html">Enable the local page template</a>.</span></div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8601" class="block task__step">
+                                 <div>
+                                    <div>3.</div>
+                                    <div><span id="d2302e8602" class="inline topic__ph task__cmd">Edit the file <code id="d2302e8604" class="inline topic__ph sw-d__filepath">yourLayout/publish/pages/regular-page.xsl</code>. Specifically, append a footer at the bottom of the page.</span><div id="d2302e8607" class="block topic__itemgroup task__stepresult">
+                                          <pre id="unique_32_Connect_42_codeblock_ujl_bk3_w2c" class="block topic__pre pr-d__codeblock">        &lt;!-- /Konsole keeper --&gt;
+        &lt;footer&gt;(c) 2025 Puke Green Walley Corp. All rights reserved.&lt;/footer&gt;    
+    &lt;/div&gt;
+    &lt;!-- /Shell --&gt;
+&lt;/body&gt;</pre>
+                                          </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8612" class="block task__step">
+                                 <div>
+                                    <div>4.</div>
+                                    <div><span id="d2302e8613" class="inline topic__ph task__cmd"><a id="d2302e8614" class="inline topic__xref" href="ta-changing-page-geometry.html">Redefine the related sizes</a> in <code id="d2302e8618" class="inline topic__ph sw-d__filepath">yourLayout/front/css/helpui.css</code>.</span><div id="unique_32_Connect_42_substeps_pvj_4l3_w2c" class="block task__steps">
+                                          <div id="d2302e8622" class="block task__step">
+                                             <div>
+                                                <div>a)</div>
+                                                <div><span id="d2302e8623" class="inline topic__ph task__cmd">Define the footer height by adding the definition as given below.</span><div id="d2302e8625" class="block topic__itemgroup task__stepresult">
+                                                      <pre id="unique_32_Connect_42_codeblock_lhw_pl3_w2c" class="block topic__pre pr-d__codeblock">/* Footer */
+:root {
+    --footer_height: 30pt;
+}</pre>
+                                                      </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div id="d2302e8630" class="block task__step">
+                                             <div>
+                                                <div>b)</div>
+                                                <div><span id="d2302e8631" class="inline topic__ph task__cmd">Decrease the console height by the footer height.</span><div id="d2302e8633" class="block topic__itemgroup task__stepresult">
+                                                      <pre id="unique_32_Connect_42_codeblock_yk4_5l3_w2c" class="block topic__pre pr-d__codeblock">/* Consoles */
+:root {
+    --console_width: 100vw;
+    --console_height: calc(100vh 
+        - var(--page_header_height) 
+        - var(--minimal_indent) 
+        - var(--footer_height));
+}                                                                                                                  </pre>
+                                                      </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div id="d2302e8638" class="block task__step">
+                                 <div>
+                                    <div>5.</div>
+                                    <div><span id="d2302e8639" class="inline topic__ph task__cmd">Assign style properties to page footers.</span><div id="d2302e8641" class="block topic__itemgroup task__stepresult">
+                                          <pre id="unique_32_Connect_42_codeblock_pcv_dm3_w2c" class="block topic__pre pr-d__codeblock">footer {
+    height: var(--footer_height);
+    background: var(--gray700);
+    color: #ffffff;
+}</pre>
+                                          </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="unique_32_Connect_42_result_hjq_nn3_w2c" class="block topic__section task__result">
+                              
+                              <p id="d2302e8648" class="block topic__p">A footer appears at the bottom of each page.</p>
+                              <img id="unique_32_Connect_42_image_rs4_4n3_w2c" class="inline topic__image" src="img/footer-sample.png" width="500" alt="">
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

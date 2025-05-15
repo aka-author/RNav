@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>DITA Query Functions</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="front/css/helpui.css">
+      <link rel="stylesheet" href="front/css/matter.css"><script src="front/js/cfg.js"></script><script src="front/js/rsrc.js"></script><script src="data/tocstruct.js"></script><script src="data/toctitles.js"></script><script src="data/i18n.js"></script><script src="data/searchindex.js"></script><script src="front/js/kwish.js"></script><script src="front/js/arnav.js"></script></head>
+   <body onload="main()">
+      <div id="shell">
+         <div id="pageHeader">
+            <div id="pageHeaderInner">
+               <div id="logo"></div>
+               <div id="burger" data-kwish-control="Burger"></div>
+               <div id="banner">
+                  <div id="bannerInner">
+                     <div id="searcher" data-kwish-control="Searcher"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div id="consoleKeeper" data-kwish-control="ConsoleKeeper">
+            <div id="readerConsole" data-kwish-control="ReaderConsole" class="console">
+               <div id="tocFramelet" data-kwish-control="TocFramelet"></div>
+               <div id="matterFramelet" data-kwish-control="MatterFramelet" class="framelet">
+                  <div class="framelet__inner">
+                     <div id="topicContolPanel">
+                        <div data-kwish-control="Breadcrumbs"></div>
+                        <div id="printButton" data-kwish-control="PrintButton"></div>
+                     </div>
+                     <div id="pageMatter">
+                        <h1 id="d2302e9890" class="topic__component topic__title">DITA Query Functions</h1>
+                        <div class="body refbody" id="unique_42__d2302e9892">
+                           <div id="d2302e9893" class="block topic__section">
+                              
+                              <p id="d2302e9895" class="inline topic__title">Purpose</p>
+                              
+                              <p id="d2302e9898" class="block topic__p">This module provides a set of utility templates and functions used throughout the XATOOL pipeline to query properties of DITA
+                                 elements, such as their identity, structural role, language, nesting level, and metadata. These queries are used in classification,
+                                 document analysis, formatting, and preprocessing stages.
+                              </p>
+                              
+                           </div>
+                           <div id="d2302e9901" class="block topic__section">
+                              
+                              <p id="d2302e9903" class="inline topic__title">Placement</p>
+                              
+                              <p id="d2302e9906" class="block topic__p">This functionality is implemented in the following stylesheet:</p>
+                              
+                              <p id="d2302e9909" class="block topic__p"><code id="d2302e9910" class="inline topic__ph sw-d__filepath">lib/xatool/dita/xsl-2.0/guts/queries.xsl</code></p>
+                              
+                           </div>
+                           <div id="d2302e9913" class="block topic__section">
+                              
+                              <p id="d2302e9915" class="inline topic__title">Functions</p>
+                              
+                              <p id="d2302e9918" class="block topic__p">Each function accepts a DITA element as an argument and returns a boolean value or a string depending on its query purpose.</p>
+                              
+                              <div id="d2302e9921" class="block topic__table">
+                                 <table class="table" id="unique_42__d2302e9921">
+                                    <caption></caption>
+                                    <colgroup><span id="d2302e9923" class="inline topic__colspec"></span><span id="d2302e9924" class="inline topic__colspec"></span></colgroup>
+                                    <thead class="thead" id="unique_42__d2302e9925">
+                                       <tr class="row" id="unique_42__d2302e9926">
+                                          <th class="entry" id="unique_42__d2302e9927">Function</th>
+                                          <th class="entry" id="unique_42__d2302e9929">Description</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody class="tbody" id="unique_42__d2302e9931">
+                                       <tr class="row" id="unique_42__d2302e9932">
+                                          <td class="entry" id="unique_42__d2302e9933" headers="unique_42__d2302e9927 "><code id="d2302e9934" class="inline topic__ph pr-d__codeph">xat:dita.id($element)</code></td>
+                                          <td class="entry" id="unique_42__d2302e9936" headers="unique_42__d2302e9929 ">Returns the value of <span id="d2302e9938" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">id</span> if present, otherwise generates a temporary ID using <code id="d2302e9941" class="inline topic__ph pr-d__codeph">generate-id()</code>.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e9944">
+                                          <td class="entry" id="unique_42__d2302e9945" headers="unique_42__d2302e9927 "><code id="d2302e9946" class="inline topic__ph pr-d__codeph">xat:dita.local($element)</code></td>
+                                          <td class="entry" id="unique_42__d2302e9948" headers="unique_42__d2302e9929 ">Extracts the language code (e.g. "en") from the <span id="d2302e9950" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">xml:lang</span> attribute or inherits it from the parent.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e9953">
+                                          <td class="entry" id="unique_42__d2302e9954" headers="unique_42__d2302e9927 "><code id="d2302e9955" class="inline topic__ph pr-d__codeph">xat:dita.lang($element)</code></td>
+                                          <td class="entry" id="unique_42__d2302e9957" headers="unique_42__d2302e9929 ">Alias to <code id="d2302e9959" class="inline topic__ph pr-d__codeph">xat:dita.local()</code>, normalized to the language prefix (e.g. "en" from "en-US").
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e9962">
+                                          <td class="entry" id="unique_42__d2302e9963" headers="unique_42__d2302e9927 "><code id="d2302e9964" class="inline topic__ph pr-d__codeph">xat:dita.makeLocalCode($lang, $country)</code></td>
+                                          <td class="entry" id="unique_42__d2302e9966" headers="unique_42__d2302e9929 ">Builds a local code in the format <code id="d2302e9968" class="inline topic__ph pr-d__codeph">en-US</code>.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e9971">
+                                          <td class="entry" id="unique_42__d2302e9972" headers="unique_42__d2302e9927 "><code id="d2302e9973" class="inline topic__ph pr-d__codeph">xat:dita.makeLocalSuffix($lang, $country)</code></td>
+                                          <td class="entry" id="unique_42__d2302e9975" headers="unique_42__d2302e9929 ">Builds a local suffix in the format <code id="d2302e9977" class="inline topic__ph pr-d__codeph">en_US</code>.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e9980">
+                                          <td class="entry" id="unique_42__d2302e9981" headers="unique_42__d2302e9927 "><code id="d2302e9982" class="inline topic__ph pr-d__codeph">xat:dita.isTerminalTopic($topic)</code></td>
+                                          <td class="entry" id="unique_42__d2302e9984" headers="unique_42__d2302e9929 ">Returns <code id="d2302e9986" class="inline topic__ph pr-d__codeph">true</code> if the topic has no nested topics.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e9989">
+                                          <td class="entry" id="unique_42__d2302e9990" headers="unique_42__d2302e9927 "><code id="d2302e9991" class="inline topic__ph pr-d__codeph">xat:dita.isFolderTopic($topic)</code></td>
+                                          <td class="entry" id="unique_42__d2302e9993" headers="unique_42__d2302e9929 ">Returns <code id="d2302e9995" class="inline topic__ph pr-d__codeph">true</code> if the topic contains other topics.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e9998">
+                                          <td class="entry" id="unique_42__d2302e9999" headers="unique_42__d2302e9927 "><code id="d2302e10000" class="inline topic__ph pr-d__codeph">xat:dita.isStructNode($element)</code></td>
+                                          <td class="entry" id="unique_42__d2302e10002" headers="unique_42__d2302e9929 ">Returns <code id="d2302e10004" class="inline topic__ph pr-d__codeph">true</code> for maps and topics (structural nodes).
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e10007">
+                                          <td class="entry" id="unique_42__d2302e10008" headers="unique_42__d2302e9927 "><code id="d2302e10009" class="inline topic__ph pr-d__codeph">xat:dita.hasDirectContent($topic)</code></td>
+                                          <td class="entry" id="unique_42__d2302e10011" headers="unique_42__d2302e9929 ">Returns <code id="d2302e10013" class="inline topic__ph pr-d__codeph">true</code> if the topic contains a <span id="d2302e10016" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">body</span> element.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e10019">
+                                          <td class="entry" id="unique_42__d2302e10020" headers="unique_42__d2302e9927 "><code id="d2302e10021" class="inline topic__ph pr-d__codeph">xat:dita.level($topic)</code></td>
+                                          <td class="entry" id="unique_42__d2302e10023" headers="unique_42__d2302e9929 ">Returns the nesting level of the topic within its parent topics.</td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e10025">
+                                          <td class="entry" id="unique_42__d2302e10026" headers="unique_42__d2302e9927 "><code id="d2302e10027" class="inline topic__ph pr-d__codeph">xat:dita.plainTextTitle($element)</code></td>
+                                          <td class="entry" id="unique_42__d2302e10029" headers="unique_42__d2302e9929 ">Returns the normalized text of the element’s <span id="d2302e10031" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">title</span>.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e10035">
+                                          <td class="entry" id="unique_42__d2302e10036" headers="unique_42__d2302e9927 "><code id="d2302e10037" class="inline topic__ph pr-d__codeph">xat:dita.plainTextDocTitle($element)</code></td>
+                                          <td class="entry" id="unique_42__d2302e10039" headers="unique_42__d2302e9929 ">Returns the title of the root map or bookmap.</td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e10041">
+                                          <td class="entry" id="unique_42__d2302e10042" headers="unique_42__d2302e9927 "><code id="d2302e10043" class="inline topic__ph pr-d__codeph">xat:dita.fileUri($element)</code></td>
+                                          <td class="entry" id="unique_42__d2302e10045" headers="unique_42__d2302e9929 ">Returns a resolved file URI based on <span id="d2302e10047" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">xtrf</span>, using the <code id="d2302e10050" class="inline topic__ph pr-d__codeph">xat:path.2uri</code> utility.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e10053">
+                                          <td class="entry" id="unique_42__d2302e10054" headers="unique_42__d2302e9927 "><code id="d2302e10055" class="inline topic__ph pr-d__codeph">xat:dita.othermeta($element, $name)</code></td>
+                                          <td class="entry" id="unique_42__d2302e10057" headers="unique_42__d2302e9929 ">Retrieves the value of a named <span id="d2302e10059" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">othermeta</span> from a topic or map.
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e10062">
+                                          <td class="entry" id="unique_42__d2302e10063" headers="unique_42__d2302e9927 "><code id="d2302e10064" class="inline topic__ph pr-d__codeph">xat:dita.directOthermeta($element, $name)</code></td>
+                                          <td class="entry" id="unique_42__d2302e10066" headers="unique_42__d2302e9929 ">Returns a directly defined <span id="d2302e10068" class="inline topic__keyword markup-d__markupname xml-d__xmlelement">othermeta</span> (not inherited from a map).
+                                          </td>
+                                       </tr>
+                                       <tr class="row" id="unique_42__d2302e10071">
+                                          <td class="entry" id="unique_42__d2302e10072" headers="unique_42__d2302e9927 "><code id="d2302e10073" class="inline topic__ph pr-d__codeph">xat:dita.hasClass($element, $classList)</code></td>
+                                          <td class="entry" id="unique_42__d2302e10075" headers="unique_42__d2302e9929 ">Checks whether the element’s <span id="d2302e10077" class="inline topic__keyword markup-d__markupname xml-d__xmlatt">class</span> contains any of the specified tokens.
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="searchConsole" data-kwish-control="SearchConsole">
+               <div id="searchResultsFramelet" data-kwish-control="SearchResultsFramelet" data-maximized="yes">
+                  <div id="searchResultsFrameletInner"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
