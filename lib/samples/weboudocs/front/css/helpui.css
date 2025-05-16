@@ -493,7 +493,7 @@ body {
     position: absolute;
     width: 20px; 
     height: 20px;
-    left: -4px;
+    inset-inline-start: -4px;
     top: -3px;  
     transform: scaleX(var(--flip-scale));  
     cursor: pointer;
@@ -749,17 +749,6 @@ div.relevanceIndicator img {
     display:  block;	
     width:    100%;
     height:   calc(100% - var(--page_header_height));
-}
-
-#divSearchReturnAreaInner {
-    padding: 5pt;
-}
-
-#divSearchReturnFramelet {
-    left:  var(--framelet-horizontal-margin);
-    top:  var(--framelet-vertical-margin);
-    width: var(--toc-framelet-default-width);
-    height: 50pt;
 }
 
 @media screen and (max-width: 480px) {
