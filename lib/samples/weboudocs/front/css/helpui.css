@@ -458,6 +458,13 @@ body {
 
 /* TOC tree */
 
+.highlighted {
+    border: none;
+    border-radius: 3pt;
+    color: #ffffff;
+    background: var(--control_active);
+}
+
 #tocFrameetTocTree {
     margin-inline-start: var(--minor_indent);
     margin-top: var(--minor_indent);
@@ -466,123 +473,124 @@ body {
 .selectable_tree_hub_control__header {
     display: flex;
     width: fit-content;
+    margin: 0;
     align-items: center;
+    font-size: 12pt;
 }
 
-.selectable_tree_hub_control__button {
-    display: inline-block;
-    width: 15pt; 
-    cursor: pointer;
+.show_hide_button {
+    position: inline-box;
+}
+
+.show_hide_button__inner {
+    position: relative;
+    width: 10pt;
+    height: 10pt;
+    overflow: hidden;
 }
 
 .selectable_tree_hub_control__button img {
-    transform: scaleX(var(--flip-scale));
-}
-
-.clickable {
+    position: absolute;
+    width: 20px; 
+    height: 20px;
+    left: -4px;
+    top: -3px;  
+    transform: scaleX(var(--flip-scale));  
     cursor: pointer;
 }
 
-.unclickable {
+.selectable_tree_hub_control__title {
+    margin: 0;
+    display: inline-block;
+}
+
+div.selectable_tree_hub_control__title > div {
+    margin-top: 0pt;
+    margin-bottom: 0pt;
+    padding-inline-start: 4pt;    
+    padding-inline-end: 4pt;
+    padding-top: 4pt;    
+    padding-bottom: 4pt;
     cursor: default;
 }
 
-.selectable_tree_hub_control__title {
-    display: inline-block;
-    --cursor: pointer;
+.clickable > div > div.selectable_tree_hub_control__title > div {
+    cursor: pointer;
+}
+
+div.selectable_tree_hub_control__title.highlighted > div {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    padding-top: 3pt;    
+    padding-bottom: 3pt;
+    cursor: default !important;
 }
 
 .selectable_tree_hub_control__content {
+    margin: 0;
+    padding: 0;
+}
+
+.selectable_tree_leaf_control {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.selectable_tree_leaf_control__content {
     margin: 0;
 }
 
 .selectable_tree_leaf_control {
     width: fit-content;
+    margin-inline-start: 11pt;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 4pt;
+    font-size: 12pt;
+}
+
+.selectable_tree_leaf_control.highlighted {
+    width: fit-content;
+    margin-inline-start: 12pt;
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    padding-left: 4pt;
+    padding-right: 4pt;
+    padding-top: 3pt;
+    padding-bottom: 4pt;
+    font-size: 12pt;
+}
+
+.selectable_tree_leaf_control__inner {
+    display: flex;
+    align-items: center;
+}
+
+.selectable_tree_leaf_control__inner > div {
+    display: inline-block;
+}
+
+.selectable_tree_leaf_control > div > div {
     cursor: pointer;
+}
+
+.selectable_tree_hub_control {
+    margin-inline-start: 7pt;
+    font-size: 12pt;
 }
 
 .selectable_tree_hub_control.level1 {
     margin-inline-start: 0pt;
-    font-size: 12pt;
 }
 
-.selectable_tree_hub_control.level2 {
-    margin-inline-start: 7pt;
-    padding: 4pt;
-    font-size: 12pt;
+div.selectable_tree_hub_control.clickable > div > div:nth-child(2) > div {
+    cursor: pointer;
 }
 
-.selectable_tree_hub_control.level3 {
-    margin-inline-start: 7pt;
-    padding: 4pt;
-    font-size: 12pt;
+div.selectable_tree_leaf_control.highlighted > div > div {
+    cursor: default;
 }
 
-.selectable_tree_hub_control.level4 {
-    margin-inline-start: 7pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.selectable_tree_hub_control.level5 {
-    margin-inline-start: 7pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.selectable_tree_hub_control.level6 {
-    margin-inline-start: 7pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.selectable_tree_leaf_control.level1 {
-    margin-inline-start: 10pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.selectable_tree_leaf_control.level2 {
-    margin-inline-start: 10pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.selectable_tree_leaf_control.level3 {
-    margin-inline-start: 10pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.selectable_tree_leaf_control.level4 {
-    margin-inline-start: 10pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.selectable_tree_leaf_control.level5 {
-    margin-inline-start: 10pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.selectable_tree_leaf_control.level6 {
-    margin-inline-start: 10pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.selectable_tree_leaf_control.level7 {
-    margin-inline-start: 10pt;
-    padding: 4pt;
-    font-size: 12pt;
-}
-
-.highlighted {
-    border-radius: 3pt;;
-    color: #ffffff;
-    background: var(--control_active);
-}
 
 .level0 > .selectable_tree_hub_control__header {
     display: none;
