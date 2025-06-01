@@ -4,14 +4,42 @@
 /* Text Matter */
 /***************/
 
+:root {
+    --step_number_width: 1.5em;
+}
+
+/* Topics */
+
+.topic {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.topic_block {
+    display: block;
+    margin-top: var(--major_indent);
+    margin-bottom: 0;
+}
+/*
+.topic_block:first-child {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.topic_block:not(:first-child) {
+    margin-top: var(--minor_indent);
+    margin-bottom: 0;
+}*/
+
 /* Headings */
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--headings_font_family);
     color: var(--control_active);
+    font-family: var(--headings_font_family);
+    font-size: var(--primary_heading_font_size);
 }
 
-.topic__section .topic__title {
+.section > .title {
     font-family: var(--headings_font_family);
     font-size: var(--secondary_heading_font_size);
     color: var(--control_active);
@@ -37,21 +65,50 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Tasks and procedures */
 
-div.task__step > div {
+div.step {
+    width: 100%;
+}
+
+div.step > div {
     display: flex;
     align-items: flex-start;
 }
 
-div.task__step > div > div {
-    display: inline-block;
-}
-
-div.task__step > div > div:first-child {
-    width: 1.5em;
-}
-
-.task__cmd {
+div.step > div > div {
     display: block;
+}
+
+div.step > div > div:first-child {
+    max-width: var(--step_number_width);
+    min-width: var(--step_number_width);
+}
+
+span.cmd {
+    display: block;
+}
+
+/* Figures */
+
+figure {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.body > fig {
+    max-width: 100%;
+}
+
+figure > img {
+    max-width: 100%;
+    max-height: none;
+    object-fit: contain;
+    aspect-ratio: auto;
+}
+
+figcaption {
+    font-weight: bold;
 }
 
 /* Tables */
@@ -91,9 +148,124 @@ table tbody tr:nth-child(even) {
       font-size: 75%;
     }
 }
-  
+
+/* Inline DITA Elements */
+
 /* Code-related */
 
+.dita__markup-d,
+.dita__pd-d,
+.dita__pr-d,
+.dita__sw-d,
+.dita__xml-d,
+tt {
+    font-family: monospace;
+    font-style: normal;
+    font-weight: normal;
+} 
+
+/* Screens and listings */
+
+.cmdname {
+    padding: var(--minor_indent);
+    background: var(--gray300);
+    border-radius: var(--minor_border_radius);
+    font-size: 10pt;
+}
+
+/* User interaction */
+
+.systemoutput,
+.userinput,
+kbd,
+samp {
+    font-weight: bold;
+}
+
+/* UI elements */
+
+.dita__ui-d {
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Emphasized/semantic */
+
+.cite,
+.glossterm,
+.lq,
+.state,
+.synph
+.q,
+.term,
+blockquote {
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+
+/* Tasks and procedures */
+
+/*
+div.task__step > div {
+    display: flex;
+    align-items: flex-start;
+}
+
+div.task__step > div > div {
+    display: inline-block;
+}
+
+div.task__step > div > div:first-child {
+    width: 1.5em;
+}
+
+.task__cmd {
+    display: block;
+}
+*/
+
+/* Tables */
+/*
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--major_indent) 0;
+    font-size: var(--main_font_size);
+}
+  
+table caption {
+    caption-side: top;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: var(--minor_indent);
+}
+  
+table td,
+table th {
+    border: 1px solid var(--gray400);
+    padding: var(--minor_indent);
+    text-align: left;
+    vertical-align: top;
+}
+
+table th {
+    font-weight: bold;
+}
+    
+table tbody tr:nth-child(even) {
+    background-color: var(--gray100);
+}
+  
+@media screen and (max-width: 480px) {
+    table {
+      font-size: 75%;
+    }
+}*/
+  
+/* Code-related */
+/*
 .pr-d__apiname,
 .pr-d__codeph,
 .sw-d__cmdname,
@@ -116,10 +288,10 @@ table tbody tr:nth-child(even) {
     font-style: normal;
     font-weight: normal;
     white-space: nowrap;
-}
+}*/
 
 /* Listings */
-
+/*
 .topic__screen,
 pre {
     width: calc(100vw - var(--toc_framelet_width) - 7*var(--major_indent));
@@ -128,10 +300,10 @@ pre {
     border-radius: var(--minor_border_radius);
     font-size: 10pt;
     overflow-x: auto;
-}
+}*/
 
 /* User interaction */
-
+/*
 .sw-d__userinput,
 kbd {
     font-family: monospace;
@@ -147,9 +319,9 @@ samp {
     font-style: normal;
     white-space: nowrap;
 }
-
+*/
 /* UI elements */
-
+/*
 .ui-d__manucascade,
 .ui-d__shortcut,
 .ui-d__uicontrol,
@@ -159,7 +331,7 @@ samp {
 }
 
 /* Emphasized/semantic */
-
+/*
 blockquote,
 .topic__cite,
 .glossentry__glossterm,
@@ -171,7 +343,7 @@ blockquote,
     font-weight: normal;
     font-style: italic;
 }
-
+*/
 /* Links */
 
 a:link {
