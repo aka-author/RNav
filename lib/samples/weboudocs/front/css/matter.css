@@ -20,16 +20,6 @@
     margin-top: var(--major_indent);
     margin-bottom: 0;
 }
-/*
-.topic_block:first-child {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.topic_block:not(:first-child) {
-    margin-top: var(--minor_indent);
-    margin-bottom: 0;
-}*/
 
 /* Headings */
 
@@ -37,13 +27,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--control_active);
     font-family: var(--headings_font_family);
     font-size: var(--primary_heading_font_size);
-}
-
-.section > .title {
-    font-family: var(--headings_font_family);
-    font-size: var(--secondary_heading_font_size);
-    color: var(--control_active);
-    font-weight: bold;
 }
 
 /* Basic blocks */
@@ -61,6 +44,19 @@ h1, h2, h3, h4, h5, h6 {
 #pageMatter .topic__p {
     margin-top: var(--minor_indent);
     line-height: calc(1.5*var(--main_font_size));
+}
+
+/* Sections */
+
+.block.section {
+    margin-top: var(--major_indent);
+}
+
+.section > .title {
+    font-family: var(--headings_font_family);
+    font-size: var(--secondary_heading_font_size);
+    color: var(--control_active);
+    font-weight: bold;
 }
 
 /* Tasks and procedures */
@@ -85,6 +81,16 @@ div.step > div > div:first-child {
 
 span.cmd {
     display: block;
+}
+
+/* Lists */
+
+ol.level2 {
+    list-style-type: lower-alpha;
+}
+
+ol.level3 {
+    list-style-type: lower-roman;
 }
 
 /* Figures */
@@ -119,12 +125,21 @@ table {
     margin: var(--major_indent) 0;
     font-size: var(--main_font_size);
 }
-  
-table caption {
+
+table > caption {
     caption-side: top;
+    padding-bottom: var(--minor_indent);
+}
+
+table > caption > .title {
+    text-align: start;
     font-weight: bold;
-    text-align: left;
-    margin-bottom: var(--minor_indent);
+}
+
+.desc {
+    text-align: start;
+    font-size: 0.8em;
+    font-weight: normal;
 }
   
 table td,
@@ -147,6 +162,25 @@ table tbody tr:nth-child(even) {
     table {
       font-size: 75%;
     }
+}
+
+/* Notes */
+
+.block.note {
+    margin-inline-start: var(--major_indent);
+    margin-inline-end: var(--major_indent);
+    margin-top: var(--major_indent);
+    padding: var(--minor_indent);
+    border: 1px solid var(--control_primary);
+    border-radius: var(--major_border_radius);
+}
+
+.note > .caption {
+    font-weight: bold;
+}
+
+.block.after__note {
+    margin-top: var(--major_indent);
 }
 
 /* Inline DITA Elements */
@@ -203,147 +237,6 @@ blockquote {
     font-style: italic;
 }
 
-
-
-/* Tasks and procedures */
-
-/*
-div.task__step > div {
-    display: flex;
-    align-items: flex-start;
-}
-
-div.task__step > div > div {
-    display: inline-block;
-}
-
-div.task__step > div > div:first-child {
-    width: 1.5em;
-}
-
-.task__cmd {
-    display: block;
-}
-*/
-
-/* Tables */
-/*
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: var(--major_indent) 0;
-    font-size: var(--main_font_size);
-}
-  
-table caption {
-    caption-side: top;
-    font-weight: bold;
-    text-align: left;
-    margin-bottom: var(--minor_indent);
-}
-  
-table td,
-table th {
-    border: 1px solid var(--gray400);
-    padding: var(--minor_indent);
-    text-align: left;
-    vertical-align: top;
-}
-
-table th {
-    font-weight: bold;
-}
-    
-table tbody tr:nth-child(even) {
-    background-color: var(--gray100);
-}
-  
-@media screen and (max-width: 480px) {
-    table {
-      font-size: 75%;
-    }
-}*/
-  
-/* Code-related */
-/*
-.pr-d__apiname,
-.pr-d__codeph,
-.sw-d__cmdname,
-.sw-d__filepath,
-.markup-d__markupname,
-.sw-d__msgnum,
-.pr-d__parmname,
-.xml-d__textentity,
-.topic__tm,
-.hi-d__tt,
-.sw-d__varname,
-.pd-d__var,
-.xml-d__xmlatt,
-.xml-d__xmlelement,
-.xml-d__xmlsname,
-.xml-d__numcharref,
-.xml-d__parameterentity,
-.xml-d__xmlpi {
-    font-family: monospace;
-    font-style: normal;
-    font-weight: normal;
-    white-space: nowrap;
-}*/
-
-/* Listings */
-/*
-.topic__screen,
-pre {
-    width: calc(100vw - var(--toc_framelet_width) - 7*var(--major_indent));
-    padding: var(--minor_indent);
-    background: var(--gray300);
-    border-radius: var(--minor_border_radius);
-    font-size: 10pt;
-    overflow-x: auto;
-}*/
-
-/* User interaction */
-/*
-.sw-d__userinput,
-kbd {
-    font-family: monospace;
-    font-weight: bold;
-    font-style: normal;
-    white-space: nowrap;
-}
-
-.sw-d__systemoutput,
-samp {
-    font-family: monospace;
-    font-weight: bold;
-    font-style: normal;
-    white-space: nowrap;
-}
-*/
-/* UI elements */
-/*
-.ui-d__manucascade,
-.ui-d__shortcut,
-.ui-d__uicontrol,
-.ui-d__wintitle {
-    font-weight: bold;
-    font-style: normal;
-}
-
-/* Emphasized/semantic */
-/*
-blockquote,
-.topic__cite,
-.glossentry__glossterm,
-.topic__lq,
-.topic__state,
-.pr-d__synph
-.topic__q,
-.topic__term {
-    font-weight: normal;
-    font-style: italic;
-}
-*/
 /* Links */
 
 a:link {
@@ -361,3 +254,10 @@ a:visited {
     text-decoration: underline;
 }
 
+.related-links a {
+    display: block;
+}
+
+.related-links a:not(:first-child) {
+    margin-top: var(--minor_indent);
+}

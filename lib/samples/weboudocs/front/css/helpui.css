@@ -355,6 +355,12 @@ body {
     
 }
 
+@media screen and (max-width: 480px) {
+    #tocFrameletTitleInner p {
+        width: 100%;
+    }
+}
+
 #tocFrameletTocTreeInner {
     height: calc(var(--toc_framelet_height) - var(--toc_framelet_header_height));
     overflow-y: scroll;
@@ -575,12 +581,12 @@ div.selectable_tree_hub_control__title.highlighted > div {
 }
 
 .selectable_tree_hub_control {
-    margin-inline-start: 7pt;
+    margin-inline-start: 14pt;
     font-size: 12pt;
 }
 
 .selectable_tree_hub_control.level1 {
-    margin-inline-start: 0pt;
+    margin-inline-start: -8pt;
 }
 
 div.selectable_tree_hub_control.clickable > div > div:nth-child(2) > div {
