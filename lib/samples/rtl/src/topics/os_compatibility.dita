@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd"[]>
+<concept xml:lang="ar" id="concept332">
+  <title>التوافق مع أنظمة التشغيل</title>
+  <prolog>
+    <metadata>
+      <audience experiencelevel="All"/>
+      <category>Overview</category>
+    </metadata>
+  </prolog>
+  <conbody>
+    <p>الطابعة متوافقة مع أنظمة التشغيل التالية:</p>
+    <ul>
+      <li>Windows 2000، Windows XP، Windows XP x64* (الإصدار المهني والمنزلي)</li>
+      <li>Mac OS X (الإصدار 10.3، 10.4)</li>
+      <li platform="All-In-One">Linux</li>
+    </ul>
+  </conbody>
+</concept>

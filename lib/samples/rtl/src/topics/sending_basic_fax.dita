@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_v3n_bwy_hk" xml:lang="ar">
+    <title>إرسال فاكس أساسي</title>
+    <prolog>
+        <metadata>
+            <category>الفاكس</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>يمكنك إرسال فاكس مكوّن من صفحة واحدة أو عدة صفحات مباشرةً من لوحة التحكم.</p>
+        </context>
+        <steps>
+            <step conref="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step1"
+                conrefend="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step2">
+                <cmd/>
+            </step>
+            <step>
+                <cmd>من <uicontrol>لوحة التحكم</uicontrol>، أدخل رقم الفاكس باستخدام لوحة المفاتيح الرقمية.</cmd>
+            </step>
+            <step>
+                <cmd>اضغط على زر <uicontrol>الاتصال السريع</uicontrol>.</cmd>
+            </step>
+            <step>
+                <cmd>بعد أن يستجيب جهاز الفاكس المستقبل، اضغط على زر <uicontrol>بدء الفاكس</uicontrol>.</cmd>
+            </step>
+        </steps>
+    </taskbody>
+</task>

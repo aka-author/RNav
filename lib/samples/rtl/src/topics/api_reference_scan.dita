@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_ncp_r4b_jk" xml:lang="ar">
+  <title>واجهة المسح الضوئي API</title>
+  <prolog>
+    <metadata>
+      <audience experiencelevel="Developers"/>
+      <category>API</category>
+    </metadata>
+  </prolog>
+  <refbody>
+    <refsyn><apiname>ScanDoc(FileName, ScanSettings)</apiname></refsyn>
+    <properties>
+      <property>
+        <proptype>المُعطى</proptype>
+        <propdesc>الوصف</propdesc>
+      </property>
+      <property>
+        <proptype><parmname>FileName</parmname></proptype>
+        <propdesc>يحدد المسار الكامل، بما في ذلك اسم الملف، للمستند الذي تريد مسحه ضوئيًا.</propdesc>
+      </property>
+      <property>
+        <proptype><parmname>ScanSettings</parmname></proptype>
+        <propdesc>يمثل مصفوفة مفصولة بفواصل للإعدادات التالية:
+          <ul id="ul_sf4_fpb_jk">
+            <li>ApplicationName</li>
+            <li>Resolution</li>
+          </ul>
+        </propdesc>
+      </property>
+    </properties>
+  </refbody>
+</reference>

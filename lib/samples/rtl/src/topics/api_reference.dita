@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_kvy_hqb_jk" xml:lang="ar">
+    <title>مرجع واجهة برمجة التطبيقات (API)</title>
+    <prolog>
+        <metadata>
+            <audience experiencelevel="Developers"/>
+            <category>API</category>
+        </metadata>
+    </prolog>
+    <conbody>
+        <p>يوفر الطابع واجهة برمجة تطبيقات (API) تتيح لك تنفيذ مهام الطباعة والمسح الضوئي والفاكس من تطبيقك الخاص.</p>
+    </conbody>
+</concept>

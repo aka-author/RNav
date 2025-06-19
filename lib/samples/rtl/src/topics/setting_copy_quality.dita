@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_stz_wvy_hk" xml:lang="ar">
+    <title>تعيين جودة النسخ</title>
+    <shortdesc/>
+    <prolog>
+        <metadata>
+            <category>النسخ</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>يوفر الطابعة الخيارات التالية التي تؤثر على سرعة وجودة النسخ:</p>
+            <ul id="ul_llz_vs1_jk">
+                <li><b>الأفضل</b>: توفر أعلى جودة لجميع أنواع الورق وتزيل تأثير الخطوط (الشرائط) الذي قد يظهر في المناطق الصلبة. النسخ بجودة الأفضل يكون أبطأ من الإعدادات الأخرى.</li>
+                <li><b>العادي</b>: يوفر مخرجات عالية الجودة ويوصى به لمعظم مهام النسخ. النسخ العادي أسرع من الأفضل وهو الإعداد الافتراضي.</li>
+                <li><b>السريع</b>: ينسخ أسرع من الإعداد العادي. النص مشابه في الجودة للإعداد العادي، لكن الرسومات قد تكون بجودة أقل. يستخدم إعداد السريع كمية أقل من الحبر ويطيل عمر خراطيش الطباعة.</li>
+            </ul>
+            <p>يمكنك تعيين جودة النسخ مباشرة من لوحة التحكم.</p>
+        </context>
+        <steps-unordered>
+            <step>
+                <cmd>من <uicontrol>لوحة التحكم</uicontrol>، في منطقة <uicontrol>النسخ</uicontrol>، اضغط على زر <uicontrol>الجودة</uicontrol> حتى يضيء إعداد الجودة المناسب.</cmd>
+            </step>
+        </steps-unordered>
+    </taskbody>
+</task>

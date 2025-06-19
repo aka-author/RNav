@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_awc_5vy_hk" xml:lang="ar">
+    <title>عمل نسخة</title>
+    <prolog>
+        <metadata>
+            <category>النسخ</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>يمكنك عمل نسخ عالية الجودة مباشرة من لوحة التحكم.</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>تحقق من وجود ورق محمّل في درج الإخراج.</cmd>
+            </step>
+            <step conref="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step1"
+                conrefend="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step2">
+                <cmd/>
+            </step>
+            <step>
+                <cmd>اضغط على أحد الخيارات التالية:</cmd>
+                <choices id="choices_tg5_qs1_jk">
+                    <choice>لإنشاء نسخة بالأبيض والأسود: زر <uicontrol>بدء النسخ بالأبيض والأسود</uicontrol>.</choice>
+                    <choice>لإنشاء نسخة ملونة: زر <uicontrol>بدء النسخ الملون</uicontrol>.</choice>
+                </choices>
+            </step>
+        </steps>
+    </taskbody>
+</task>

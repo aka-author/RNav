@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_tsg_kvy_hk" xml:lang="ar">
+    <title>تحميل الورق</title>
+    <prolog>
+        <metadata>
+            <category>الطباعة</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>يتم تحميل الورق المستخدم للطباعة في درج التغذية بالمستندات.</p>
+            <note>يدعم الطابعة مستندات بحجم Letter و Legal و A4.</note>
+        </context>
+        <steps id="steps_bjk_4lb_jk">
+            <step conref="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step1"
+                conrefend="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step2">
+                <cmd/>
+            </step>
+        </steps>
+        <result>الطابعة جاهزة الآن للطباعة.</result>
+    </taskbody>
+</task>

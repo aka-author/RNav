@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_s23_xvc_kk" xml:lang="ar">
+  <title>واجهة إيقاف الطباعة API</title>
+  <prolog>
+    <metadata>
+      <audience experiencelevel="Developers"/>
+      <category>API</category>
+    </metadata>
+  </prolog>
+  <refbody>
+    <refsyn><apiname>StopPrint(JobName)</apiname></refsyn>
+    <properties>
+      <property>
+        <proptype>المُعطى</proptype>
+        <propdesc>الوصف</propdesc>
+      </property>
+      <property>
+        <proptype><parmname>JobName</parmname></proptype>
+        <propdesc>يحدد اسم مهمة الطباعة.</propdesc>
+      </property>
+    </properties>
+  </refbody>
+</reference>

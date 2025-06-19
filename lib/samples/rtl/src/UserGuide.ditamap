@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA BookMap//EN" "bookmap.dtd" [
+]>
+
+<map xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" xml:lang="ar" dir="rtl">
+    <title>دليل مستخدم EasyPrint</title>
+    <topichead navtitle="مقدمة عن الطابعة">
+        <topicref href="topics/overview.dita"/>
+        <topicref href="topics/os_compatibility.dita"/>
+        <topicref href="topics/requirements_minimum.dita"/>
+        <topicref href="topics/requirements_recommended.dita"/>
+    </topichead>
+    <topichead navtitle="الطباعة">
+        <topicref href="topics/loading_paper.dita"/>
+        <topicref href="topics/printing_from_software_app.dita"/>
+        <topicref href="topics/stopping_printing_job.dita"/>
+    </topichead>
+    <topichead navtitle="إجراء نسخة" platform="All-In-One">
+        <topicref href="topics/setting_copy_quality.dita"/>
+        <topicref href="topics/setting_no_copies.dita"/>
+        <topicref href="topics/making_copy.dita"/>
+    </topichead>
+    <topichead navtitle="المسح الضوئي" platform="Pro All-In-One">
+        <topicref href="topics/scanning_setting_quality.dita"/>
+        <topicref href="topics/scanning.dita"/>
+    </topichead>
+    <topichead navtitle="إرسال فاكس" platform="All-In-One">
+        <topicref href="topics/sending_basic_fax.dita"/>
+        <topicref href="topics/sending_fax_multiple_recipients.dita"/>
+    </topichead>
+    <topicref href="topics/api_reference.dita" platform="All-In-One" audience="Developers">
+        <topicref href="topics/api_reference_print.dita"/>
+        <topicref href="topics/api_reference_print_stop.dita"/>
+        <topicref href="topics/api_reference_scan.dita"/>
+        <topicref href="topics/api_reference_fax.dita"/>
+    </topicref>
+    <reltable title="جدول علاقات الاختبار" platform="All-In-One">
+        <relheader>
+            <relcolspec type="source"/>
+            <relcolspec type="destination"/>
+        </relheader>
+        <relrow>
+            <relcell>
+                <topicref href="topics/printing_from_software_app.dita"/>
+            </relcell>
+            <relcell>
+                <topicref href="topics/api_reference_print.dita"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref href="topics/stopping_printing_job.dita"/>
+            </relcell>
+            <relcell>
+                <topicref href="topics/api_reference_print_stop.dita"/>
+            </relcell>
+        </relrow>
+    </reltable>
+</map>

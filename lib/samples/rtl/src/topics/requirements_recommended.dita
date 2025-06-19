@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_mnb_jf2_3k" xml:lang="ar">
+ <title>المتطلبات الموصى بها</title>
+ <prolog>
+  <metadata>
+   <audience experiencelevel="All"/>
+   <category>Overview</category>
+  </metadata>
+ </prolog>
+ <conbody>
+  <p>الطابعة تتطلب المواصفات التالية الموصى بها:<ul id="ul_gp3_pf2_3k">
+   <li>إذا كنت تستخدم Windows 2000: معالج Intel Pentium III أو أعلى، ذاكرة RAM بسعة 256 ميجابايت، مساحة خالية على القرص الصلب 500 ميجابايت</li>
+   <li>إذا كنت تستخدم Windows XP (32-بت): معالج Intel Pentium III أو أعلى، ذاكرة RAM بسعة 256 ميجابايت، مساحة خالية على القرص الصلب 500 ميجابايت</li>
+   <li>إذا كنت تستخدم Windows XP x64: معالج Intel Pentium III أو أعلى، ذاكرة RAM بسعة 256 ميجابايت، مساحة خالية على القرص الصلب 500 ميجابايت</li>
+   <li>إذا كنت تستخدم Mac OS X (10.3.8، 10.4.x): معالج Power PC G3 بسرعة 400 ميجاهرتز (v10.3.8 و v10.4.x) أو Intel Core Duo بسرعة 1.83 جيجاهرتز (v10.4.x)، ذاكرة 256 ميجابايت، مساحة خالية على القرص الصلب 600 ميجابايت</li>
+   <li>متصفح Microsoft Internet Explorer 6.0 أو أحدث</li>
+  </ul></p>
+ </conbody>
+</concept>

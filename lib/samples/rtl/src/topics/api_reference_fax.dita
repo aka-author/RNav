@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_hq2_lpb_jk" xml:lang="ar">
+  <title>واجهة فاكس API</title>
+  <prolog>
+    <metadata>
+      <audience experiencelevel="Developers"/>
+      <category>API</category>
+    </metadata>
+  </prolog>
+  <refbody>
+    <refsyn><apiname>FaxDoc(FileName,FaxNumber)</apiname></refsyn>
+    <properties>
+      <property>
+        <proptype>المُعطى</proptype>
+        <propdesc>الوصف</propdesc>
+      </property>
+      <property>
+        <proptype><parmname>FileName</parmname></proptype>
+        <propdesc>يحدد المسار الكامل، بما في ذلك اسم الملف، للمستند الذي ترغب في إرساله بالفاكس.</propdesc>
+      </property>
+      <property>
+        <proptype><parmname>FaxNumber</parmname></proptype>
+        <propdesc>يحدد رقم الفاكس المُرسل إليه.</propdesc>
+      </property>
+    </properties>
+  </refbody>
+</reference>

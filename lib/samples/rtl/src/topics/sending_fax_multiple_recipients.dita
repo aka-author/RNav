@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_kpf_hwy_hk" xml:lang="ar">
+    <title>إرسال فاكس إلى عدة مستلمين</title>
+    <prolog>
+        <metadata>
+            <category>الفاكس</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>يمكنك إرسال فاكس إلى عدة مستلمين في وقت واحد عن طريق تجميع إدخالات الاتصال السريع الفردية في إدخالات مجموعات الاتصال السريع.</p>
+        </context>
+        <steps>
+            <step conref="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step1"
+                conrefend="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step2">
+                <cmd/>
+            </step>
+            <step>
+                <cmd>من <uicontrol>لوحة التحكم</uicontrol>، اضغط على زر <uicontrol>الاتصال السريع</uicontrol> عدة مرات حتى يتم عرض إدخال مجموعة الاتصال السريع المناسبة.</cmd>
+            </step>
+            <step>
+                <cmd>اضغط على زر <uicontrol>بدء الفاكس</uicontrol>.</cmd>
+            </step>
+        </steps>
+        <result>
+            <p>يقوم الطابعة بمسح الفاكس ضوئيًا إلى الذاكرة ويطلب الرقم الأول. عند إنشاء الاتصال، ترسل الطابعة الفاكس وتطلب الرقم التالي. إذا كان الرقم مشغولًا أو لا يرد، تستخدم الطابعة إعدادات إعادة الاتصال في حالة الانشغال وعدم الرد. إذا لم يتمكن من إنشاء الاتصال، تطلب الطابعة الرقم التالي وتُنشئ تقرير خطأ.</p>
+        </result>
+    </taskbody>
+</task>

@@ -1,0 +1,2274 @@
+// * * ** *** ***** ******** ************* *********************
+// Product:     DITA Too Web Output
+// Part:        Front-End JS module
+// Module:      arnav.js                                (\(\
+// Func:        Managing objects exinsing in a page     (^.^)  
+// * * ** *** ***** ******** ************* *********************
+
+// Utils and shortcuts
+
+function $(srcHTML) {
+    return kwish_DOMUtils.dom(srcHTML)[0];
+}
+
+function p(n) {
+    return `${n}px`;
+}
+
+function s(v) {
+    return kwish_DOMUtils.size(v);
+}
+
+// Models
+
+class ArnavTocEntry extends kwish_Model {
+
+	constructor(major, id, title, level, uri = undefined) {
+		super(major, id);
+		this.title = title;
+		this.uri = uri;
+        this.level = level;
+	}
+
+	setTitle(title) {
+		this.title = title;
+	}
+
+	getTitle() {
+		return this.title;
+	}
+
+	hasUri() {
+		return !!this.uri;
+	}
+
+	getUri() {
+		return this.uri;
+	}
+
+	getLevel() {
+		return this.getMajor().getLevel() + 1;
+	}
+
+	matchUri(uri) {
+		let clauses = uri.split("/");
+		return clauses[clauses.length-1] == this.getUri();	
+	}
+
+	getEntries() {
+		return this.workers;
+	}
+
+    getTreePath(_path = null) {
+
+        const path = _path || [];
+
+        if (this.getLevel() > 0) {
+            this.getMajor().getTreePath(path).push(this.getMajor());
+        }
+        
+        return path;
+    }
+}
+
+
+class ArnavDoc extends kwish_Model {
+
+	getLevel() {
+		return 0;
+	}
+
+    getTreeNodeById(id) {
+        return this.nodes[id];
+    }
+
+	createEntryOfDto(major, entryDto, level) {
+
+        const id = entryDto.entry['@id'];
+
+        this.nodes[id] = new ArnavTocEntry(
+                    major, 
+                    id, 
+                    entryDto.entry['@title'], 
+                    level,
+                    entryDto.entry['@uri']
+                );
+        
+		return this.nodes[entryDto.entry['@id']];
+	}
+
+	extractTocEntriesFromDto(dto) {
+		return dto["entries"];
+	}
+
+	loadEntryFromDto(major, entryDto, level = 0) {
+		let entry = this.createEntryOfDto(major, entryDto, level);
+		this.entriesByUri[entry.getUri] = entry; 
+		if(entryDto.entry.entries)
+			this.loadEntriesFromDto(entry, entryDto.entry.entries, level + 1);
+        
+		return entry;	
+	}
+
+	loadEntriesFromDto(major, entriesDtoArray, level = 0) {
+		for(let i in entriesDtoArray) {
+			this.loadEntryFromDto(major, entriesDtoArray[i], level);
+		}
+	}
+
+	loadFromDto(dto) {
+        this.nodes = {};
+		this.id = dto["entry"]["@id"];
+		this.title = dto["entry"]["@title"];
+        this.url = `${this.id}.html`;
+		this.entriesByUri = {};
+		this.loadEntriesFromDto(this, this.extractTocEntriesFromDto(dto["entry"])); 
+	}
+	
+	getEntries() {
+		return this.minors;
+	}
+
+    getTreePath(nodeId) {
+
+        const targetNode = this.getTreeNodeById(nodeId);
+
+        if (!targetNode) {
+            return [];
+        }
+
+        return targetNode.getTreePath();
+    }
+}
+
+
+function splitByFirstHash(str) {
+
+    const normStr = kwish_Utils.dry(str);
+
+    const index = str.indexOf('#');
+
+    if (index === -1) 
+        return [normStr, '']; 
+
+    return [normStr.substring(0, index), normStr.substring(index + 1)];
+}
+
+function convertToPlainText(domElement) {
+    const elementsWithPeriod = new Set(['li', 'p', 'td', 'div']);
+
+    function processElement(element) {
+        let text = '';
+
+        for (const child of element.childNodes) {
+            if (child.nodeType === Node.TEXT_NODE) {
+                text += child.nodeValue.trim();
+            } else if (child.nodeType === Node.ELEMENT_NODE) {
+                text += processElement(child);
+            }
+        }
+
+        if (elementsWithPeriod.has(element.tagName.toLowerCase())) {
+            text = text.trim();
+            if (text !== '' && !/[.!?]$/.test(text)) {
+                text += '.';
+            }
+        }
+
+        return text;
+    }
+
+    return processElement(domElement);
+}
+
+function getTaxonomySubtree(rootTaxon, subtreeRootTaxonValue) {
+
+    let subtreeRootTaxon = null;
+
+    if(rootTaxon.value === subtreeRootTaxonValue) 
+        subtreeRootTaxon = rootTaxon; 
+    else 
+        if(rootTaxon.taxa)  
+            for(const childTaxon of rootTaxon.taxa) {
+                subtreeRootTaxon = getTaxonomySubtree(
+                    childTaxon, subtreeRootTaxonValue
+                );
+
+                if(subtreeRootTaxon) 
+                    break; 
+            }
+
+    return subtreeRootTaxon; 
+}
+
+function collectTaxonValues(rootTaxon, taxonValues = []) {
+    
+    if(!rootTaxon) return [];
+
+    if(!!rootTaxon.value)
+        taxonValues.push(rootTaxon.value); 
+
+    if(rootTaxon.taxa)
+        for(const childTaxon of rootTaxon.taxa) 
+            collectTaxonValues(childTaxon, taxonValues);
+
+    return taxonValues;
+}
+
+function matchTaxonName(taxonName, taxonNamePattern) {
+    return taxonName.toLowerCase() === taxonNamePattern.toLowerCase();
+}
+
+function getTaxonNameByValue(taxonRoot, taxonValue) {
+    return getTaxonomySubtree(taxonRoot, taxonValue).name;
+}
+
+function getTaxonValueByName(rootTaxon, taxonNamePattern) {
+
+    if(matchTaxonName(rootTaxon.name, taxonNamePattern))
+        return rootTaxon.value;
+    else if(rootTaxon.taxa) 
+        for(const childTaxon of rootTaxon.taxa) {
+            let taxonValue = getTaxonValueByName(childTaxon, taxonNamePattern);
+            if(!!taxonValue)
+                return taxonValue;
+        }
+
+    return undefined;
+}
+
+function completeTaxonValueList(rootTaxon, taxonValues) {
+
+    const rawCompleteList = [];
+
+    for(const taxonValue of taxonValues) {
+        let taxon = getTaxonomySubtree(rootTaxon, taxonValue);
+        rawCompleteList.push(...collectTaxonValues(taxon));
+    }
+
+    return [...new Set(rawCompleteList)];
+}
+
+class SearchEngine extends kwish_Model {
+
+    constructor(chief, doc, searchIndex) {
+
+        super(chief);
+
+        this.doc = doc;
+        this.searchIndex = searchIndex;
+        this.rebuildSearchIndex();
+
+        this.entries = {};
+        
+        this.parseDoc(doc, this.entries);
+    }
+
+    getSearchIndex() {
+        return this.searchIndex;
+    }
+
+    getWordIndex() {
+        return this.getSearchIndex().entries;
+    }
+
+    getTaxonomy() {
+        return this.getSearchIndex().taxonomy;
+    }
+
+    getTaxonomyIndex() {
+        return this.getSearchIndex().taxonomyIndex;
+    }
+
+    hashTaxon(taxon) {
+        return '#' + taxon;
+    }
+
+    unhashTaxon(hashedTaxon) {
+        return hashedTaxon.substring(1);
+    }
+
+    isHashed(taxon) {
+        return taxon[0] === '#';
+    }
+
+    rebuildSearchIndex() {
+
+        const wordIndex = this.getWordIndex();
+        const taxonomy = this.getTaxonomy();
+        const taxonomyIndex = this.getTaxonomyIndex();
+        
+        const taxonValues = collectTaxonValues(taxonomy);
+
+        for(const taxonValue of taxonValues) {
+
+            let rawTaxonEntry = [];
+
+            let subtreeRoot = getTaxonomySubtree(taxonomy, taxonValue);
+            let subtaxonValues = collectTaxonValues(subtreeRoot);
+
+            for(const subtaxonValue of subtaxonValues) 
+                if(!!taxonomyIndex[subtaxonValue])
+                    rawTaxonEntry.push(...taxonomyIndex[subtaxonValue]);
+
+            let taxonEntry = [...new Set(rawTaxonEntry)];
+
+            wordIndex[this.hashTaxon(taxonValue)] = taxonEntry;
+        }
+
+    }
+
+    parseDoc(entry, entries) {
+        
+        for(const currEntry of entry) {
+            entries[currEntry.getId()] = currEntry;
+            this.parseDoc(currEntry, entries);
+        }
+    }
+
+    calcWordContributionToToken(token, word) {
+
+        if(word.includes(token) && word.length !== 0) {
+            return token.length/word.length;
+        }
+
+        return 0;
+    }
+
+    countWordOccurrences(topicId, words) {
+        
+        const count = words.reduce(
+            (sum, word) => {
+                const match = this.getSearchIndex().entries[word].find(e => e.i === topicId);
+                return sum + (match ? match.m : 0);
+            }, 0);
+        
+        return count;
+    }
+
+    matchSearchToken(topicId, token, words) {
+       
+        const contrib = words.reduce(
+            (max, word) => Math.max(
+                    max, this.countWordOccurrences(topicId, [word]) > 0 ? this.calcWordContributionToToken(token, word) : 0
+                ), 0
+            );
+
+        return contrib;
+    }
+
+    hasTopicTaxon(topicId, taxonValue) {
+        
+        const wordIndex = this.getWordIndex();
+
+        const hashedTaxon = this.hashTaxon(taxonValue);
+        
+        if(wordIndex[hashedTaxon]) 
+            return wordIndex[hashedTaxon].some(e => e.i === topicId);
+
+        return false;
+    }
+
+    getTopicTaxons(topicId) {
+
+        const topicTaxons = [];
+
+        const taxonomy = this.getTaxonomy();
+
+        const taxonValues = collectTaxonValues(taxonomy); 
+
+        for(const taxonValue of taxonValues)
+            if(this.hasTopicTaxon(topicId, taxonValue))
+                topicTaxons.push(taxonValue);
+
+        return topicTaxons;
+    }
+
+    substituteTaxonValue(term) {
+        
+        if(this.isHashed(term)) {
+            const taxonmy = this.getTaxonomy();
+            const taxonName = this.unhashTaxon(term);
+            return this.hashTaxon(getTaxonValueByName(taxonmy, taxonName));
+        } else
+            return term;
+    }
+
+    expandTaxonValues(searchTokens) {
+
+        const taxonomy = this.getTaxonomy();
+
+        let rawTaxons = [];
+        const words = [];
+
+        for(const term of searchTokens) 
+            if(this.isHashed(term)) {
+                let taxon = this.unhashTaxon(term);
+                rawTaxons.push(...completeTaxonValueList(taxonomy, [taxon]));
+            }
+            else words.push(term);
+
+        const taxons = ([...new Set(rawTaxons)]).map(t => this.hashTaxon(t));
+
+        return [...words, ...taxons];
+    }
+
+    completeTokens(passedTokens) {
+
+        let stopWords = [];
+        stopWords = this.getSearchIndex().stopwords?.split(" ") || [];
+
+        let tokens = null;
+
+        if (this.getApp().hasTaxonomy()) {
+            tokens = passedTokens.map(
+                t => this.substituteTaxonValue(t.toLowerCase())
+            ).filter(t => !stopWords.includes(t));
+        } else {
+            tokens = passedTokens.map(t => t.toLowerCase()).filter(t => !stopWords.includes(t));
+        }
+
+        return tokens;
+    }
+
+    detectMatchingWords(tokens) {
+
+        const wordMatchScores = {};
+        
+        for(const word in this.getSearchIndex().entries) {
+            for(const token of tokens) {
+                let matchScore = this.calcWordContributionToToken(token, word);
+                if(matchScore > 0) {
+                    wordMatchScores[word] = matchScore; 
+                }
+            }
+        } 
+
+        return Object.keys(wordMatchScores);
+    }
+
+    detectMatchingTopics(matchingWords) {
+        return matchingWords.flatMap(word => this.getSearchIndex().entries[word].map(e => e.i));
+    }
+
+    calcRelevantTopicScores(matchingTopics, tokens, matchingWords) {
+
+        const scores = [];
+
+        for (const topicId of matchingTopics) {
+
+            scores[topicId] = {
+                "relevance": 0, 
+                "rate": this.countWordOccurrences(topicId, matchingWords)
+            };
+            
+            for (const token of tokens) {
+                scores[topicId].relevance += this.matchSearchToken(topicId, token, matchingWords);
+            }
+
+            scores[topicId].relevance /= tokens.length;
+        }
+
+        return scores;
+    }
+
+    compareScores(scoreA, scoreB) {
+        return scoreB.relevance - scoreA.relevance || scoreB.rate - scoreA.rate;
+    }
+
+    splitScores(scores) {
+    
+        const keys = Object.keys(scores);
+    
+        const sortedKeys = keys.sort((a, b) => this.compareScores(scores[a], scores[b]));
+    
+        const relevanceDict = {};
+        for (const key of sortedKeys) {
+            relevanceDict[key] = scores[key].relevance;
+        }
+    
+        return [sortedKeys, relevanceDict];
+    }
+
+    searchRelevantTopicIds(passedTokens) {        
+
+        const tokens = this.completeTokens(passedTokens);
+        const matchingWords = this.detectMatchingWords(tokens);
+        const matchingTopics = this.detectMatchingTopics(matchingWords);
+        const scores = this.calcRelevantTopicScores(matchingTopics, tokens, matchingWords);
+        
+        return this.splitScores(scores);
+    }
+
+    getTopicInfo(topicId, rating) {
+        
+        if (!this.entries[topicId]) {
+            return {};
+        }
+
+        const topicInfo = {
+            "id": this.entries[topicId].getId(),
+            "title": this.entries[topicId].title,
+            "url": this.entries[topicId].uri,
+            "taxons": this.getTopicTaxons(topicId),
+            "rating": rating[this.entries[topicId].getId()]
+        };
+
+        return topicInfo;
+    }
+
+    assembleSearchResults(topicIdsAndRatings) {
+    
+        const topicIds = topicIdsAndRatings[0];
+        const topicRatings = topicIdsAndRatings[1];
+
+        const searchResults = [];
+
+        for(const topicId of topicIds) {
+            let topicInfo = this.getTopicInfo(topicId, topicRatings);
+            if (!!topicInfo.url) {
+                searchResults.push(this.getTopicInfo(topicId, topicRatings));
+            }
+        }
+
+        return searchResults;
+    }
+
+    searchTopics(searchTokens) {
+        return this.assembleSearchResults(this.searchRelevantTopicIds(searchTokens));
+    }
+}
+
+// Search controllers
+
+class SearchToolButton extends kwish_IconicButton {
+
+    assembleButtonPropsRec(rsrcCode) {
+
+        const propsRec = {
+            'iconSpotsDef': {
+                'defaultIconSpotName': 'enabled',
+                'icons': [
+                    {
+                        'spotName': 'enabled', 
+                        'altText':  rsrcCode,
+                        'fileName': rsrcCode
+                    }
+                ]
+            }
+        }
+
+        return propsRec;
+    }
+}
+
+class TaxonomyButton extends SearchToolButton {
+
+    constructor(major) {
+        super(major, {}, 'taxonomyButton');
+        this.setProps(this.assembleButtonPropsRec('taxonomy'));
+    }
+    
+    handle_userActionRequest(task) {
+        this.getGear('searcher').toggleTaxonomyPane();
+    }
+}
+
+class ClearButton extends SearchToolButton {
+
+    constructor(major) {
+        super(major, {}, 'clearButton');
+        this.setProps(this.assembleButtonPropsRec('clear'));
+    }
+
+    handle_userActionRequest(task) {
+        
+        this.proclaimCommand('cancelSearch');
+
+        if (this.getApp().hasTaxonomy()) {
+            const taxonomyPane = document.getElementById('taxonomyPane');
+            kwish_DOMUtils.hide(taxonomyPane);
+        }
+    }
+}
+
+class SearchButton extends SearchToolButton {
+
+    constructor(major) {
+        super(major, {}, 'searchButton');
+        this.setProps(this.assembleButtonPropsRec('search'));
+    }
+
+    handle_userActionRequest(task) { 
+        this.tossUpCommand('search');
+    }
+}
+
+class QueryInput extends kwish_DOMControl {
+
+    constructor(major) {
+        super(major, {}, 'queryInput')
+    }
+
+    makeDOMView() {
+        this.inputQuery = $('<input id="query">');
+        return this.inputQuery;
+    }
+
+    setValue(str) {
+        this.inputQuery.value = str;
+        return this;
+    }
+
+    getValue() {
+        return this.inputQuery.value.trim();
+    }
+
+    appendValue(str) {
+        return this.setValue(`${this.getValue()}${str}`);
+    }
+    
+    hasHashtag(hashtag) {
+        return kwish_Utils.hasHashtag(this.getValue(), hashtag);
+    }
+
+    addHashtag(hashtag) {
+        this.setValue(kwish_Utils.safeHashtag(this.getValue(), hashtag));
+        return this;
+    }
+
+    removeHashtag(hashtag) {
+        this.setValue(kwish_Utils.unhashtag(this.getValue(), hashtag));
+        return this;
+    }
+
+    handle_dom_keypress(task) {
+
+        const key = task.getDOMEvent().key;
+        
+        switch(key) {
+            case '#': 
+                if (this.getApp().hasTaxonomy()) {
+                    this.getGear('searcher').showTaxonomyPane();
+                }
+                break;
+            case 'Enter':
+                this.tossUpCommand('search');
+                break;
+        }
+    }
+}
+
+class TaxonomyTree extends kwish_SelectableTreeControl {
+
+    constructor(major, propsRec, id) {
+        super(major, propsRec, id);
+        this.setProps({'checkboxes': []});
+    }
+
+    assembleTaxCheckbox(srcTreeNodeRec) {
+
+        const checkbox = $(`<input id="${srcTreeNodeRec.value}" type="checkbox">`); 
+        checkbox.title = srcTreeNodeRec.title;
+
+        this.checkboxes.push(checkbox);
+
+        checkbox.addEventListener(
+            'change', e => this.getGear('searcher').useTaxonomy(
+                    srcTreeNodeRec.title, e
+                )
+        );
+
+        return checkbox;
+    }
+
+    assembleLeafTitle(srcTreeNodeRec, level) {
+        
+        const domTitle = document.createElement('div');
+        const checkbox = this.assembleTaxCheckbox(srcTreeNodeRec);
+        const label = document.createTextNode(this.extractSrcTitle(srcTreeNodeRec));
+        domTitle.append(checkbox, label);
+
+        return domTitle;
+    }
+
+    assembleHubTitle(srcTreeNodeRec, level) {
+        
+        const domTitle = document.createElement('div');
+        const label = document.createTextNode(this.extractSrcTitle(srcTreeNodeRec));
+
+        if (!!srcTreeNodeRec.value) {
+            const checkbox = this.assembleTaxCheckbox(srcTreeNodeRec);
+            domTitle.append(checkbox, label);
+        } else {
+            domTitle.append(label);
+        }
+
+        return domTitle;
+    }
+}
+
+class TaxonomyPane extends kwish_DOMControl {
+
+    configureMinorControllers() {
+        if (this.getApp().hasTaxonomy()) {
+            const taxonomyRec = this.getApp().getTaxonomyRec();
+            this.taxonomyTree = new TaxonomyTree(this, {}, 'taxonomyTree');
+            this.taxonomyTree.mountTreeNodeControls(taxonomyRec, this.taxonomyTree);
+        }
+    }
+
+    makeDOMView() {
+
+        if (!this.getApp().hasTaxonomy()) {
+            return $('<div id="taxonomyPane" style="display: none"></div>');
+        }
+
+        const div = this.inject(new kwish_BoxShellViewMaker())
+            .nestProps({'content': this.taxonomyTree.provideDOMView()})
+            .provideOneElement();
+        
+        div.setAttribute('style', 'display: none');
+
+        return div;
+    }
+
+    handle_prepare(task) {
+        this.configureMinorControllers();
+    }
+
+    handle_restore(task) {
+        this.taxonomyTree.openRoot();
+    }
+}
+
+class Searcher extends kwish_BasicDOMControl {
+
+    constructor(major, propsRec, id = undefined) {  
+        super(major, propsRec, 'searcher');  
+    }
+
+    configureSearchFeatures() {
+        const doc = this.getApp().getModel();
+        const searchIndex = this.getApp().getSearchIndex();
+        this.engine = new SearchEngine(null, doc, searchIndex);
+        this.setModel(this.engine);
+        return this;
+    }
+
+    createMinorControls() {
+
+        this.queryInput = new QueryInput(this);
+
+        if (this.getApp().hasTaxonomy()) {
+            this.taxonomyButton = new TaxonomyButton(this);
+        }
+
+        this.clearButton = new ClearButton(this);
+        this.searchButton = new SearchButton(this);
+        
+        if (this.getApp().hasTaxonomy()) {
+            this.taxonomyPane = new TaxonomyPane(this, {}, 'taxonomyPane');
+        }
+
+        return this;
+    }
+
+    setSearchQuery(query) {
+        this.queryInput.setValue(query);
+        return this;
+    }
+
+    getSearchQuery() {
+        return this.queryInput.getValue();
+    }
+
+    saveSearchQuery(query) {
+        this.setCfgParam('search.results.query', query).getCfg().commitUserParams();
+        return this;
+    }
+
+    loadSearchQuery() {
+        return this.getCfgParam('search.results.query');
+    }
+
+    restoreSearchState() {
+        return this.setSearchQuery(this.loadSearchQuery());
+    }
+
+    splitSearchQuery(query) {
+        
+        const [before, after] = splitByFirstHash(query);
+    
+        const words = before
+            .split(/\s+/)
+            .filter(token => token);
+    
+        const taxonNames = after
+            .split('#')
+            .map(taxon => `#${taxon}`) 
+            .filter(taxon => taxon.length > 1); 
+    
+        return [...words, ...taxonNames];
+    }
+
+    getSearchTokens() {
+    
+        const query = this.getSearchQuery();
+        
+        const rawSearchTokens = this.splitSearchQuery(query);
+        
+        const stopWords = this.getApp().getSearchIndex().stopwords || [];
+        
+        const unsortedSearchTokens = rawSearchTokens.map(
+            t => t.trim().toLowerCase()).filter(t => !stopWords.includes(t)
+        ); 
+        
+        const sortedSearchTokens = unsortedSearchTokens.sort(
+            (t1, t2) => t2.length - t1.length
+        ); 
+
+        return sortedSearchTokens; 
+    }
+
+    isTaxonomyPaneShown() {
+        return kwish_DOMUtils.isShown(document.getElementById('taxonomyPane'));
+    }
+
+    showTaxonomyPane() {
+
+        if (this.isTaxonomyPaneShown()) return this;
+
+        const taxonomyTree = this.getGear('taxonomyTree');
+
+        for (const checkbox of taxonomyTree.checkboxes) {
+            checkbox.checked ?
+                this.queryInput.addHashtag(checkbox.title) :
+                checkbox.checked = this.queryInput.hasHashtag(checkbox.title);
+        }
+
+        kwish_DOMUtils.show(document.getElementById('taxonomyPane'));
+
+        return this;
+    }
+
+    hideTaxonomyPane() {
+        kwish_DOMUtils.hide(document.getElementById('taxonomyPane'));
+    }
+
+    toggleTaxonomyPane() {
+        return this.isTaxonomyPaneShown() ?
+            this.hideTaxonomyPane() :
+            this.showTaxonomyPane(taxonomyPane);
+    }
+
+    useTaxonomy(taxonName, event) {
+        event.srcElement.checked ?
+            this.queryInput.addHashtag(taxonName) :
+            this.queryInput.removeHashtag(taxonName); 
+    }
+
+    getSearchResultsFramelet() { 
+        return this.getPage().searchConsole.resultsFramelet;
+    }
+
+    cleanSearchResultsFramelet() {
+        
+        const searchResultsArea = document.getElementById("searchResultsFrameletInner");
+
+        this.saveSearchQuery('');
+
+        while(searchResultsArea.firstChild) 
+            searchResultsArea.removeChild(searchResultsArea.firstChild);
+    }
+
+    fillSearchResultsFramelet(domObject) {
+
+        this.cleanSearchResultsFramelet();
+
+        const searchResultsArea = document.getElementById("searchResultsFrameletInner");
+        searchResultsArea.appendChild(domObject);
+    }
+
+    // Taxons
+
+    assembleTaxons(tokens, topicInfo) {
+
+        const divTaxons = document.createElement('div');
+
+        divTaxons.classList.add('searchResultsTaxons');
+
+        const taxonomy = this.engine.getTaxonomy();
+
+        for(const taxonValue of topicInfo.taxons) 
+            if(tokens.some(t => t === this.engine.hashTaxon(taxonValue))) {
+                let taxonBun = document.createElement('span');  
+                taxonBun.classList.add('searchResultsTaxon');
+                taxonBun.textContent = getTaxonNameByValue(taxonomy, taxonValue);
+                divTaxons.appendChild(taxonBun);
+            }
+
+        return divTaxons;
+    }
+
+    // Relevancy indiator
+
+    assembleRelevanceIndicator(relevance) {
+
+        const patterns = [
+            [0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0],
+            [2, 1, 0, 0, 0],
+            [2, 2, 0, 0, 0],
+            [2, 2, 1, 0, 0],
+            [2, 2, 2, 0, 0],
+            [2, 2, 2, 1, 0],
+            [2, 2, 2, 2, 0],
+            [2, 2, 2, 2, 1],
+            [2, 2, 2, 2, 2]
+        ];
+
+        const stars = [
+            this.getRsrcAsset('nullstar'),
+            this.getRsrcAsset('halfstar'),
+            this.getRsrcAsset('fullstar')
+        ];
+
+        const patternIdx = Math.round(relevance <= 1 ? relevance*10 : 10);
+
+        const pattern = patterns[patternIdx];
+
+        const divRelevancyIndicator = document.createElement("div");
+        
+        divRelevancyIndicator.classList.add('relevanceIndicator');
+
+        for(const starTypeIdx of pattern) {
+            const imgStar = document.createElement("img");
+            imgStar.setAttribute("src", stars[starTypeIdx]);
+            divRelevancyIndicator.appendChild(imgStar);
+        }
+
+        return divRelevancyIndicator;
+    }
+    
+    extractUseful(domObject, id) {
+        return domObject.querySelector(`[id='${id}']`) || $('div');
+    }
+
+    removeMarkup(htmlText) {
+        const body = new DOMParser().parseFromString(htmlText, 'text/html').body;
+        const matterElementId = this.getCfgParam('matter.framelet.payloadId');
+        const usefulText = this.extractUseful(body, matterElementId);
+
+        if (!usefulText) return '';
+
+        const pageHeadingTagName = this.getCfgParam('matter.framelet.pageHeadingTagName');
+        const h1 = usefulText.querySelector(pageHeadingTagName);
+        if (h1) {
+            h1.remove();
+        }
+        const decodedText = convertToPlainText(usefulText);
+        return decodedText;
+    }
+    
+    emphaseTokens(tokens, sourceText) {
+
+        let wrappedText = sourceText;
+
+        for(const token of tokens) 
+            wrappedText = wrappedText.replace(token, `<b>${token}</b>`);
+    
+        return wrappedText;
+    }
+
+    extractRelevantSentences(tokens, sourceText) {
+        if(!sourceText) return [];
+        // const sentences = sourceText.split(/(?<=[\.\!?])/);  
+
+        const sentences = sourceText.split(/([\.\!\?])\s*/).filter(Boolean).reduce((acc, val, index) => {
+            if (index % 2 === 0) {
+              // Even index means it's not a punctuation mark, concatenate with the next element
+              acc[acc.length - 1] = val + acc[acc.length - 1];
+            } else {
+              // Odd index means it's a punctuation mark, start a new sentence
+              acc.push(val);
+            }
+            return acc;
+          }, ['']);          
+
+        const resultSentences = sentences.filter(s => tokens.some(t => s.toLowerCase().includes(t)));
+        return resultSentences;
+    }
+
+    extractFirstNSentences(n, sourceText) {
+        if (!sourceText) return [];
+    
+        const sentences = sourceText.split(/([\.\!\?])\s*/).filter(Boolean).reduce((acc, val, index) => {
+            if (index % 2 === 0) {
+                acc[acc.length - 1] = val + acc[acc.length - 1];
+            } else {
+                acc.push(val);
+            }
+            return acc;
+        }, ['']);
+    
+        return sentences.slice(0, n);
+    }
+    
+    displayTargetSnippet(tokens, topicId, htmlPageAsText) {
+        
+        const divPreview = document.getElementById(`preview_${topicId}`);
+
+        const sourceText = this.removeMarkup(htmlPageAsText);
+
+        let relevantSentences = this.extractRelevantSentences(tokens, sourceText);
+
+        if (relevantSentences.length !== 0 ) {
+
+            const nPhrases = parseInt(this.getCfgParam('search.results.previews.numOfSentences'));
+            const nCharshars = parseInt(this.getCfgParam('search.results.previews.maxCharacterLength'));
+
+            console.log(this.getCfgParam('search.results.previews.numOfSentences'));
+
+            relevantSentences = this.extractFirstNSentences(nPhrases, sourceText);
+
+            if (relevantSentences.length > nCharshars) {
+                relevantSentences = relevantSentences.substr(0, nCharshars) + "...";
+            }
+        }
+
+        for(let i = 0; i < relevantSentences.length; i++) {
+            const sentence = relevantSentences[i];
+            const spanSentence = document.createElement("span");
+            spanSentence.innerHTML = sentence.trim() + (i < relevantSentences.length - 1 ? " &mdash;&nbsp;" : "");
+            for(const token of tokens) {
+                this.getGear('matterFramelet').highlightSubstringInDOM(spanSentence, token);
+            }
+            divPreview.appendChild(spanSentence);
+        }
+
+        return this;
+    }
+
+    assembleTopicPreview(tokens, topicId) {
+        
+        const divPreview = document.createElement("div");
+        divPreview.setAttribute("id", `preview_${topicId}`);
+        divPreview.classList.add('searchResultsPreview');
+        
+        const topicEntry = this.getGear(topicId);
+        const topicURI = topicEntry.uri;
+
+        fetch(topicURI).then(
+            response => {
+                if(response.ok) {
+                    response.text().then(
+                        responseBody => this.displayTargetSnippet(tokens, topicId, responseBody)
+                    );
+                }
+                else 
+                    console.log("Parse error"); 
+            }
+        ).catch(error => console.log(error));
+        
+        return divPreview;
+    }
+
+    displayRelevantTopicLinks(tokens, searchResults) {
+        
+        const divEntrySequence = document.createElement("div");
+
+        this.cleanSearchResultsFramelet();
+
+        if(searchResults.length > 0)
+            for(const topicInfo of searchResults) {
+
+                if (!topicInfo.url) { 
+                    console.log(topicInfo);
+                    continue;
+                }
+
+                let divEntry = document.createElement("div");
+                divEntry.classList.add('searchResultsEntry');
+
+                let a = document.createElement("a");
+                a.textContent = topicInfo.title;
+                a.setAttribute("href", topicInfo.url);
+
+                let divLink = document.createElement("div");
+                divLink.appendChild(a);
+
+                divEntry.appendChild(divLink);
+
+                if (this.getApp().hasTaxonomy()) {
+                    divEntry.appendChild(this.assembleTaxons(tokens,  topicInfo));
+                }
+                
+                divEntry.appendChild(this.assembleTopicPreview(tokens, topicInfo.id));
+                divEntry.appendChild(this.assembleRelevanceIndicator(topicInfo.rating));
+
+                divEntrySequence.appendChild(divEntry);
+            }
+        else {
+            const divEmptyMessage = document.createElement("div");
+            divEmptyMessage.classList.add('emptyMessage');
+            divEmptyMessage.textContent = this.emptyMessage;
+            divEntrySequence.appendChild(divEmptyMessage);
+        }   
+        
+        this.fillSearchResultsFramelet(divEntrySequence);
+    }
+
+    performSearch() {
+        const searchTokens = this.getSearchTokens();
+        const searchResults = this.engine.searchTopics(searchTokens);
+        
+        this.displayRelevantTopicLinks(searchTokens, searchResults);
+        
+        this.saveSearchQuery(this.getSearchQuery());
+
+    }
+
+    cleanSearch() {
+        return this.setSearchQuery('').saveSearchQuery('');
+    }
+
+    handle_cancelSearch(task) {
+        this.cleanSearch();
+    }
+
+    handle_search(task) {
+        this.performSearch();
+    }
+
+    handle_prepare(task) {
+        this.configureSearchFeatures()
+            .createMinorControls();
+    }
+
+    handle_restore(task) {
+        this.restoreSearchState();
+    }
+}
+
+class SearchSwitch extends kwish_DOMControl {
+
+    handle__click(issue) {
+        issue.terminate();
+        this.getPage().turnOnMobileSearchMode();
+    }
+}
+
+// Page controllers  
+
+class Burger extends kwish_ShowHideButton {
+
+    constructor(major, propsRec, id = undefined) {
+
+        const localPropsRec = {
+            'controlledElementId': 'tocFramelet',
+            'controlledElement': undefined,
+            'initialState': 'hidden',
+            'iconSpotsDef': {
+                'defaultIconSpotName': 'hidden',
+                'icons': [
+                    {
+                        'spotName': 'hidden', 
+                        'altText':  'Open menu',
+                        'fileName': 'burger-folded'
+                    },
+                    {
+                        'spotName': 'shown', 
+                        'altText':  'Close menu',
+                        'fileName': 'burger-unfolded'
+                    }
+                ]
+            }
+        }
+
+        super(major, localPropsRec, 'burger');
+    }
+
+    handle_shown_entered(task) {
+        this.getGear('tocFramelet').bringToFront();
+    }
+}
+
+class TocShortcut extends kwish_BasicDOMControl {
+
+    makeDOMView() {
+
+        const vmBox = new kwish_BoxShellViewMaker()
+                .setOrigin(this);
+         
+        const vmIcon = new kwish_ImgViewMaker()
+                .setOrigin(this)
+                .nestProps({'@src': this.getRsrcAsset('index_white')})
+
+        vmBox.nestArgs(vmIcon.provideOneElement());
+
+        const domView = vmBox.provideOneElement();
+
+        const display = this.getGear('readerConsole').isMaximized() ? 'unset' : 'none';
+        domView.setAttribute('style', `display: ${display}`);
+
+        return domView;
+    }
+
+    handle_appear(task) {
+        this.show();
+    }
+
+    handle_maximize(task) {
+        this.show();
+    }
+
+    handle_normalize(task) {
+        this.hide();
+    }
+
+    handle_getMobile(task) {
+        this.hide();
+    }
+
+    handle_getLargeScreen(task) {
+
+        const state = this.getGear('readerConsole').getEasyFSMState();
+
+        if (state === 'maximized') {
+            this.show();
+        }
+    }
+
+    handle_dom_click(task) {
+        this.terminateTask(task).proclaimCommand('normalize');
+    }
+}
+
+class CloseBox extends kwish_BasicDOMControl {
+
+    makeDOMView() {
+        this.inject(
+            new kwish_ImgViewMaker('tocCloseBox')
+                .setOrigin(this)
+                .nestProps({'@src': this.getRsrcAsset('closebox')})
+        )
+
+        return this.provideOneElement();
+    }
+
+    handle_dom_click(task) {
+        this.terminateTask(task).proclaimCommand('maximize');
+    }
+}
+
+class DocTitleBox extends kwish_BasicDOMControl {
+
+    makeDOMView() {
+
+        const pDocTitle = document.createElement('p');
+        pDocTitle.textContent = this.getDocTitle();
+
+        if (this.getApp().isInDocRoot()) {
+            kwish_DOMUtils.setCursor(pDocTitle, 'default');
+        }
+
+        return pDocTitle;
+    }
+
+    handle_dom_click(task) {
+
+        if (!this.getApp().isInDocRoot()) {
+            this.tossUpCommand('browseToDocRoot');
+        }
+    }
+}
+
+class Breadcrumbs extends kwish_DOMControl {
+
+    makeDOMView() {
+        
+        const doc = this.getApp().getModel();
+        const treePath = doc.getTreePath(this.getApp().getCurrPageId());
+        const crumbsTplItems = [];
+
+        for (const entry of treePath) {
+            let uri = entry.uri;
+            let inner = !!uri ? `<a href="${uri}">${entry.title}</a>` : entry.title;
+            crumbsTplItems.push(`<span>${inner}</span>`);
+        }
+        
+        const separ = this.getCfgParam('breadcrumbs.separator') || '/';
+        const crumbsTpl = crumbsTplItems.join(separ);
+        
+        return $(`<div id="breadcrumbs">${crumbsTpl}</div>`);
+    }
+}
+
+class TocTree extends kwish_SelectableTreeControl {
+
+    extractRefCode(srcNodeRec) {
+        return srcNodeRec.uri;
+    }
+
+    mount() {
+        this.mountTreeNodeControls(this.getProp('tocRec'), this);
+        return this;
+    }
+
+    handle_userAction(task) {
+
+        this.terminateTask(task);
+
+        if (!task.initiator.refCode) {
+            return this.terminateTask(task);
+        }
+
+        const browseToPageFileName = task.getPayload();
+        this.tossUpCommand('browseToPage', browseToPageFileName);
+    }
+
+    handle_stateChanged(task) {
+
+        const unfoldedNodes = this.getUnfoldedNodes();
+        const pathsToUnfoldedNodes = unfoldedNodes.map(n => n.getTreePathString());
+        
+        const strListOfUnfoldedNodes = pathsToUnfoldedNodes.join('\n');
+
+        this.setCfgParam('toc.framelet.openIds', strListOfUnfoldedNodes)
+            .getCfg().commitUserParams();
+    }
+}
+
+class TocFramelet extends kwish_BasicDOMControl {
+
+    constructor(major, propsRec, id = undefined) {
+
+        super(major, propsRec, 'tocFramelet');
+        
+        this.setCSSClassNameBase('framelet');
+
+        this.setProps(
+            {
+                'widthCSSPropName': '--toc_framelet_width',
+                'minTocWidth': this.getCfgParam('toc.framelet.minWidth') || 100,
+                'restoreIndent': this.getCfgParam('toc.framelet.restoreIndent') || 10
+            }
+        );
+
+        this.setPrimaryScreenEventTypes(
+            ['DOMMouseScroll', 'mousemove', 'mouseup', 'scroll', 'wheel']
+        );
+    }
+
+    getInitialState() {
+        const rawState = this.getCfgParam('toc.framelet.folded');
+        return rawState === 'maximized' ? 'folded' : 'normal';
+    }
+
+    configureFSMachine() {
+        
+        this.easyFSMachine(
+            `[*] --> ${this.getInitialState()} 
+            normal --> folded : maximize
+            folded --> normal : normalize`
+        );
+
+        return this;
+    }
+
+    configureMinorControllers() {
+
+        this.closeBox = new CloseBox(this, {}, 'closeToc');
+
+        const titlePropsRec = {
+                'docTitle': this.getProp('tocRec').title
+            }
+
+        this.docTitleBox = new DocTitleBox(this, titlePropsRec);
+        
+        this.tocTree = new TocTree(this, {}, 'toctree').mount();
+
+        return this;
+    }
+
+    isFolded() {
+        return this.getEasyFSMState() === 'folded';
+    }
+
+    makeDOMView() {
+        
+        this.inject(
+                new kwish_RackViewMaker(
+                    {
+                        'shelfNames': ['title', 'tocTree']
+                    }
+                )
+                .setOrigin(this)
+                .nestProps(
+                    {
+                        'title': this.docTitleBox.provideDOMView(),
+                        'tocTree': this.tocTree.provideDOMView()
+                    }
+                )
+            );
+
+        return this.provideOneElement();
+    } 
+
+    setWidth(width) {
+        kwish_DOMUtils.setCSSProp(this.getWidthCSSPropName(), s(width));
+        return this;
+    }
+
+    restoreTocTreeState() {
+        const tocUnfoldedStrList = this.getCfgParam('toc.framelet.openIds');
+        const tocUnfoldedList = tocUnfoldedStrList.split('\n');
+        this.tocTree.openRoot().openByTreePaths(tocUnfoldedList); 
+        return this;
+    }
+
+    highlightCurrentTocEntry() {
+        const refCode = kwish_Utils.substringAfterLast(location.href, '/');
+        this.tocTree.forceHighlight(refCode);
+        return this;
+    }
+
+    saveScroll() {
+        
+        const scroll = document.getElementById('tocFrameletTocTreeInner').scrollTop;
+
+        this.setCfgParam('toc.framelet.yscroll', scroll).getCfg().commitUserParams();
+
+        return this;
+    }
+
+    restoreScroll() {
+
+        const scroll = this.getCfgParam('toc.framelet.yscroll');
+
+        document.getElementById('tocFrameletTocTreeInner').scrollTop = scroll;
+
+        return this;
+    }
+
+    restoreTocPaneState() {
+
+        this.restoreTocTreeState().highlightCurrentTocEntry();
+
+        requestAnimationFrame(() => this.restoreScroll());
+
+        return this;
+    }
+
+    tileNormal() {
+
+        const currWidth = this.getWidth();
+
+        if (currWidth <= this.getMinTocWidth()) {
+            this.setWidth(currWidth + this.getRestoreIndent());
+        }
+
+        return this.proclaimCommand('tocFrameletShown');
+    }
+
+    handle_prepare(task) {
+        this.configureFSMachine().configureMinorControllers();
+    }
+
+    handle_restore(task) {
+
+        this.restoreTocPaneState();
+
+        if (this.isFolded()) {
+            this.hide();
+        }
+    }
+
+    handle_normal_entered(task) {
+        this.show().tileNormal();
+    }
+
+    handle_folded_entered(task) {
+        this.hide();
+    }
+
+    handle_split(task) {
+        const newWidth = task.getPayload();
+        this.setWidth(newWidth).proclaimCommand('tocFrameletShown');
+    }
+
+    handle_getMobile(task) {
+        this.hide();
+    }
+
+    handle_getLargeScreen(task) {
+        this.getEasyFSMState() === 'folded' ? this.hide() : this.show().tileNormal();
+    }
+
+    handle_dom_mouseup(task) {
+        this.saveScroll();
+    }
+
+    handle_dom_wheel(task) {
+       this.saveScroll();
+    }
+}
+
+class PrintButton extends kwish_IconicButton {
+    
+    constructor(major, props, id = undefined) {
+
+        const printButtonProps = {
+                'iconsPath': 'front/img',
+                'iconSpotsDef': {
+                    'defaultIconSpotName': 'enabled',
+                    'icons': [
+                        {
+                            'spotName': 'enabled', 
+                            'altText':  'print',
+                            'fileName': 'print'
+                        },
+                        {
+                            'spotName': 'disabled', 
+                            'altText':  'print',
+                            'fileName': 'print'
+                        }
+                    ]
+                }
+            };
+
+        super(major, printButtonProps, id);
+    }
+
+    performButtonAction(task) {
+        this.proclaimCommand('print');
+    }
+}
+
+class MatterFramelet extends kwish_DOMControl {
+
+    constructor(major, propsRec, id = undefined) {
+
+        super(major, propsRec, 'matterFramelet');
+        
+        this.setCSSClassNameBase('framelet');
+        
+        this.setProps(
+            {
+                'indentCSSPropName': '--major_indent',
+                'startCSSPropName': '--matter_framelet_start',
+                'topCSSPropName': '--matter_framelet_top',
+                'widthCSSPropName': '--matter_framelet_width',
+                'heightCSSPropName': '--matter_framelet_height',
+            }                               
+        );
+    }
+
+    configureFSMachine() {
+        this.easyFSMachine(
+            `[*] --> ${this.getApp().getInitialState()} 
+            
+            normal    --> maximized : maximize
+            maximized --> normal    : normalize
+            
+            normal    --> mobileFromNormal    : getMobile
+            maximized --> mobileFromMaximized : getMobile
+            
+            mobileFromNormal    --> normal    : getLargeScreen
+            mobileFromMaximized --> maximized : getLargeScreen`
+        );
+    }
+
+    isNormal() {
+        return this.getEasyFSMState() === 'normal';
+    }
+
+    isMaximized() {
+        return this.getEasyFSMState() === 'maximized';
+    }
+
+    isMobile() {
+        const currState = this.getEasyFSMState();
+        return currState === 'mobileFromNormal' || currState === 'mobileFromMaximized';
+    }
+
+    highlightSubstringInDOM(rootElement, searchTerm) {
+
+        const walker = document.createTreeWalker(
+            rootElement, NodeFilter.SHOW_TEXT, null, false
+        );
+    
+        const nodesToHighlight = [];
+    
+        while (walker.nextNode()) {
+            const node = walker.currentNode;
+            const content = node.nodeValue;
+            const index = content.toLowerCase().indexOf(searchTerm);
+            if (index !== -1) 
+                nodesToHighlight.push({ node, index, content });
+        }
+    
+        nodesToHighlight.forEach(({ node, index, content }) => {
+            const before = document.createTextNode(content.substring(0, index));
+            const inner = content.substring(index, index + searchTerm.length);
+            const bold = document.createElement('b');
+            bold.className = this.getProp('searchTermCSSClassName');
+            bold.appendChild(document.createTextNode(inner));
+            const after = document.createTextNode(content.substring(index + searchTerm.length));
+    
+            node.parentNode.insertBefore(before, node);
+            node.parentNode.insertBefore(bold, node);
+            node.parentNode.insertBefore(after, node);
+            node.parentNode.removeChild(node);
+        });
+    }
+
+    unhighliteSearchTerms() {
+
+        const className = this.getProp('searchTermCSSClassName');
+        const body = document.getElementsByTagName('body')[0];
+        const highlitedElements = body.querySelectorAll(`.${className}`);
+
+        for(const element of highlitedElements) {
+            kwish_DOMUtils.unwrap(element);
+        }
+
+        return this;
+    }
+
+    updateMatter() {
+        const tokens = this.getGear('searcher').getSearchTokens();
+        for(const token of tokens) {
+            this.highlightSubstringInDOM(document.getElementById('pageMatter'), token);
+        }
+    }
+
+    place(start, top, width, height) {
+
+        kwish_DOMUtils.setCSSProps(
+            this.getStartCSSPropName(), s(start),
+            this.getTopCSSPropName(), s(top),
+            this.getWidthCSSPropName(), s(width),
+            this.getHeightCSSPropName(), s(height)
+        );
+
+        return this;
+    }
+
+    markMaximized(mark) {
+        this.getDOMView().setAttribute('data-maximized', mark);  
+        return this;  
+    }
+
+    tileNormal() {
+        
+        const tocFramelet =  this.getGear('tocFramelet');
+
+        const windowWidth = kwish_DOMUtils.getWindowWidth();
+        const indent = kwish_DOMUtils.measureCSSProp(this.getIndentCSSPropName());
+        const start = tocFramelet.getEnd() + indent;
+        const top = indent;
+        const width = windowWidth - start - indent; 
+        const height = tocFramelet.getHeight();
+        
+        return this.place(start, top, width, height).markMaximized('no');
+    }
+
+    tileMaximized() {    
+        return this.place(0, 0, '100vw', '100vh').markMaximized('yes');
+    }
+
+    tileMobile() {
+        return this.place(0, 0, '100vw', '100vh').markMaximized('no');
+    }
+
+    tileResized() {
+
+        if (this.isNormal()) {
+            return this.tileNormal();
+        } 
+
+        if (this.isMobile()) {
+            this.tileMobile();
+        }
+    }
+
+    normalize() {
+        this.tileNormal();
+    }
+
+    maximize() {
+        this.tileMaximized();
+    }
+
+    mobilize() {
+        this.tileMobile();
+    }
+
+    print() {
+        let hideHTML = document.body.innerHTML;
+        const payloadId = this.getCfgParam('matter.framelet.payloadId');
+        document.body.innerHTML = document.getElementById(payloadId).innerHTML;
+        window.print();
+        document.body.innerHTML = hideHTML;
+        location.reload();
+        return this;
+    }
+
+    handle_prepare(task) {
+        this.configureFSMachine();
+    }
+
+    handle_restore(task) {
+
+        if (this.isMaximized()) {
+            this.tileMaximized();
+        }
+
+        this.updateMatter();
+    }
+
+    handle_normal_entered(task) {
+        this.normalize();
+    }
+
+    handle_maximized_entered(task) {
+        this.maximize();
+    }
+
+    handle_getMobile(task) {
+        this.mobilize();
+    }
+
+    handle_tocFrameletShown(task) {
+        this.tileNormal();
+    }
+
+    handle_stopResize(task) {
+        this.tileResized();
+    }
+
+    handle_cancelSearch(task) {
+        this.unhighliteSearchTerms();
+    }
+
+    handle_print(task) {
+        this.print();
+    }
+}
+
+class ReaderConsole extends kwish_DOMControl {
+
+    constructor(major, propsRec, id = undefined) {
+        
+        super(major, propsRec, 'readerConsole');
+        
+        this.setProps(
+            {
+                'navigationWidthCSSPropName': '--toc_framelet_width',
+                'minTocWidth': this.getCfgParam('toc.framelet.minWidth') || 100,
+
+                'tocShortcutId': 'tocShortcut',
+                
+                'contentFrameletId': 'matterFramelet',
+                'contentStartCSSPropName': '--matter_framelet_start',
+                'contentTopCSSPropName': '--matter_framelet_top',
+                'contentWidthCSSPropName': '--matter_framelet_width',
+                'contentHeightCSSPropName': '--matter_framelet_height',
+
+                'primaryScreenEventTypes': ['mouseup', 'mousemove']
+            }                               
+        );
+
+        window.addEventListener('resize', (e) => this.doCommand('dom_resize'));
+    }
+
+    configureFSMachine() {
+
+        this.easyFSMachine(
+            `[*] --> ${this.getApp().getInitialState()}
+            
+            normal    --> maximized : maximize
+            maximized --> normal    : normalize
+
+            normal        --> startingSplit : startSplit
+            startingSplit --> normal        : dom_mouseup
+            startingSplit --> splitting     : dom_mousemove
+            splitting     --> splitting     : dom_mousemove
+            splitting     --> normal        : dom_mouseup 
+            splitting     --> maximized     : maximize 
+            
+            normal           --> normalResized    : dom_resize
+            maximized        --> maximizedResized : dom_resize
+            normalResized    --> normal           : stopResize
+            maximizedResized --> maximized        : stopResize
+                                 
+            normalResized        --> mobileFromNormal    : getMobile
+            mobileFromNorResized --> normal              : getLargeScreen
+            maximizedResized     --> mobileFromMaximized : getMobile
+            mobileFromMaxResized --> maximized           : getLargeScreen
+
+            mobileFromNormal     --> mobileFromNorResized : dom_resize
+            mobileFromNorResized --> mobileFromNormal     : stopResize
+            mobileFromMaximized  --> mobileFromMaxResized : dom_resize
+            mobileFromMaxResized --> mobileFromMaximized  : stopResize`
+        );
+
+        return this;
+    }
+
+    configureMinorControllers() { 
+
+        this.tocShortcut = new TocShortcut(this, {}, this.getTocShortcutId());
+        
+        return this;
+    }
+
+    getConsoleState() {
+        return this.getEasyFSMState();
+    }
+
+    isMaximized() {
+        return this.getConsoleState() === 'maximized';
+    }
+
+    getMajorIndent() {
+        return kwish_DOMUtils.measureCSSProp('--major_indent');
+    }
+
+    getTocShortcut() {
+        return this.getGear(this.getTocShortcutId());
+    }
+
+    getTocFrameletSize() {
+        const tocFrameletWidth = this.getTocFramelet().getWidth();
+        const windowWidth = window.innerWidth;
+        return `${tocFrameletWidth}/${windowWidth}`;
+    }
+
+    forceCloseBurger() {
+        this.getGear('burger').forceToState('hidden');
+        return this;
+    }
+
+    commitConsoleState() {
+
+        this.setCfgParam('toc.framelet.size', this.getTocFrameletSize())
+            .setCfgParam('toc.framelet.folded', this.getConsoleState())
+            .getCfg().commitUserParams();
+
+        return this;
+    }
+
+    handle_prepare(task) {  
+        this.configureFSMachine().configureMinorControllers();  
+    }
+
+    handle_normal_entered(task) {
+        
+        this.commitConsoleState().setCursor('grab'); 
+        
+        if (this.getApp().isMobileWidth()) {
+            this.proclaimCommand('getMobile');
+        }
+    }
+
+    handle_maximized_entered(task) {
+        this.commitConsoleState();
+    }
+
+    handle_startingSplit_entered(task) {
+        this.initTocWidth = this.getTocFramelet().getWidth();
+        this.startedFromPos = task.getPayload().getDOMClientVect();
+        this.setCursor('grabbing');
+    }
+   
+    handle_splitting_entered(task) { 
+
+        const currPos = task.getPayload().getDOMClientVect();
+        
+        const dirMul = kwish_DOMUtils.isLTR() ? 1 : -1;
+        const deltaX = dirMul*(currPos.x - this.startedFromPos.x);
+        const newTocWidth = this.initTocWidth + deltaX;
+
+        this.tocFramelet.do('split', newTocWidth);
+        
+        this.commitConsoleState();
+
+        if (this.getTocFramelet().getWidth() < this.getMinTocWidth()) {
+            this.proclaimCommand('maximize');
+        }
+    }
+
+    handle_normalResized_entered(task) {
+        this.proclaimCommand(
+            this.getApp().isMobileWidth() ? 'getMobile' : 'stopResize'
+        );
+    }
+
+    handle_maximizedResized_entered(task) {
+        this.proclaimCommand(
+            this.getApp().isMobileWidth() ? 'getMobile' : 'stopResize'
+        );
+    }
+
+    handle_mobileFromNorResized_entered(task) {
+        this.proclaimCommand(
+            this.getApp().isMobileWidth() ? 'stopResize' : 'getLargeScreen'
+        );
+    }
+
+    handle_mobileFromMaxResized_entered(task) {
+        this.proclaimCommand(
+            this.getApp().isMobileWidth() ? 'stopResize' : 'getLargeScreen'
+        );
+    }
+
+    handle_normalResized_mobileFromNormal(task) {
+        this.forceCloseBurger();
+    }
+
+    handle_maximizedResized_mobileFromMaximized(task) {
+        this.forceCloseBurger();           
+    }
+
+    handle_dom_mousedown(task) {
+
+        const startSplitTask = this.createTask('startSplit')
+            .setPropagationStrategyCode(kwish_TASK_PRIVAT)
+            .setDOMEvent(task.getDOMEvent());
+            
+        this.terminateTask(task)
+            .doTask(startSplitTask);
+    }
+} 
+
+class SearchResultsFramelet extends kwish_DOMControl {
+
+    constructor(major, propsRec, id = undefined) {
+        super(major, propsRec, id);
+        this.setCSSClassNameBase('framelet');
+    }
+}
+
+class SearchConsole extends kwish_DOMControl {
+
+    constructor(major, propsRec, id = undefined) {
+        super(major, propsRec, id);
+        this.setCSSClassNameBase('console');
+    }
+}
+
+class ConsoleKeeper extends kwish_DOMControl {
+
+    constructor(major, propsRec, id = undefined) {
+
+        super(major, propsRec, id);
+
+        this.easyFSMachine(
+            `[*] --> reading
+            reading --> searching : search
+            searching --> reading : cancelSearch`
+        )
+    }
+
+    handle_searching_entered(task) {
+        this.getGear('readerConsole').hide()
+            .getGear('searchConsole').show();
+    }
+
+    handle_reading_entered(task) {
+        this.getGear('readerConsole').show().doCommand('dom_resize')
+            .getGear('searchConsole').hide();
+    }
+} 
+
+class Page extends kwish_Page {
+
+    constructor(major, props, id = undefined) {
+        
+        super(major, props, id)
+
+        this.setProps(
+            {
+                'searchTermCSSClassName': 'search_term'
+            }
+        );
+    }
+
+    getConsoleKeeper() {
+        return this.getGear('consoleKeeper');
+    }
+
+    handle_cancelSearch(task) {
+        this.getConsoleKeeper().doCommand('cancelSearch');
+    }
+
+    handle_search(task) {
+        this.getConsoleKeeper().doCommand('search');
+    }
+
+    handle_read(task) {
+        this.getConsoleKeeper().doCommand('read');
+    }
+}
+
+class App extends kwish_App {
+
+    constructor(major, props, id) {
+
+        super(major, props, id);
+        
+        this.setProps( 
+            {
+                'maxMobileWidth': this.getCfgParam('responsive.maxMobileWidth') || 480
+            }
+        )
+    }
+
+    isMobileWidth() {
+        return kwish_DOMUtils.getWindowWidth() <= this.getMaxMobileWidth();
+    }
+
+    getInitialState() {
+
+        const savedState = this.getCfgParam('toc.framelet.folded') || 'normal';
+
+        if (this.isMobileWidth()) {
+            switch (savedState) {
+                case 'normal': return 'mobileFromNormal';
+                case 'maximized': return 'mobileFromMaximized';
+            }
+        } else {
+            switch (savedState) {
+                case 'mobileFromNormal': return 'normal';
+                case 'mobileFromMaximized': return 'maximized';
+            }
+        }
+
+        return savedState; 
+    }
+
+    getDocEntryIdPostfix() {
+        return `_:_${this.getId()}`;
+    }
+
+    mountDoc() {
+
+        let doc = new ArnavDoc(this, "tocModel")
+                    //.setEntryIdPostfix(this.getDocEntryIdPostfix())
+                    .loadFromDto(GLOBAL_DITATOO_TOC_STRUCT_DTO);
+
+        this.declare('model');
+
+        this.setProps({'model': doc});
+        
+        return this;
+    }
+
+    mountPage() {
+        this.page = new Page(this).usePresetControls();
+        return this;
+    }
+
+    getSearchIndex() {
+        return GLOBAL_DITATOO_SEARCH_INDEX_DTO;
+    }
+
+    hasTaxonomy() {
+        return !!GLOBAL_DITATOO_SEARCH_INDEX_DTO.taxonomy && this.getCfgParam('search.taxonomy.mode') === 'on';
+    }
+
+    getCurrBaseURL() {
+        return kwish_Utils.substringBeforeLast(location.href, '/');
+    }
+
+    getCurrPageFileName() {
+        return kwish_Utils.substringAfterLast(location.href, '/');
+    }
+
+    getCurrPageId() {
+
+        const currPageId = kwish_Utils.substringBeforeLast(
+                this.getCurrPageFileName(),
+                `.${this.getCfgParam('html.fileType')}`
+            );
+
+        return currPageId;
+    }
+
+    assemblePageURL(pageFileName) {
+        return `${this.getCurrBaseURL()}/${pageFileName}`;
+    }
+
+    assemblePageURLById(id) {
+        const fName = `${id}.${this.getCfgParam('html.fileType')}`;
+        return this.assemblePageURL(fName);
+    }
+
+    getDocRootPageFileName() {
+        return this.getApp().model.url;
+    }
+
+    isInDocRoot() {
+        return this.getCurrPageFileName().toLowerCase() === this.getDocRootPageFileName().toLowerCase();
+    }
+
+    browseToPage(pageFileName) {
+        const browseToURL = this.assemblePageURL(pageFileName);
+        location = browseToURL;
+        return this;
+    }
+
+    browseToDocRoot() {
+        return this.browseToPage(this.getDocRootPageFileName());
+    }
+
+    goOn() {
+        this.mountDoc().mountPage();
+        this.tossDownCommand('prepare');
+        this.page.appear();
+        this.tossDownCommand('restore');
+
+        //this.getGear('tocFramelet').restoreScroll();
+    }
+
+    handle_commit_cfg() {
+        this.getCfg().commitUserParams();
+    }
+
+    handle_browseToPage(task) {
+        this.browseToPage(task.getPayload());
+    }
+
+    handle_browseToDocRoot(task) {
+        this.browseToDocRoot().terminateTask(task);
+    }
+
+    /*handle_userAction(task) {
+        this.browseToPage(task.getPayload());
+    }*/
+}
+
+function importCfg(xmlBasedCfg) {
+
+    let compressed = {};
+
+    if (!xmlBasedCfg || !xmlBasedCfg.cfg) return compressed;
+
+    for (const entry of xmlBasedCfg.cfg) {
+        const property = entry.property;
+        if (property && property["@path"] && property["@content"] !== undefined) {
+            compressed[property["@path"]] = property["@content"];
+        }
+    }
+
+    return compressed;
+}
+
+function importTree(toc, strings) {
+
+    function buildNode(entry, prefix = '') {
+        const index = prefix ? prefix + '.' : '';
+        const title = strings[entry['@id']] || entry['@title'] || '';
+        const node = {
+            'title': title,
+            'number': index,  
+            'state': 'hidden'
+        };
+
+        if (entry['@uri']) {
+            node.uri = entry['@uri'];
+        }
+
+        if (entry.entries && entry.entries.length) {
+            node.nodes = entry.entries.map((e, i) => buildNode(e.entry, index + (i + 1)));
+        }
+
+        return node;
+    }
+
+    return buildNode(toc.entry);
+}
+
+function importTaxonomy(searchIndexRec) {
+
+    function convertNode(node) {
+        const newNode = { title: node.name, state: 'hidden' };
+        if (node.value) {
+            newNode.value = node.value; 
+        }
+        if (node.taxa) {
+            newNode.nodes = node.taxa.map(convertNode);
+        }
+        return newNode;
+    }
+
+    if (!!searchIndexRec.taxonomy) {
+        return {
+            title: searchIndexRec.taxonomy.name || "",
+            nodes: searchIndexRec.taxonomy.taxa.map(convertNode)
+        };
+    } 
+
+    return {};
+}
+
+function assembleAppKey() {
+    return `help_${kwish_Utils.hashObject(GLOBAL_DITATOO_TOC_STRUCT_DTO)}`;
+}
+
+(function () {
+
+    const keyBase = assembleAppKey();
+
+    const consoleState = kwish_Cfg.getFromLocalStorage(keyBase, 'toc.framelet.folded');
+
+    if (consoleState === 'maximized') {
+        
+        kwish_DOMUtils.setCSSProp('--matter_framelet_start', 0);
+        kwish_DOMUtils.setCSSProp('--matter_framelet_top', 0);
+        kwish_DOMUtils.setCSSProp('--matter_framelet_width', 'var(--console_width)');
+        kwish_DOMUtils.setCSSProp('--matter_framelet_height', 'var(--console_height)');    
+
+        return;
+    }
+
+    const tocFrameletSize = kwish_Cfg.getFromLocalStorage(keyBase, 'toc.framelet.size');
+
+    if (!!tocFrameletSize) {
+
+        const tocFrameletWidth = parseInt(kwish_Utils.substringBefore(tocFrameletSize, '/'));
+        const windowWidth = parseInt(kwish_Utils.substringAfter(tocFrameletSize, '/'));
+        const actualWindowWidth = window.innerWidth;
+        const newTocFrameletWidth = actualWindowWidth*tocFrameletWidth/windowWidth;
+    
+        kwish_DOMUtils.setCSSProp(
+            '--toc_framelet_default_width', `${newTocFrameletWidth}px`
+        );
+    }
+    
+})();
+
+function main() {
+
+    const staticCfgRec = importCfg(GLOBAL_DITATOO_CFG_DTO);
+    
+    const tocRec = importTree(
+        GLOBAL_DITATOO_TOC_STRUCT_DTO, GLOBAL_DITATOO_TOC_TITLES_DTO
+    );
+    
+    const taxonomyRec = importTaxonomy(
+        GLOBAL_DITATOO_SEARCH_INDEX_DTO
+    );
+
+    const propsRec = {
+        'tocRec': tocRec,
+        'taxonomyRec': taxonomyRec
+    }
+
+    const appId = assembleAppKey();
+    var WH_GLOBAL_APP = new App(propsRec, appId).start(staticCfgRec, GLOBAL_DITATOO_RSRC_DTO);
+}

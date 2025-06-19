@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_zlk_fb1_jk" xml:lang="ar">
+    <title>تعيين جودة المسح الافتراضية</title>
+    <prolog>
+        <metadata>
+            <category>المسح الضوئي</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>يمكنك تغيير جودة المسح مباشرةً من لوحة التحكم الخاصة بالطابعة.</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>في <uicontrol>لوحة التحكم</uicontrol>، اضغط على <uicontrol>جودة المسح الافتراضية</uicontrol>.</cmd>
+            </step>
+            <step>
+                <cmd>من الشاشة، حدد الدقة المطلوبة.</cmd>
+            </step>
+            <step>
+                <cmd>اضغط على <uicontrol>موافق</uicontrol>.</cmd>
+            </step>
+        </steps>
+    </taskbody>
+</task>

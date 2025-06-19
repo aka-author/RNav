@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_opt_w5y_hk">
+    <title>الطباعة من تطبيق برمجي</title>
+    <prolog>
+        <metadata>
+            <category>Printing</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>عادةً ما تتم معالجة معظم إعدادات الطباعة تلقائيًا من قبل التطبيق الذي تطبع منه. قد تحتاج إلى تغيير هذه الإعدادات يدويًا فقط عندما تريد تغيير جودة الطباعة، أو الطباعة على نوع معين من الورق أو شرائح العرض، أو استخدام ميزات خاصة أخرى.</p>
+            <note audience="Developers">بالإضافة إلى ذلك، يمكنك تنفيذ مهمة طباعة باستخدام واجهة برمجة التطبيقات الخاصة بالطابعة (API).</note>
+        </context>
+        <steps>
+            <step>
+                <cmd>تحقق من تحميل الورق في درج الإدخال.</cmd>
+            </step>
+            <step>
+                <cmd>في تطبيقك، اختر <uicontrol>ملف &gt; إعداد الصفحة</uicontrol>.</cmd>
+                <info>يتم عرض مربع الحوار "إعداد الصفحة". باستخدام هذا المربع، يمكنك تحديد حجم الورق، والاتجاه، والتحجيم.<fig>
+                    <image href="../graphics/PageSettings.png" id="image_ln4_qk1_jk"/>
+                </fig></info>
+            </step>
+            <step>
+                <cmd>تحقق من أن <keyword keyref="ProductName"/>
+                    <keyword keyref="Platform"/> هي الطابعة المحددة.</cmd>
+            </step>
+            <step>
+                <cmd>حدد سمات الصفحة التالية:</cmd>
+                <info>
+                    <ul id="ul_lvd_dj1_jk">
+                        <li>حجم الورق.</li>
+                        <li>اتجاه الصفحة.</li>
+                        <li>التحجيم.</li>
+                    </ul>
+                </info>
+            </step>
+            <step>
+                <cmd>انقر على <uicontrol>موافق</uicontrol>.</cmd>
+            </step>
+            <step>
+                <cmd>في تطبيقك، اختر <uicontrol>ملف &gt; طباعة</uicontrol>.</cmd>
+                <info>يتم عرض مربع الحوار "طباعة". <fig>
+                    <image href="../graphics/PrintPage.png" id="image_llp_fl1_jk"/>
+                </fig></info>
+            </step>
+            <step>
+                <cmd>حدد المعلمات التالية:</cmd>
+                <info>
+                    <ul id="ul_nyc_jl1_jk">
+                        <li>نطاق الصفحات.</li>
+                        <li>عدد النسخ.</li>
+                    </ul>
+                </info>
+            </step>
+            <step>
+                <cmd>انقر على <uicontrol>موافق</uicontrol>.</cmd>
+            </step>
+        </steps>
+        <result>تبدأ الطابعة بطباعة المستند.</result>
+    </taskbody>
+</task>

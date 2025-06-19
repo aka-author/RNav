@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_ply_1lb_jk" xml:lang="ar">
+    <title>موضوع يحتوي على خطوات قابلة لإعادة الاستخدام</title>
+    <taskbody>
+        <steps id="steps_loading_paper">
+            <step id="loading_paper_step1">
+                <cmd>قم بتحميل المستند الأصلي، بحيث يكون جانب الطباعة للأعلى، في درج تغذية المستندات.</cmd>
+            </step>
+            <step id="loading_paper_step2">
+                <cmd>حرّك أدلة الورق إلى الداخل حتى تتوقف عند الحافتين اليمنى واليسرى للورق.</cmd>
+            </step>
+        </steps>
+    </taskbody>
+</task>

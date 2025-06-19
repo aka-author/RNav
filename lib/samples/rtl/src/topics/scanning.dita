@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_qj1_5xz_3k" xml:lang="ar">
+    <title>مسح مستند أو صورة ضوئيًا</title>
+    <prolog>
+        <metadata>
+            <category>المسح الضوئي</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>يمكنك بدء عملية المسح الضوئي من جهاز الكمبيوتر أو مباشرةً من الطابعة.</p>
+            <p>
+                <note>لاستخدام ميزات المسح الضوئي، يجب أن تكون الطابعة والكمبيوتر متصلين ومشغلين. كما يجب أن يكون برنامج أدوات الطابعة مثبتًا ويعمل على الكمبيوتر الخاص بك.</note>
+            </p>
+        </context>
+        <steps>
+            <step conref="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step1"
+                conrefend="../reusable/reusable_steps.dita#task_ply_1lb_jk/loading_paper_step2">
+                <cmd/>
+            </step>
+            <step>
+                <cmd>قم بتشغيل برنامج أدوات الطابعة.</cmd>
+            </step>
+            <step>
+                <cmd>من شريط الأدوات العلوي، انقر على <uicontrol>المسح إلى</uicontrol>.</cmd>
+                <info>سيظهر لك قائمة بالتطبيقات التي يمكنك إرسال المسح الضوئي إليها. على سبيل المثال، إذا كنت تقوم بمسح مستند ضوئيًا، يمكنك اختيار تطبيق معالجة النصوص الخاص بك.</info>
+            </step>
+            <step>
+                <cmd>اختر التطبيق الذي يجب أن يستقبل المسح الضوئي.</cmd>
+            </step>
+            <step>
+                <cmd>انقر على <uicontrol>موافق</uicontrol>.</cmd>
+                <info>تُعرض نافذة تحتوي على معاينة للصورة.</info>
+            </step>
+            <step>
+                <cmd>أجرِ التعديلات اللازمة على صورة المعاينة.</cmd>
+            </step>
+            <step>
+                <cmd>انقر على <keyword>موافقة</keyword>.</cmd>
+            </step>
+        </steps>
+    </taskbody>
+</task>

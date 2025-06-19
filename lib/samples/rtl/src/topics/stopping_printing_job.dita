@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_iqc_cvy_hk" xml:lang="ar">
+    <title>إيقاف مهمة طباعة</title>
+    <prolog>
+        <metadata>
+            <category>الطباعة</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>يُوصى بشدة بإيقاف مهمة الطباعة مباشرة من لوحة التحكم في الطابعة.</p>
+        </context>
+        <steps-unordered>
+            <step>
+                <cmd>من <uicontrol>لوحة التحكم</uicontrol>، اضغط على زر <uicontrol>إلغاء</uicontrol>.</cmd>
+                <info>
+                    <note>إذا لم تتوقف مهمة الطباعة، اضغط على زر <uicontrol>إلغاء</uicontrol> مرة أخرى. قد يستغرق الأمر لحظات قليلة لإلغاء الطباعة.</note>
+                </info>
+            </step>
+        </steps-unordered>
+    </taskbody>
+</task>

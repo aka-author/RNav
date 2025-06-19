@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="task_lgz_4vy_hk" xml:lang="ar">
+    <title>تعيين عدد النسخ</title>
+    <prolog>
+        <metadata>
+            <category>النسخ</category>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>يمكنك تعيين عدد النسخ التي ترغب بطباعتها مباشرة من لوحة التحكم.</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>من <uicontrol>لوحة التحكم</uicontrol>، في منطقة <uicontrol>النسخ</uicontrol>، اضغط على زر <uicontrol>القائمة</uicontrol> بشكل متكرر حتى يتم عرض خيار <uicontrol>عدد النسخ</uicontrol>.</cmd>
+            </step>
+            <step>
+                <cmd>استخدم لوحة المفاتيح لإدخال عدد النسخ.</cmd>
+            </step>
+        </steps>
+    </taskbody>
+</task>
